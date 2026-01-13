@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primandito Adi Setiya | Bug Hunter & VDP Specialist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --success: #10b981;
+            --border: #334155;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .logo span {
+            color: var(--accent-light);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        
+        .highlight {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+        
+        .bugcrowd-profile {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: var(--secondary);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .bugcrowd-profile:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .bugcrowd-profile i {
+            color: #f26822;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .focus-areas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .focus-tag {
+            background-color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .timeline {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .timeline-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .timeline-date {
+            color: var(--accent-light);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        /* Hall of Fame Section */
+        .hof-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: var(--secondary);
+            color: var(--text-secondary);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .hof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .hof-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+        }
+        
+        .hof-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hof-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hof-program {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--accent-light);
+        }
+        
+        .hof-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .hof-body {
+            padding: 20px;
+        }
+        
+        .hof-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .hof-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .hof-link:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .vulnerability-type {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 12px;
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--accent-light);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hof-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .stats {
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .hof-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">BugHunter<span>.</span></div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#hof">Hall of Fame</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 class="fade-in">Primandito Adi Setiya</h1>
+            <p class="subtitle fade-in">Bug Hunter & <span class="highlight">VDP Specialist</span></p>
+            <p class="fade-in">Since November 2025, I've been hunting security vulnerabilities with a focus on VDP programs,<br>helping organizations secure their web applications while building my reputation in the bug bounty community.</p>
+            
+            <a href="https://bugcrowd.com/h/Primandito_Adi_Setiya" target="_blank" class="bugcrowd-profile fade-in">
+                <i class="fab fa-bugcrowd"></i>
+                <span>View my Bugcrowd Profile</span>
+            </a>
+            
+            <div class="stats fade-in">
+                <div class="stat-item">
+                    <div class="stat-number" id="hofCount">3</div>
+                    <div class="stat-label">Hall of Fame</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="programCount">3</div>
+                    <div class="stat-label">Programs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Web Apps</div>
+                    <div class="stat-label">Focus Area</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a dedicated bug hunter who started my journey in November 2025. My primary focus is on Vulnerability Disclosure Programs (VDP) for web applications, where I help organizations identify and fix security flaws before they can be exploited.</p>
+                    <p>With a systematic approach to security research, I focus on manual testing and automation testing techniques to uncover vulnerabilities across web applications and APIs. I believe in the importance of responsible disclosure and contributing to a safer internet for everyone.</p>
+                    <p>Starting from zero knowledge in bug bounty hunting, I've managed to earn my place in multiple Hall of Fames through persistence, continuous learning, and attention to detail.</p>
+                    
+                    <div class="focus-areas">
+                        <div class="focus-tag">Web Application Security</div>
+                        <div class="focus-tag">VDP Programs</div>
+                        <div class="focus-tag">Bug Bounty Hunting</div>
+                        <div class="focus-tag">Responsible Disclosure</div>
+                        <div class="focus-tag">Manual Testing</div>
+                        <div class="focus-tag">Automation Testing</div>
+                        <div class="focus-tag">Security Research</div>
+                    </div>
+                </div>
+                
+                <div class="timeline">
+                    <h3>My Journey</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">November 2025</div>
+                        <p>Started my bug bounty journey on Bugcrowd</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">December 2025</div>
+                        <p>First Hall of Fame recognition in a VDP program</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">January 2026</div>
+                        <p>Earned Hall of Fame in 3 different VDP programs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hall of Fame Section -->
+    <section id="hof">
+        <div class="container">
+            <h2 class="section-title">Hall of Fame</h2>
+            <p class="hof-description">My recognized security disclosures in VDP programs. Grateful for these opportunities to contribute to security.</p>
+            
+            <div class="hof-grid" id="hofGrid">
+                <!-- Hall of Fame entries will be dynamically loaded here -->
+                <!-- Each card will be added by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#hof">Hall of Fame</a>
+                <a href="https://bugcrowd.com/h/Primandito_Adi_Setiya" target="_blank">Bugcrowd Profile</a>
+            </div>
+            <p class="copyright">© 2026 Primandito Adi Setiya. All rights reserved.</p>
+            <p class="copyright">Security Researcher | VDP Specialist | Bug Hunter</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Hall of Fame Data - REAL DATA from user
+        const hofEntries = [
+            {
+                id: 1,
+                program: "University of Melbourne VDP",
+                date: "January 2026",
+                description: "Grateful to be included in the Hall of Fame. An honor to contribute to the security of educational institutions.",
+                link: "https://bugcrowd.com/engagements/uni-melbourne-vdp/hall_of_fames",
+                vulnerability: "Web Application Security"
+            },
+            {
+                id: 2,
+                program: "NFL VDP Pro",
+                date: "January 2026",
+                description: "Honored to be recognized. Thankful for the opportunity to help improve security for such a prominent organization.",
+                link: "https://bugcrowd.com/engagements/nfl-vdp-pro/hall_of_fames",
+                vulnerability: "Web Application Security"
+            },
+            {
+                id: 3,
+                program: "University of Canterbury VDP Pro",
+                date: "January 2026",
+                description: "Appreciate the recognition. Proud to contribute to making educational platforms more secure for everyone.",
+                link: "https://bugcrowd.com/engagements/university-canterbury-vdp-pro/hall_of_fames",
+                vulnerability: "Web Application Security"
+            }
+        ];
+        
+        // Function to display Hall of Fame entries
+        function displayHofEntries(entries) {
+            const hofGrid = document.getElementById('hofGrid');
+            hofGrid.innerHTML = '';
+            
+            entries.forEach(entry => {
+                const card = document.createElement('div');
+                card.className = 'hof-card fade-in';
+                
+                card.innerHTML = `
+                    <div class="hof-header">
+                        <div class="hof-program">${entry.program}</div>
+                        <div class="hof-date">${entry.date}</div>
+                    </div>
+                    <div class="hof-body">
+                        <p class="hof-description">${entry.description}</p>
+                        <div class="vulnerability-type">${entry.vulnerability}</div>
+                        <a href="${entry.link}" target="_blank" class="hof-link" style="margin-top: 15px; display: inline-block;">View Hall of Fame</a>
+                    </div>
+                `;
+                
+                hofGrid.appendChild(card);
+            });
+            
+            // Update stats
+            document.getElementById('hofCount').textContent = entries.length;
+            document.getElementById('programCount').textContent = entries.length;
+        }
+        
+        // Initial display
+        displayHofEntries(hofEntries);
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Current year for footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearSpan = document.querySelector('.copyright');
+            if (yearSpan) {
+                yearSpan.innerHTML = yearSpan.innerHTML.replace('2026', new Date().getFullYear());
+            }
+        });
+    </script>
+</body>
+</html>
