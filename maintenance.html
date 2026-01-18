@@ -1,43 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Under Maintenance</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8" />
+  <title>Maintenance Mode</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+
   <style>
+    :root {
+      --bg: #020617;
+      --border: #1e293b;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #22c55e;
+      --warn: #eab308;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont;
-      background: #020617;
-      color: #e5e7eb;
       height: 100vh;
+      background: radial-gradient(1200px 600px at 50% 30%, #020617, #000);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: var(--text);
       display: flex;
-      justify-content: center;
       align-items: center;
-      text-align: center;
+      justify-content: center;
     }
-    .wrap {
-      max-width: 520px;
+
+    .terminal {
+      width: min(760px, 94%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #020617, #000);
+      box-shadow: 0 20px 60px rgba(0,0,0,.7);
+      overflow: hidden;
     }
-    h1 {
-      font-size: 2.3rem;
+
+    .terminal-header {
+      display: flex;
+      gap: 8px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .red { background: #ef4444; }
+    .yellow { background: #eab308; }
+    .green { background: #22c55e; }
+
+    .terminal-body {
+      padding: 22px;
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .prompt { color: var(--accent); }
+    .muted { color: var(--muted); }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background: var(--accent);
+      margin-left: 4px;
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      to { visibility: hidden; }
+    }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .timeline {
+      margin-top: 10px;
+      border-left: 2px solid var(--border);
+      padding-left: 14px;
+    }
+
+    .step {
       margin-bottom: 12px;
     }
-    p {
-      opacity: 0.85;
-      line-height: 1.6;
+
+    .step.done::before,
+    .step.active::before,
+    .step.pending::before {
+      content: "●";
+      margin-left: -20px;
+      margin-right: 10px;
+    }
+
+    .step.done { color: var(--accent); }
+    .step.active { color: var(--warn); }
+    .step.pending { color: var(--muted); }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: var(--muted);
     }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <h1>Maintenance Mode</h1>
-    <p>
-      This portfolio is currently under maintenance.<br>
-      I’m improving content and security research.<br><br>
-      Please check back soon.
-    </p>
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+
+    <div class="terminal-body">
+      <div><span class="prompt">$</span> status --site primandito.github.io</div>
+      <div class="muted">[INFO] Maintenance mode enabled</div>
+
+      <div class="section">
+        <strong>Maintenance in Progress</strong><br>
+        <span class="muted">
+          Portfolio is temporarily offline for content updates<br>
+          and security hardening.
+        </span>
+      </div>
+
+      <div class="section">
+        <div><span class="prompt">$</span> timeline --relaunch</div>
+
+        <div class="timeline">
+          <div class="step done">Phase 1 — Audit & cleanup (completed)</div>
+          <div class="step active">Phase 2 — Content & layout refactor (in progress)</div>
+          <div class="step pending">Phase 3 — Final review & redeploy</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div><span class="prompt">$</span> eta</div>
+        <div class="muted">
+          Target relaunch: <strong>Late January 2026</strong>
+        </div>
+      </div>
+
+      <div class="footer">
+        — Primandito Adi Setiya
+      </div>
+
+      <span class="cursor">&nbsp;</span>
+    </div>
   </div>
 </body>
 </html>
