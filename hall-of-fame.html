@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall of Fame - Primandito Adi Setiya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Base */
+        * {
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            font-weight: 400;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin: 2rem 0 1rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+        }
+        
+        p {
+            color: #aaa;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            color: #ccc;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .tagline {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .nav a {
+            color: #888;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .nav a:hover {
+            color: #fff;
+        }
+        
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #333;
+            color: #888;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .back-btn:hover {
+            border-color: #555;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Hall of Fame */
+        .hof-count {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hof-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .hof-item {
+            border: 1px solid #333;
+            padding: 1.5rem;
+            transition: border-color 0.2s;
+        }
+        
+        .hof-item:hover {
+            border-color: #555;
+        }
+        
+        .hof-org {
+            font-family: 'IBM Plex Mono', monospace;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .hof-date {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+        
+        .hof-desc {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .hof-link {
+            font-size: 0.85rem;
+            color: #888;
+            font-family: 'IBM Plex Mono', monospace;
+            display: inline-block;
+        }
+        
+        .hof-link:hover {
+            color: #fff;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .hof-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav {
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .name {
+                font-size: 1.3rem;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .hof-item {
+                padding: 1rem;
+            }
+        }
+        
+        /* Simple animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+        }
+        
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #333;
+            color: #888;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            background: none;
+            cursor: pointer;
+        }
+        
+        .pagination-btn:hover:not(:disabled) {
+            border-color: #555;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .pagination-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="name">Primandito Adi Setiya</div>
+            <div class="tagline">Security Researcher • Bug Bounty Hunter</div>
+            <div class="nav">
+                <a href="portofolio.html">Home</a>
+                <a href="portofolio.html">Stats</a>
+                <a href="#hof">Hall of Fame</a>
+                <a href="https://bugcrowd.com/h/Primandito_Adi_Setiya" target="_blank">Bugcrowd →</a>
+            </div>
+        </header>
+
+        <!-- Back Button -->
+        <a href="portofolio.html" class="back-btn fade-in">
+            ← Back to Home
+        </a>
+
+        <!-- Hall of Fame Section (All items) -->
+        <section id="hof">
+            <h1>Hall of Fame</h1>
+            <p class="hof-count">Showing 15 Hall of Fame entries</p>
+            
+            <div class="hof-grid" id="hofGrid">
+                <!-- All Hall of Fame items will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div>© 2026 Primandito Adi Setiya</div>
+            <div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Security researcher focused on responsible disclosure</div>
+            <a href="https://bugcrowd.com/h/Primandito_Adi_Setiya" target="_blank" class="hof-link" style="margin-top: 1rem; display: inline-block;">
+                View full profile on Bugcrowd →
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // Full Hall of Fame Data (All 15 items)
+        const fullHallOfFameData = [
+            {
+                program: "University of Melbourne VDP",
+                date: "January 2026",
+                description: "Grateful to be included in the Hall of Fame. An honor to contribute to the security of educational institutions.",
+                link: "https://bugcrowd.com/engagements/uni-melbourne-vdp/hall_of_fames"
+            },
+            {
+                program: "National Football League (NFL) VDP Pro",
+                date: "January 2026",
+                description: "Honored to be recognized. Thankful for the opportunity to help improve security for such a prominent organization.",
+                link: "https://bugcrowd.com/engagements/nfl-vdp-pro/hall_of_fames"
+            },
+            {
+                program: "University of Canterbury VDP Pro",
+                date: "January 2026",
+                description: "Appreciate the recognition. Proud to contribute to making educational platforms more secure for everyone.",
+                link: "https://bugcrowd.com/engagements/university-canterbury-vdp-pro/hall_of_fames"
+            },
+            {
+                program: "Hemi Labs VDP",
+                date: "January 2026",
+                description: "Thank you for your appreciation. I'm proud to play a role in raising security standards on modular blockchain networks like Hemi Labs.",
+                link: "https://bugcrowd.com/engagements/hemi/hall_of_fames"
+            },
+            {
+                program: "National Aeronautics and Space Administration (NASA) VDP",
+                date: "January 2026",
+                description: "Honored to be recognized. Thankful for the opportunity to help improve security through NASA's Vulnerability Disclosure Program.",
+                link: "https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames"
+            },
+            {
+                program: "State of Maryland VDP",
+                date: "January 2026",
+                description: "Thankful for the opportunity to support security improvements within State of Maryland systems through its Vulnerability Disclosure Program.",
+                link: "https://bugcrowd.com/engagements/maryland-vdp-pro/hall_of_fames"
+            },
+            {
+                program: "Office of Surface Mining Reclamation and Enforcement (OSMRE) VDP",
+                date: "January 2026",
+                description: "Appreciate the recognition for contributing to the security of OSMRE's systems through responsible disclosure.",
+                link: "https://bugcrowd.com/engagements/osmre-vdp/hall_of_fames"
+            },
+            {
+                program: "National Credit Union Administration (NCUA) VDP",
+                date: "January 2026",
+                description: "Honored to be included in the Hall of Fame for helping secure financial regulatory systems.",
+                link: "https://bugcrowd.com/engagements/ncua-vdp/hall_of_fames"
+            },
+            {
+                program: "Bureau of Indian Affairs (BIA) VDP",
+                date: "January 2026",
+                description: "Grateful for the opportunity to contribute to the security of BIA systems through ethical security research.",
+                link: "https://bugcrowd.com/engagements/bia-vdp/hall_of_fames"
+            },
+            {
+                program: "Environmental Protection Agency (EPA) VDP",
+                date: "January 2026",
+                description: "Thankful for the recognition in helping protect environmental systems through security research.",
+                link: "https://bugcrowd.com/engagements/epa-vdp/hall_of_fames"
+            },
+            {
+                program: "National Transportation Safety Board (NTSB) VDP",
+                date: "January 2026",
+                description: "Honored to be recognized for contributing to the security of transportation safety systems.",
+                link: "https://bugcrowd.com/engagements/ntsb-vdp/hall_of_fames"
+            },
+            {
+                program: "Federal Housing Finance Agency (FHFA) VDP",
+                date: "January 2026",
+                description: "Appreciate the inclusion in the Hall of Fame for helping secure housing finance systems.",
+                link: "https://bugcrowd.com/engagements/fhfa-vdp/hall_of_fames"
+            },
+            {
+                program: "Department of Homeland Security (DHS) VDP",
+                date: "January 2026",
+                description: "Honored to contribute to national security through responsible vulnerability disclosure.",
+                link: "https://bugcrowd.com/engagements/dhs-vdp/hall_of_fames"
+            },
+            {
+                program: "Arrow Electronics VDP",
+                date: "January 2026",
+                description: "Thankful for the recognition in helping secure enterprise electronic systems.",
+                link: "https://bugcrowd.com/engagements/arrow-electronics-vdp/hall_of_fames"
+            },
+            {
+                program: "Department of Veterans Affairs VDP",
+                date: "January 2026",
+                description: "Honored to be recognized in the Department of Veterans Affairs Vulnerability Disclosure Program. Proud to contribute to the security of systems that serve our veterans.",
+                link: "https://bugcrowd.com/engagements/va-vdp/hall_of_fames"
+            }
+        ];
+
+        // Populate All Hall of Fame Items
+        document.addEventListener('DOMContentLoaded', function() {
+            const hofGrid = document.getElementById('hofGrid');
+            const hofCount = document.querySelector('.hof-count');
+            
+            // Update count
+            hofCount.textContent = `Showing ${fullHallOfFameData.length} Hall of Fame entries`;
+            
+            // Create grid based on screen size
+            function createGrid() {
+                hofGrid.innerHTML = '';
+                
+                // For mobile: 1 column, for tablet: 2 columns, for desktop: 2 columns (wider layout)
+                const screenWidth = window.innerWidth;
+                let gridTemplateColumns = '1fr';
+                
+                if (screenWidth >= 768) {
+                    gridTemplateColumns = 'repeat(2, 1fr)';
+                }
+                
+                hofGrid.style.gridTemplateColumns = gridTemplateColumns;
+                
+                // Add all items
+                fullHallOfFameData.forEach((item, index) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'hof-item fade-in';
+                    itemElement.style.animationDelay = `${index * 0.05}s`;
+                    
+                    itemElement.innerHTML = `
+                        <div class="hof-org">${item.program}</div>
+                        <div class="hof-date">${item.date}</div>
+                        <div class="hof-desc">${item.description}</div>
+                        <a href="${item.link}" target="_blank" class="hof-link">View on Bugcrowd →</a>
+                    `;
+                    
+                    hofGrid.appendChild(itemElement);
+                });
+            }
+            
+            // Initial creation
+            createGrid();
+            
+            // Recreate on resize
+            window.addEventListener('resize', createGrid);
+            
+            // Simple scroll animation
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
