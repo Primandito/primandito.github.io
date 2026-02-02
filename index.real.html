@@ -3,558 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primandito Adi Setiya</title>
+    
+    <!-- SEO & SEARCH KEYWORDS -->
+    <title>Primandito Adi Setiya | Security Researcher</title>
+    <meta name="description" content="Independent Security Researcher dedicated to identifying vulnerabilities through responsible disclosure. Committed to helping organizations strengthen their digital infrastructure.">
+    <meta name="keywords" content="Primandito Adi Setiya, Security Researcher, Bug Bounty Hunter, Bugcrowd, Ethical Hacker, NASA Hall of Fame, Cybersecurity Portfolio, Vulnerability Research, Prima, Primandito, Adi, Adi Setiya, SetiyI am Primandito Adi Setiya, an independent security researcher dedicated to identifying system vulnerabilities through responsible disclosure.a">
+    <meta name="author" content="Primandito Adi Setiya">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* Reset & Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
+        :root {
+            --bg-color: #0a0a0a;
+            --text-main: #f0f0f0;
+            --text-dim: #aaa;
+            --accent: #ff5555;
+            --border: #333;
+            --card-hover: rgba(255, 255, 255, 0.05);
         }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
-            color: #f0f0f0;
-            line-height: 1.6;
-            font-weight: 400;
-            max-width: 1200px;
-            margin: 0 auto;
+
+        /* Base Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg-color); 
+            color: var(--text-main); 
+            line-height: 1.6; 
             padding: 20px;
         }
-        
+
+        .container { max-width: 900px; margin: 0 auto; }
+
         /* Typography */
-        h1, h2, h3 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-weight: 500;
+        h1, h2, h3 { font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+        h1 { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 0.5rem; color: #fff; }
+        h2 { font-size: 1.3rem; margin: 3rem 0 1.5rem; padding-top: 2rem; border-top: 1px solid var(--border); color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        h3 { font-size: 1.1rem; color: #fff; margin: 1.5rem 0 0.5rem; }
+        p { color: var(--text-dim); margin-bottom: 1rem; font-size: 1rem; }
+        strong { color: #fff; font-weight: 500; }
+
+        /* Header & Nav */
+        header { margin-bottom: 4rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+        .tagline { color: #888; font-size: 1rem; margin-bottom: 1.5rem; }
+        .nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .nav a { color: #888; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: 0.3s; }
+        .nav a:hover { color: #fff; }
+
+        /* Stats Grid - Responsive */
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+        @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+        .stat-item { border: 1px solid var(--border); padding: 1.5rem; }
+        .stat-number { font-family: 'IBM Plex Mono', monospace; font-size: 1.8rem; color: #fff; display: block; }
+        .stat-label { color: #888; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Priority List */
+        .priority-item { margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; }
+        .priority-label { color: #aaa; font-size: 0.9rem; }
+        .priority-value { font-family: 'IBM Plex Mono', monospace; color: #fff; }
+
+        /* One Link Certificate Box */
+        .cert-box { 
+            border: 1px solid var(--border); 
+            padding: 2rem; 
+            background: linear-gradient(45deg, #111, #0a0a0a); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
-        
-        h1 {
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-        
-        h2 {
-            font-size: 1.4rem;
-            color: #fff;
-            margin: 2rem 0 1rem;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-        }
-        
-        h3 {
-            font-size: 1.1rem;
-            color: #fff;
-            margin: 1.5rem 0 0.5rem;
-        }
-        
-        p {
-            color: #aaa;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-        
-        a {
-            color: #fff;
+        .drive-btn { 
+            font-family: 'IBM Plex Mono', monospace; 
+            color: var(--accent); 
+            border: 1px solid var(--accent); 
+            padding: 12px 24px; 
+            font-size: 0.85rem;
+            white-space: nowrap;
             text-decoration: none;
-            transition: color 0.2s;
+            transition: 0.3s;
         }
-        
-        a:hover {
-            color: #ccc;
-        }
-        
-        .accent {
-            color: #ff5555;
-        }
-        
-        /* Layout */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        /* Header */
-        header {
-            margin-bottom: 3rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #333;
-        }
-        
-        .name {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-        
-        .tagline {
-            color: #888;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .nav {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-        
-        .nav a {
-            color: #888;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-        }
-        
-        .nav a:hover {
-            color: #fff;
-        }
-        
-        /* Sections */
-        section {
-            margin-bottom: 3rem;
-        }
-        
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        
-        .stat-item {
-            border: 1px solid #333;
-            padding: 1rem;
-        }
-        
-        .stat-number {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 0.25rem;
-        }
-        
-        .stat-label {
-            color: #888;
-            font-size: 0.9rem;
-        }
-        
-        /* Priority */
-        .priority-item {
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #222;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .priority-label {
-            color: #aaa;
-        }
-        
-        .priority-value {
-            font-family: 'IBM Plex Mono', monospace;
-            color: #fff;
-        }
-        
-        /* Hall of Fame */
-        .hof-grid {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .hof-item {
-            border: 1px solid #333;
-            padding: 1rem;
-            transition: border-color 0.2s;
-        }
-        
-        .hof-item:hover {
-            border-color: #555;
-        }
-        
-        .hof-org {
-            font-family: 'IBM Plex Mono', monospace;
-            color: #fff;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        
-        .hof-date {
-            color: #888;
-            font-size: 0.85rem;
-            margin-bottom: 0.75rem;
+        .drive-btn:hover { background: var(--accent); color: #fff; }
+
+        /* Hall of Fame Grid */
+        .hof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .hof-item { border: 1px solid var(--border); padding: 1.5rem; transition: 0.3s; display: flex; flex-direction: column; }
+        .hof-item:hover { border-color: #666; background: var(--card-hover); }
+        .hof-platform { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
+        .hof-org { color: #fff; font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.3; }
+        .hof-date { color: #666; font-size: 0.8rem; margin-bottom: 1rem; display: block; }
+        .hof-desc { color: var(--text-dim); font-size: 0.9rem; flex-grow: 1; margin-bottom: 1.5rem; }
+        .hof-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: #fff; border-bottom: 1px solid var(--accent); align-self: flex-start; text-decoration: none; }
+
+        .btn-full { display: block; text-align: center; margin-top: 3rem; padding: 1rem; border: 1px solid var(--border); font-family: 'IBM Plex Mono', monospace; color: #888; text-decoration: none; font-size: 0.9rem; }
+        .btn-full:hover { border-color: #fff; color: #fff; }
+
+        /* Footer Style */
+        footer { margin-top: 5rem; padding: 3rem 0; border-top: 1px solid var(--border); text-align: center; }
+        .footer-copy { color: #555; font-size: 0.85rem; margin-bottom: 1rem; }
+        .bugcrowd-link { 
             display: inline-block;
-        }
-        
-        .hof-desc {
-            color: #aaa;
-            font-size: 0.95rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .hof-link {
-            font-size: 0.85rem;
-            color: #888;
             font-family: 'IBM Plex Mono', monospace;
-            display: inline-block;
-        }
-        
-        .hof-link:hover {
-            color: #fff;
-        }
-        
-        .view-all-btn {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid #333;
+            font-size: 0.8rem;
             color: #888;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            transition: all 0.2s;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            transition: 0.3s;
         }
-        
-        .view-all-btn:hover {
-            border-color: #555;
+        .bugcrowd-link:hover { 
             color: #fff;
-            background: rgba(255, 255, 255, 0.05);
+            border-color: #666;
+            background: rgba(255, 255, 255, 0.03);
         }
-        
-        /* Footer */
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-            text-align: center;
-            color: #666;
-            font-size: 0.9rem;
+
+        @media (max-width: 600px) {
+            .cert-box { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .nav { gap: 1rem; justify-content: center; }
+            header { text-align: center; }
         }
-        
-        .bugcrowd-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid #333;
-            color: #888;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-        }
-        
-        .bugcrowd-link:hover {
-            border-color: #555;
-            color: #fff;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            h2 {
-                font-size: 1.3rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hof-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav {
-                gap: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            h1 {
-                font-size: 1.4rem;
-            }
-            
-            .name {
-                font-size: 1.3rem;
-            }
-            
-            .nav {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-        
-        /* Simple animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
+
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <!-- Header -->
         <header>
-            <div class="name">Primandito Adi Setiya</div>
-            <div class="tagline">Security Researcher • Bug Bounty Hunter</div>
-            <div class="nav">
+            <h1 class="fade-in">Primandito Adi Setiya</h1>
+            <div class="tagline fade-in">Security Researcher • Bug Bounty Hunter</div>
+            <nav class="nav fade-in">
                 <a href="#about">About</a>
                 <a href="#stats">Stats</a>
+                <a href="#certs">Certificates</a>
                 <a href="#hof">Hall of Fame</a>
-                <a href="hall-of-fame.html">Full Hall of Fame →</a>
-                <a href="https://bugcrowd.com/h/Primandito_Adi_Setiya" target="_blank">Bugcrowd →</a>
-            </div>
+            </nav>
         </header>
 
-        <!-- About Section -->
-        <section id="about">
-            <h1>Security Researcher</h1>
-            <p>Focused on responsible disclosure and signal over noise. Specializing in identifying anomalies at the logical layer, where real security weaknesses often emerge.</p>
-            <p>My work involves testing system boundaries and responsibly reporting vulnerabilities, including within large-scale and public-sector web infrastructures.</p>
+        <section id="about" class="fade-in">
+            <h2>About</h2>
+            <p>I am <strong>Primandito Adi Setiya</strong>, an independent security researcher dedicated to identifying system vulnerabilities through responsible disclosure.</p>
+            <p>I focus on enhancing digital security by uncovering potential risks and helping organizations strengthen their infrastructures through thorough research and analysis.</p>
         </section>
 
-        <!-- Stats Section -->
-        <section id="stats">
+        <section id="stats" class="fade-in">
             <h2>Statistics</h2>
-            
+            <p>These statistics are manually updated and may change over time as reports are triaged or re-evaluated by platforms.</p>
             <div class="stats-grid">
-                <div class="stat-item fade-in">
-                    <div class="stat-number">24</div>
-                    <div class="stat-label">Valid Vulnerabilities</div>
-                </div>
-                
-                <div class="stat-item fade-in">
-                    <div class="stat-number">88.46%</div>
-                    <div class="stat-label">Report Accuracy</div>
-                </div>
-                
-                <div class="stat-item fade-in">
-                    <div class="stat-number">14</div>
-                    <div class="stat-label">Web Application Reports</div>
-                </div>
-                
-                <div class="stat-item fade-in">
-                    <div class="stat-number">15</div>
-                    <div class="stat-label">Hall of Fame</div>
-                </div>
+                <div class="stat-item"><span class="stat-number">24</span><span class="stat-label">Valid Reports</span></div>
+                <div class="stat-item"><span class="stat-number">88%+</span><span class="stat-label">Accuracy</span></div>
+                <div class="stat-item"><span class="stat-number">14</span><span class="stat-label">Web Reports</span></div>
+                <div class="stat-item"><span class="stat-number">18</span><span class="stat-label">Hall of Fame</span></div>
             </div>
-            
+
             <h3>Priority Percentiles</h3>
+            <p>Priority percentiles are based on historical report distribution and may vary over time.</p>
             <div class="priority-list">
-                <div class="priority-item">
-                    <span class="priority-label">P1 Priority</span>
-                    <span class="priority-value">0<sup>th</sup></span>
-                </div>
-                <div class="priority-item">
-                    <span class="priority-label">P2 Priority</span>
-                    <span class="priority-value">0<sup>th</sup></span>
-                </div>
-                <div class="priority-item">
-                    <span class="priority-label">P3 Priority</span>
-                    <span class="priority-value">62<sup>nd</sup></span>
-                </div>
-                <div class="priority-item">
-                    <span class="priority-label">P4 Priority</span>
-                    <span class="priority-value">48<sup>th</sup></span>
-                </div>
-                <div class="priority-item">
-                    <span class="priority-label">P5 Priority</span>
-                    <span class="priority-value">96<sup>th</sup></span>
-                </div>
+                <div class="priority-item"><span class="priority-label">P1 Priority</span><span class="priority-value">0<sup>th</sup></span></div>
+                <div class="priority-item"><span class="priority-label">P2 Priority</span><span class="priority-value">0<sup>th</sup></span></div>
+                <div class="priority-item"><span class="priority-label">P3 Priority</span><span class="priority-value">62<sup>nd</sup></span></div>
+                <div class="priority-item"><span class="priority-label">P4 Priority</span><span class="priority-value">48<sup>th</sup></span></div>
+                <div class="priority-item"><span class="priority-label">P5 Priority</span><span class="priority-value">96<sup>th</sup></span></div>
             </div>
         </section>
 
-        <!-- Hall of Fame Section (First 10 only) -->
-        <section id="hof">
-            <h2>Hall of Fame</h2>
+        <section id="certs" class="fade-in">
+            <h2>Certifications</h2>
+            <div class="cert-box">
+                <div class="cert-info">
+                    <h3>Credential Archive</h3>
+                    <p>Access my official collection of security awards and certificates.</p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1klFSWOngKO2wihrmLUJCu7SvsCv6pEGl?usp=drive_link" target="_blank" class="drive-btn">VIEW ALL CERTIFICATES ↗</a>
+            </div>
+        </section>
+
+        <section id="hof" class="fade-in">
+            <h2>Hall of Fame Highlights</h2>
             <p>Recognition for responsible vulnerability disclosure across various organizations and government agencies.</p>
-            
-            <div class="hof-grid" id="hofGrid">
-                <!-- First 10 Hall of Fame items will be populated by JavaScript -->
-            </div>
-            
-            <a href="hall-of-fame.html" class="view-all-btn">
-                View All Hall of Fame →
-            </a>
+            <div class="hof-grid" id="hofHighlights"></div>
+            <a href="hall-of-fame.html" class="btn-full">VIEW FULL LIST (18 ENTRIES) →</a>
         </section>
 
-        <!-- Footer -->
         <footer>
-            <div>© 2026 Primandito Adi Setiya</div>
-            <div style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Security researcher focused on responsible disclosure</div>
+            <p class="footer-copy">© 2026 Primandito Adi Setiya • Security Researcher Portfolio</p>
             <a href="https://bugcrowd.com/h/Primandito_Adi_Setiya" target="_blank" class="bugcrowd-link">
-                View full profile on Bugcrowd
+                View full profile on Bugcrowd →
             </a>
         </footer>
     </div>
 
     <script>
-        // Hall of Fame Data (First 10 for main page)
-        const hallOfFameData = [
-            {
-                program: "University of Melbourne VDP",
-                date: "January 2026",
-                description: "Grateful to be included in the Hall of Fame. An honor to contribute to the security of educational institutions.",
-                link: "https://bugcrowd.com/engagements/uni-melbourne-vdp/hall_of_fames"
-            },
-            {
-                program: "National Football League (NFL) VDP Pro",
-                date: "January 2026",
-                description: "Honored to be recognized. Thankful for the opportunity to help improve security for such a prominent organization.",
-                link: "https://bugcrowd.com/engagements/nfl-vdp-pro/hall_of_fames"
-            },
-            {
-                program: "University of Canterbury VDP Pro",
-                date: "January 2026",
-                description: "Appreciate the recognition. Proud to contribute to making educational platforms more secure for everyone.",
-                link: "https://bugcrowd.com/engagements/university-canterbury-vdp-pro/hall_of_fames"
-            },
-            {
-                program: "Hemi Labs VDP",
-                date: "January 2026",
-                description: "Thank you for your appreciation. I'm proud to play a role in raising security standards on modular blockchain networks like Hemi Labs.",
-                link: "https://bugcrowd.com/engagements/hemi/hall_of_fames"
-            },
-            {
-                program: "National Aeronautics and Space Administration (NASA) VDP",
-                date: "January 2026",
-                description: "Honored to be recognized. Thankful for the opportunity to help improve security through NASA's Vulnerability Disclosure Program.",
-                link: "https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames"
-            },
-            {
-                program: "State of Maryland VDP",
-                date: "January 2026",
-                description: "Thankful for the opportunity to support security improvements within State of Maryland systems through its Vulnerability Disclosure Program.",
-                link: "https://bugcrowd.com/engagements/maryland-vdp-pro/hall_of_fames"
-            },
-            {
-                program: "Office of Surface Mining Reclamation and Enforcement (OSMRE) VDP",
-                date: "January 2026",
-                description: "Appreciate the recognition for contributing to the security of OSMRE's systems through responsible disclosure.",
-                link: "https://bugcrowd.com/engagements/osmre-vdp/hall_of_fames"
-            },
-            {
-                program: "National Credit Union Administration (NCUA) VDP",
-                date: "January 2026",
-                description: "Honored to be included in the Hall of Fame for helping secure financial regulatory systems.",
-                link: "https://bugcrowd.com/engagements/ncua-vdp/hall_of_fames"
-            },
-            {
-                program: "Bureau of Indian Affairs (BIA) VDP",
-                date: "January 2026",
-                description: "Grateful for the opportunity to contribute to the security of BIA systems through ethical security research.",
-                link: "https://bugcrowd.com/engagements/bia-vdp/hall_of_fames"
-            },
-            {
-                program: "Environmental Protection Agency (EPA) VDP",
-                date: "January 2026",
-                description: "Thankful for the recognition in helping protect environmental systems through security research.",
-                link: "https://bugcrowd.com/engagements/epa-vdp/hall_of_fames"
-            }
+        const highlightData = [
+            { platform: "Bugcrowd", program: "University of Melbourne VDP", date: "Jan 2026", desc: "Grateful to be included in the Hall of Fame. An honor to contribute to the security of educational institutions.", link: "https://bugcrowd.com/engagements/uni-melbourne-vdp/hall_of_fames" },
+            { platform: "Bugcrowd", program: "National Football League (NFL) VDP Pro", date: "Jan 2026", desc: "Honored to be recognized. Thankful for the opportunity to help improve security for such a prominent organization.", link: "https://bugcrowd.com/engagements/nfl-vdp-pro/hall_of_fames" },
+            { platform: "Bugcrowd", program: "University of Canterbury VDP Pro", date: "Jan 2026", desc: "Appreciate the recognition. Proud to contribute to making educational platforms more secure for everyone.", link: "https://bugcrowd.com/engagements/university-canterbury-vdp-pro/hall_of_fames" },
+            { platform: "Bugcrowd", program: "Hemi Labs VDP", date: "Jan 2026", desc: "I'm proud to play a role in raising security standards on modular blockchain networks like Hemi Labs.", link: "https://bugcrowd.com/engagements/hemi/hall_of_fames" },
+            { platform: "Bugcrowd", program: "National Aeronautics and Space Administration (NASA) VDP", date: "Jan 2026", desc: "Honored to be recognized. Thankful for the opportunity to help improve security through NASA's VDP.", link: "https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames" },
+            { platform: "Bugcrowd", program: "State of Maryland VDP", date: "Jan 2026", desc: "Thankful for the opportunity to support security improvements within State of Maryland systems.", link: "https://bugcrowd.com/engagements/maryland-vdp-pro/hall_of_fames" },
+            { platform: "Bugcrowd", program: "Office of Surface Mining Reclamation and Enforcement (OSMRE) VDP", date: "Jan 2026", desc: "Appreciate the recognition for contributing to the security of OSMRE's systems.", link: "https://bugcrowd.com/engagements/osmre-vdp/hall_of_fames" },
+            { platform: "Bugcrowd", program: "National Credit Union Administration (NCUA) VDP", date: "Jan 2026", desc: "Honored to be included in the Hall of Fame for helping secure financial regulatory systems.", link: "https://bugcrowd.com/engagements/ncua-vdp/hall_of_fames" },
+            { platform: "Bugcrowd", program: "Bureau of Indian Affairs (BIA) VDP", date: "Jan 2026", desc: "Grateful for the opportunity to contribute to the security of BIA systems.", link: "https://bugcrowd.com/engagements/bia-vdp/hall_of_fames" }
         ];
 
-        // Populate Hall of Fame (First 10 only)
-        document.addEventListener('DOMContentLoaded', function() {
-            const hofGrid = document.getElementById('hofGrid');
-            
-            // Create grid based on screen size
-            function createGrid() {
-                hofGrid.innerHTML = '';
-                
-                // For mobile: 1 column, for tablet: 2 columns, for desktop: 3 columns
-                const screenWidth = window.innerWidth;
-                let gridTemplateColumns = '1fr';
-                
-                if (screenWidth >= 768 && screenWidth < 1024) {
-                    gridTemplateColumns = 'repeat(2, 1fr)';
-                } else if (screenWidth >= 1024) {
-                    gridTemplateColumns = 'repeat(3, 1fr)';
-                }
-                
-                hofGrid.style.gridTemplateColumns = gridTemplateColumns;
-                
-                // Add only first 10 items
-                hallOfFameData.forEach((item, index) => {
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'hof-item fade-in';
-                    itemElement.style.animationDelay = `${index * 0.05}s`;
-                    
-                    itemElement.innerHTML = `
-                        <div class="hof-org">${item.program}</div>
-                        <div class="hof-date">${item.date}</div>
-                        <div class="hof-desc">${item.description}</div>
-                        <a href="${item.link}" target="_blank" class="hof-link">View →</a>
-                    `;
-                    
-                    hofGrid.appendChild(itemElement);
-                });
-            }
-            
-            // Initial creation
-            createGrid();
-            
-            // Recreate on resize
-            window.addEventListener('resize', createGrid);
-            
-            // Simple scroll animation
-            const observerOptions = {
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe all fade-in elements
-            document.querySelectorAll('.fade-in').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(10px)';
-                observer.observe(el);
+        function renderHighlights() {
+            const container = document.getElementById('hofHighlights');
+            highlightData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'hof-item fade-in';
+                card.innerHTML = `
+                    <span class="hof-platform">${item.platform}</span>
+                    <h3 class="hof-org">${item.program}</h3>
+                    <span class="hof-date">${item.date}</span>
+                    <p class="hof-desc">${item.desc}</p>
+                    <a href="${item.link}" target="_blank" class="hof-link">View Proof →</a>
+                `;
+                container.appendChild(card);
             });
-            
-            // Smooth scroll for navigation
-            document.querySelectorAll('nav a, .hof-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (this.getAttribute('href').startsWith('#')) {
-                        e.preventDefault();
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-                        
-                        if (targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 20,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                });
-            });
-        });
+        }
+        window.onload = renderHighlights;
     </script>
 </body>
 </html>
