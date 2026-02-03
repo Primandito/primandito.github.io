@@ -63,6 +63,23 @@
         .priority-label { color: #aaa; font-size: 0.9rem; }
         .priority-value { font-family: 'IBM Plex Mono', monospace; color: #fff; }
 
+        .highlight-card {
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent); /* Memberi aksen merah di kiri */
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 85, 85, 0.02);
+        }
+        .highlight-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
         /* One Link Certificate Box */
         .cert-box { 
             border: 1px solid var(--border); 
@@ -166,6 +183,20 @@
                 <div class="priority-item"><span class="priority-label">P3 Priority</span><span class="priority-value">62<sup>nd</sup></span></div>
                 <div class="priority-item"><span class="priority-label">P4 Priority</span><span class="priority-value">48<sup>th</sup></span></div>
                 <div class="priority-item"><span class="priority-label">P5 Priority</span><span class="priority-value">96<sup>th</sup></span></div>
+            </div>
+        </section>
+
+        <section id="notable-research" class="fade-in">
+            <h2>Technical Research</h2>
+                <div class="highlight-card">
+                <span class="highlight-tag">High-Impact Discovery</span>
+                <h3 style="margin-top: 0;">P1 Critical: Sensitive Data Exposure</h3>
+            <p class="hof-desc">
+                Successfully identified a <strong>Critical (P1)</strong> vulnerability involving the <strong>Disclosure of Secrets</strong> within a publicly accessible asset. 
+            </p>
+            <p class="hof-desc" style="font-size: 0.85rem; font-style: italic;">
+                Note: This finding was identified as a duplicate submission. However, it demonstrates technical proficiency in uncovering high-priority security flaws that could lead to unauthorized system-wide access.
+            </p>
             </div>
         </section>
 
