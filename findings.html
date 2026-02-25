@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Archive | Primandito Adi Setiya</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Technical archive of validated security research and vulnerability disclosures by Primandito Adi Setiya.">
+    <meta name="robots" content="index, follow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-main: #f0f0f0;
+            --text-dim: #888;
+            --accent: #ff5555;
+            --border: #222;
+            --card-bg: #111;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg-color); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            padding: 20px;
+        }
+
+        .container { max-width: 850px; margin: 0 auto; padding-top: 2rem; }
+
+        .back-nav { margin-bottom: 2rem; }
+        .back-link { 
+            font-family: 'IBM Plex Mono', monospace; 
+            color: var(--text-dim); 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            transition: 0.3s;
+        }
+        .back-link:hover { color: #fff; }
+
+        header { margin-bottom: 3rem; }
+        h1 { font-family: 'IBM Plex Mono', monospace; font-size: 1.5rem; margin-bottom: 1rem; color: #fff; }
+        .intro-text { color: var(--text-dim); font-size: 0.95rem; max-width: 700px; margin-bottom: 10px; }
+
+        .finding-card {
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: 0.3s;
+        }
+        .finding-card:hover { border-color: #444; background: rgba(255, 255, 255, 0.02); }
+
+        .finding-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag-group { display: flex; gap: 8px; }
+        .tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border: 1px solid #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        /* Style warna tag biar konsisten */
+        .tag.duplicate { color: #888; border-color: #444; }
+        .tag.valid { color: #4ade80; border-color: #166534; }
+        .tag.vdp { color: #60a5fa; border-color: #1e40af; }
+
+        .finding-title { font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem; color: #fff; margin-bottom: 5px; }
+        .target-org { font-size: 0.85rem; color: var(--text-dim); display: block; margin-bottom: 1rem; }
+        
+        .finding-desc { font-size: 0.9rem; color: #aaa; margin-bottom: 1.5rem; border-left: 2px solid #333; padding-left: 15px; }
+
+        details { cursor: pointer; }
+        summary { 
+            font-family: 'IBM Plex Mono', monospace; 
+            font-size: 0.75rem; 
+            color: var(--accent); 
+            list-style: none;
+            transition: 0.3s;
+        }
+        summary:hover { opacity: 0.7; }
+        
+        .proof-container { 
+            margin-top: 1rem; 
+            border: 1px solid #333; 
+            padding: 10px; 
+            background: #000;
+        }
+        .proof-img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .proof-img:hover { opacity: 1; }
+        .caption { 
+            font-size: 0.7rem; 
+            color: #555; 
+            margin-top: 10px; 
+            font-family: 'IBM Plex Mono', monospace;
+            text-align: center;
+        }
+
+        footer { margin-top: 5rem; padding-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 2rem; text-align: center; }
+        .footer-text { color: #444; font-size: 0.8rem; font-family: 'IBM Plex Mono', monospace; }
+
+        @media (max-width: 600px) {
+            .finding-header { flex-direction: column; }
+        }
+        
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="back-nav">
+            <a href="portofolio.html" class="back-link">← RETURN TO PORTFOLIO</a>
+        </nav>
+
+        <header class="fade-in">
+            <h1>Research Archive & Acknowledgments</h1>
+            <p class="intro-text">
+                This archive documents security findings that were triaged as <strong>technically valid</strong>. Due to the competitive and time-sensitive nature of security programs, some reports are marked as duplicates if another researcher identified the issue first.
+            </p>
+            <p class="intro-text" style="font-style: italic; font-size: 0.85rem;">
+                Note: All screenshots are redacted to protect sensitive internal information and triager privacy.
+            </p>
+        </header>
+
+        <main>
+            <!-- ITEM 1: HSBC -->
+            <div class="finding-card fade-in">
+                <div class="finding-header">
+                    <div>
+                        <h2 class="finding-title">Sensitive Data Exposure > Disclosure of Secrets</h2>
+                        <span class="target-org">HSBC (Bugcrowd)</span>
+                    </div>
+                    <div class="tag-group">
+                        <span class="tag duplicate">Duplicate</span>
+                        <span class="tag valid">Valid</span>
+                    </div>
+                </div>
+                <p class="finding-desc">
+                    Successfully identified the exposure of sensitive credentials within the application scope. 
+                    The security team triaged the report as technically valid.
+                </p>
+                <details>
+                    <summary>[+] VIEW VALIDATION LOG</summary>
+                    <div class="proof-container">
+                        <img src="img/findings/01-HSBC.png" alt="HSBC Validation Log" class="proof-img">
+                        <p class="caption">Screenshot: Triage acknowledgement and status assignment.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- ITEM 2: NOKIA -->
+            <div class="finding-card fade-in">
+                <div class="finding-header">
+                    <div>
+                        <h2 class="finding-title">Information Disclosure</h2>
+                        <span class="target-org">Nokia</span>
+                    </div>
+                    <div class="tag-group">
+                        <span class="tag duplicate">Duplicate</span>
+                        <span class="tag valid">Valid</span>
+                    </div>
+                </div>
+                <p class="finding-desc">
+                    Detected an information leakage vulnerability revealing internal system configurations. 
+                    The finding was acknowledged by the security team as valid research, demonstrating effective reconnaissance on the target infrastructure.
+                </p>
+                <details>
+                    <summary>[+] VIEW VALIDATION LOG</summary>
+                    <div class="proof-container">
+                        <img src="img/findings/02-NOKIA.png" alt="Nokia Validation Log" class="proof-img">
+                        <p class="caption">Screenshot: Validated duplicate report activity.</p>
+                    </div>
+                </details>
+            </div>
+
+        </main>
+
+        <footer>
+            <p class="footer-text">© 2026 Primandito Adi Setiya • Independent Security Researcher</p>
+        </footer>
+    </div>
+
+</body>
+</html>
