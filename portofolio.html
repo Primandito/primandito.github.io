@@ -60,6 +60,39 @@
 
         /* Priority List */
         .priority-item { margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; }
+        .priority-list {
+            margin-top: 1.5rem;
+        }
+
+        .stat-bar-container {
+            margin-bottom: 1.2rem;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: var(--text-dim);
+        }
+
+        .bar-label .percent-val {
+            color: #fff;
+        }
+
+        .bar-bg {
+            background: #1a1a1a;
+            height: 6px;
+            width: 100%;
+            border: 1px solid #222;
+        }
+
+.bar-fill {
+    background: var(--accent);
+    height: 100%;
+    transition: width 1s ease-in-out;
+}
         .priority-label { color: #aaa; font-size: 0.9rem; }
         .priority-value { font-family: 'IBM Plex Mono', monospace; color: #fff; }
 
@@ -178,11 +211,60 @@
             <h3>Priority Percentiles</h3>
             <p>Priority percentiles are based on historical report distribution and may vary over time.</p>
             <div class="priority-list">
-                <div class="priority-item"><span class="priority-label">P1 Priority</span><span class="priority-value">0<sup>th</sup></span></div>
-                <div class="priority-item"><span class="priority-label">P2 Priority</span><span class="priority-value">51<sup>st</sup></span></div>
-                <div class="priority-item"><span class="priority-label">P3 Priority</span><span class="priority-value">70<sup>th</sup></span></div>
-                <div class="priority-item"><span class="priority-label">P4 Priority</span><span class="priority-value">48<sup>th</sup></span></div>
-                <div class="priority-item"><span class="priority-label">P5 Priority</span><span class="priority-value">96<sup>th</sup></span></div>
+                <!-- P1 -->
+                <div class="stat-bar-container">
+                    <div class="bar-label">
+                        <span>P1 Priority</span>
+                        <span class="percent-val">0<sup>th</sup></span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 1%;"></div>
+                    </div>
+                </div>
+            
+                <!-- P2 -->
+                <div class="stat-bar-container">
+                    <div class="bar-label">
+                        <span>P2 Priority</span>
+                        <span class="percent-val">51<sup>st</sup></span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 51%;"></div>
+                    </div>
+                </div>
+            
+                <!-- P3 -->
+                <div class="stat-bar-container">
+                    <div class="bar-label">
+                        <span>P3 Priority</span>
+                        <span class="percent-val">70<sup>th</sup></span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 70%;"></div>
+                    </div>
+                </div>
+            
+                <!-- P4 -->
+                <div class="stat-bar-container">
+                    <div class="bar-label">
+                        <span>P4 Priority</span>
+                        <span class="percent-val">48<sup>th</sup></span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 48%;"></div>
+                    </div>
+                </div>
+            
+                <!-- P5 -->
+                <div class="stat-bar-container">
+                    <div class="bar-label">
+                        <span>P5 Priority</span>
+                        <span class="percent-val">96<sup>th</sup></span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 96%;"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
