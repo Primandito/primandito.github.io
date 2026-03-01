@@ -9,6 +9,7 @@
     <meta name="description" content="Detailed archive of Hall of Fame recognitions for security researcher Primandito Adi Setiya.">
     <meta name="keywords" content="Primandito Adi Setiya, Hall of Fame, NASA, BPK, DHS, Bugcrowd, Security Researcher">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -130,6 +131,35 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Chart Container */
+        .chart-section {
+            margin: 2rem 0 4rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .chart-header {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .chart-header::before {
+            content: "";
+            width: 15px;
+            height: 2px;
+            background: var(--accent);
+            display: inline-block;
+        }
+        #hofChart {
+            max-height: 250px;
+        }
     </style>
 </head>
 <body>
@@ -137,6 +167,13 @@
         <a href="portofolio.html" class="back-link">← BACK TO PORTFOLIO</a>
         
         <h1 id="archiveTitle">Hall of Fame Archive - Primandito Adi Setiya</h1>
+        <!-- BAGIAN GRAFIK -->
+        <div class="chart-section">
+            <div class="chart-header">Activity Progress Map</div>
+            <div style="height: 250px;">
+                <canvas id="hofChart"></canvas>
+            </div>
+        </div>
         
         <div class="full-grid" id="fullGrid"></div>
     </div>
@@ -307,27 +344,95 @@
 ];
 
 
-        const container = document.getElementById('fullGrid');
-        const titleElement = document.getElementById('archiveTitle');
-        
-        // Update Title dengan jumlah entry otomatis
-        titleElement.textContent = `Hall of Fame Archive (${allData.length} Entries)`;
+    const container = document.getElementById('fullGrid');
+    const titleElement = document.getElementById('archiveTitle');
+    
+    titleElement.textContent = `Hall of Fame Archive (${allData.length} Entries)`;
 
-        // Render Cards
-        allData.forEach((item, index) => {
-            const div = document.createElement('div');
-            div.className = 'item';
-            div.style.animationDelay = `${index * 0.05}s`;
-            
-            div.innerHTML = `
-                <span class="p-tag">${item.platform}</span>
-                <span class="org">${item.program}</span>
-                <span class="date">${item.date}</span>
-                <p class="desc">${item.description}</p>
-                <a href="${item.link}" target="_blank" class="link">View Proof →</a>
-            `;
-            container.appendChild(div);
+    // 1. RENDER CARDS
+    allData.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.style.animationDelay = `${index * 0.05}s`;
+        div.innerHTML = `
+            <span class="p-tag">${item.platform}</span>
+            <span class="org">${item.program}</span>
+            <span class="date">${item.date}</span>
+            <p class="desc">${item.description}</p>
+            <a href="${item.link}" target="_blank" class="link">View Proof →</a>
+        `;
+        container.appendChild(div);
+    });
+
+    // 2. LOGIC GRAFIK
+    function renderChart() {
+        // 1. Hitung jumlah entri per bulan (Raw, bukan kumulatif)
+        const counts = {};
+        allData.forEach(item => {
+            counts[item.date] = (counts[item.date] || 0) + 1;
         });
+
+        // 2. Sortir Bulan 
+        const labels = Object.keys(counts).sort((a, b) => {
+            return new Date(a) - new Date(b);
+        });
+
+        // 3. Ambil nilai aslinya
+        const dataPoints = labels.map(label => counts[label]);
+
+        const ctx = document.getElementById('hofChart').getContext('2d');
+        
+        // Gradien Merah 
+        const gradient = ctx.createLinearGradient(0, 0, 0, 250);
+        gradient.addColorStop(0, 'rgba(255, 85, 85, 0.2)');
+        gradient.addColorStop(1, 'rgba(255, 85, 85, 0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels, 
+                datasets: [{
+                    label: 'Monthly Submissions',
+                    data: dataPoints, 
+                    borderColor: '#ff5555',
+                    backgroundColor: gradient,
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#ff5555',
+                    pointBorderColor: '#0a0a0a',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: 20, 
+                        grid: { color: '#1a1a1a', drawBorder: false },
+                        ticks: { 
+                            color: '#666', 
+                            font: { family: 'IBM Plex Mono', size: 10 },
+                            stepSize: 5
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#666', font: { family: 'IBM Plex Mono', size: 10 } }
+                    }
+                }
+            }
+        });
+    }
+
+    window.onload = renderChart;
     </script>
 </body>
 </html>

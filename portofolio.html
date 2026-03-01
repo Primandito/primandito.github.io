@@ -7,7 +7,7 @@
     <!-- SEO & SEARCH KEYWORDS -->
     <title>Primandito Adi Setiya | Security Researcher</title>
     <meta name="description" content="Independent Security Researcher dedicated to identifying vulnerabilities through responsible disclosure. Committed to helping organizations strengthen their digital infrastructure.">
-    <meta name="keywords" content="Primandito Adi Setiya, Security Researcher, Bug Bounty Hunter, Bugcrowd, Ethical Hacker, NASA Hall of Fame, Cybersecurity Portfolio, Vulnerability Research, Prima, Primandito, Adi, Adi Setiya, SetiyI am Primandito Adi Setiya, an independent security researcher dedicated to identifying system vulnerabilities through responsible disclosure.a">
+    <meta name="keywords" content="Primandito Adi Setiya, Primandito, Adi Setiya, Security Researcher, Vulnerability Analyst, Bug Bounty, Bugcrowd, Responsible Disclosure, Cybersecurity Portfolio, Web Application Security">    
     <meta name="author" content="Primandito Adi Setiya">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -176,6 +176,60 @@
 
         .fade-in { animation: fadeIn 0.8s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Logo Slider / Marquee Style --- */
+        .logo-slider {
+            overflow: hidden;
+            padding: 25px 0; 
+            background: #0a0a0a;
+            white-space: nowrap;
+            position: relative;
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+            margin: 2.5rem 0;
+        }
+
+        /* Efek Fade Kiri Kanan */
+        .logo-slider::before, .logo-slider::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+        .logo-slider::before { left: 0; background: linear-gradient(to right, #0a0a0a, transparent); }
+        .logo-slider::after { right: 0; background: linear-gradient(to left, #0a0a0a, transparent); }
+
+        .logo-track {
+            display: inline-flex;
+            align-items: center;
+            animation: scroll 45s linear infinite;
+        }
+
+        .logo-track:hover { animation-play-state: paused; }
+
+        .logo-item {
+            height: 48px;    
+            width: auto;
+            max-width: 160px; 
+            object-fit: contain; 
+            margin: 0 50px;
+            filter: grayscale(100%) brightness(0.7);
+            transition: 0.3s;
+            opacity: 0.5;
+        }
+
+        .logo-item:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
 <body>
@@ -183,7 +237,7 @@
     <div class="container">
         <header>
             <h1 class="fade-in">Primandito Adi Setiya</h1>
-            <div class="tagline fade-in">Security Researcher • Bug Hunter</div>
+            <div class="tagline fade-in">Security Researcher • Vulnerability Analyst</div>
             <nav class="nav fade-in">
                 <a href="#about">About</a>
                 <a href="#stats">Stats</a>
@@ -191,6 +245,30 @@
                 <a href="#hof">Hall of Fame</a>
             </nav>
         </header>
+
+        <!-- LOGO SLIDER START -->
+        <div class="logo-slider">
+            <div class="logo-track">
+                <!-- LIST 8 -->
+                <img src="img/logos/nasa.svg" alt="NASA" class="logo-item" style="height: 60px;">
+                <img src="img/logos/dhs.png" alt="DHS" class="logo-item" style="height: 60px;">
+                <img src="img/logos/hsbc.png" alt="HSBC" class="logo-item">
+                <img src="img/logos/mcdonalds.png" alt="McDonalds" class="logo-item" style="height: 52px;">
+                <img src="img/logos/nfl.png" alt="NFL" class="logo-item" style="height: 55px;">
+                <img src="img/logos/bpk.png" alt="BPK RI" class="logo-item" style="height: 60px;">
+                <img src="img/logos/nokia.png" alt="Nokia" class="logo-item">
+                
+                <!-- DUPLIKAT  -->
+                <img src="img/logos/nasa.svg" alt="NASA" class="logo-item" style="height: 60px;">
+                <img src="img/logos/dhs.png" alt="DHS" class="logo-item" style="height: 60px;">
+                <img src="img/logos/hsbc.png" alt="HSBC" class="logo-item">
+                <img src="img/logos/mcdonalds.png" alt="McDonalds" class="logo-item" style="height: 52px;">
+                <img src="img/logos/nfl.png" alt="NFL" class="logo-item" style="height: 55px;">
+                <img src="img/logos/bpk.png" alt="BPK RI" class="logo-item" style="height: 60px;">
+                <img src="img/logos/nokia.png" alt="Nokia" class="logo-item">
+            </div>
+        </div>
+        <!-- LOGO SLIDER END -->
 
         <section id="about" class="fade-in">
             <h2>About</h2>
