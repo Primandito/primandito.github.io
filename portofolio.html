@@ -203,19 +203,20 @@
         }
 
         .logo-grid {
-            display: none; /* Awalnya sembunyi */
+            display: none; /* Default tertutup */
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 50px;
             padding: 60px 40px;
             border: 1px solid #1a1a1a;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.01);
             margin-top: 20px;
             align-items: center;
             justify-items: center;
         }
 
+        /* Class Active buat ditrigger JS */
         .logo-grid.active {
-            display: grid; /* Muncul pas diklik */
+            display: grid;
             animation: fadeIn 0.8s ease-out forwards;
         }
 
@@ -242,6 +243,25 @@
         .text-logo {
             height: 40px !important;
             transform: scale(1.2);
+        }
+
+        /* Efek Scanning/Pulse Warna */
+        @keyframes logoPulse {
+            0%, 100% {
+                filter: grayscale(100%) brightness(1.2);
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            50% {
+                filter: grayscale(0%) brightness(1);
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        /* Class buat ngetrigger animasinya */
+        .scanning {
+            animation: logoPulse 2s ease-in-out infinite;
         }
     </style>
 </head>
@@ -439,35 +459,63 @@
             { platform: "Bugcrowd", program: "Bureau of Indian Affairs (BIA) VDP", date: "Jan 2026", desc: "Grateful for the opportunity to contribute to the security of BIA systems.", link: "https://bugcrowd.com/engagements/bia-vdp/hall_of_fames" }
         ];
 
-        function renderHighlights() {
-            const container = document.getElementById('hofHighlights');
-            highlightData.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'hof-item fade-in';
-                card.innerHTML = `
-                    <span class="hof-platform">${item.platform}</span>
-                    <h3 class="hof-org">${item.program}</h3>
-                    <span class="hof-date">${item.date}</span>
-                    <p class="hof-desc">${item.desc}</p>
-                    <a href="${item.link}" target="_blank" class="hof-link">View Proof →</a>
-                `;
-                container.appendChild(card);
-            });
-        }
-        window.onload = renderHighlights;
+        // 2. FUNGSI RENDER HIGHLIGHTS
+    function renderHighlights() {
+        const container = document.getElementById('hofHighlights');
+        if (!container) return;
+        container.innerHTML = '';
+        highlightData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'hof-item fade-in';
+            card.innerHTML = `
+                <span class="hof-platform">${item.platform}</span>
+                <h3 class="hof-org">${item.program}</h3>
+                <span class="hof-date">${item.date}</span>
+                <p class="hof-desc">${item.desc}</p>
+                <a href="${item.link}" target="_blank" class="hof-link">View Proof →</a>
+            `;
+            container.appendChild(card);
+        });
+    }
 
-        document.getElementById('revealBtn').addEventListener('click', function() {
-        const grid = document.getElementById('logoGrid');
+    // 3. FUNGSI TOGGLE DATABASE (SINGLE HANDLER)
+    function setupRevealBtn() {
         const btn = document.getElementById('revealBtn');
-        
-        if (grid.style.display === 'grid') {
-            grid.style.display = 'none';
-            btn.innerText = '[+] ACCESS TRUSTED ORGANIZATIONS DATABASE';
-        } else {
-            grid.style.display = 'grid';
-            btn.innerText = '[-] CLOSE DATABASE';
-        }
-    });
+        const grid = document.getElementById('logoGrid');
+        const items = document.querySelectorAll('.grid-item');
+
+        if (!btn || !grid) return;
+
+        btn.addEventListener('click', function() {
+            // Gunakan class 'active' biar lebih stabil daripada cek style manual
+            const isOpen = grid.classList.toggle('active');
+            
+            if (isOpen) {
+                grid.style.display = 'grid'; // Paksa tampil
+                btn.innerText = '[-] CLOSE DATABASE';
+                
+                // Trigger animasi scanning berurutan
+                items.forEach((item, index) => {
+                    item.style.animationDelay = `${index * 0.5}s`; // 0.1 detik biar lebih cepet & slick
+                    item.classList.add('scanning');
+                });
+            } else {
+                grid.style.display = 'none'; // Sembunyikan
+                btn.innerText = '[+] ACCESS TRUSTED ORGANIZATIONS DATABASE';
+                
+                // Matikan animasi biar CPU gak capek
+                items.forEach(item => {
+                    item.classList.remove('scanning');
+                });
+            }
+        });
+    }
+
+    // 4. JALANKAN SEMUA SAAT PAGE LOAD
+    window.onload = function() {
+        renderHighlights();
+        setupRevealBtn();
+    };
     </script>
 </body>
 </html>
