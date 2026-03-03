@@ -177,58 +177,71 @@
         .fade-in { animation: fadeIn 0.8s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- Logo Slider / Marquee Style --- */
-        .logo-slider {
-            overflow: hidden;
-            padding: 25px 0; 
-            background: #0a0a0a;
-            white-space: nowrap;
-            position: relative;
-            border-top: 1px solid #1a1a1a;
-            border-bottom: 1px solid #1a1a1a;
-            margin: 2.5rem 0;
+        /* --- Secret Archive Grid Style --- */
+        .archive-toggle {
+            text-align: center;
+            margin: 3rem 0;
         }
 
-        /* Efek Fade Kiri Kanan */
-        .logo-slider::before, .logo-slider::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            z-index: 2;
-        }
-        .logo-slider::before { left: 0; background: linear-gradient(to right, #0a0a0a, transparent); }
-        .logo-slider::after { right: 0; background: linear-gradient(to left, #0a0a0a, transparent); }
-
-        .logo-track {
-            display: inline-flex;
-            align-items: center;
-            animation: scroll 45s linear infinite;
-        }
-
-        .logo-track:hover { animation-play-state: paused; }
-
-        .logo-item {
-            height: 48px;    
-            width: auto;
-            max-width: 160px; 
-            object-fit: contain; 
-            margin: 0 50px;
-            filter: grayscale(100%) brightness(0.7);
+        .reveal-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            padding: 12px 24px;
+            cursor: pointer;
+            letter-spacing: 2px;
             transition: 0.3s;
-            opacity: 0.5;
+            text-transform: uppercase;
+        }
+        .reveal-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(255, 85, 85, 0.3);
         }
 
-        .logo-item:hover {
-            filter: grayscale(0%) brightness(1);
+        .logo-grid {
+            display: none; /* Awalnya sembunyi */
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 50px;
+            padding: 60px 40px;
+            border: 1px solid #1a1a1a;
+            background: rgba(255, 255, 255, 0.02);
+            margin-top: 20px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .logo-grid.active {
+            display: grid; /* Muncul pas diklik */
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .grid-item {
+            width: auto;
+            max-width: 140px; 
+            height: 50px;   
+            object-fit: contain;
+            padding: 5px;
+            
+            filter: grayscale(100%) brightness(1.1); 
+            mix-blend-mode: screen; 
+
+            opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+
+        .grid-item:hover {
             opacity: 1;
-            transform: scale(1.1);
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.15);
         }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .text-logo {
+            height: 40px !important;
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -246,29 +259,38 @@
             </nav>
         </header>
 
-        <!-- LOGO SLIDER START -->
-        <div class="logo-slider">
-            <div class="logo-track">
-                <!-- LIST 8 -->
-                <img src="img/logos/nasa.png" alt="NASA" class="logo-item" style="height: 60px;">
-                <img src="img/logos/dhs.png" alt="DHS" class="logo-item" style="height: 60px;">
-                <img src="img/logos/hsbc.png" alt="HSBC" class="logo-item">
-                <img src="img/logos/mcdonalds.png" alt="McDonalds" class="logo-item" style="height: 52px;">
-                <img src="img/logos/nfl.png" alt="NFL" class="logo-item" style="height: 55px;">
-                <img src="img/logos/bpk.png" alt="BPK RI" class="logo-item" style="height: 60px;">
-                <img src="img/logos/nokia.png" alt="Nokia" class="logo-item">
-                
-                <!-- DUPLIKAT  -->
-                <img src="img/logos/nasa.png" alt="NASA" class="logo-item" style="height: 60px;">
-                <img src="img/logos/dhs.png" alt="DHS" class="logo-item" style="height: 60px;">
-                <img src="img/logos/hsbc.png" alt="HSBC" class="logo-item">
-                <img src="img/logos/mcdonalds.png" alt="McDonalds" class="logo-item" style="height: 52px;">
-                <img src="img/logos/nfl.png" alt="NFL" class="logo-item" style="height: 55px;">
-                <img src="img/logos/bpk.png" alt="BPK RI" class="logo-item" style="height: 60px;">
-                <img src="img/logos/nokia.png" alt="Nokia" class="logo-item">
+        <!-- SECRET ARCHIVE SECTION -->
+        <div class="archive-toggle">
+            <button class="reveal-btn" id="revealBtn">[+] ACCESS TRUSTED ORGANIZATIONS DATABASE</button>
+            
+            <div class="logo-grid" id="logoGrid">
+                <img src="img/logos/nasa.png" alt="NASA" class="grid-item" style="height: 65px;">
+                <img src="img/logos/dhs.png" alt="DHS" class="grid-item" style="height: 65px;">
+                <img src="img/logos/hsbc.png" alt="HSBC" class="grid-item" style="height: 55px;">
+                <img src="img/logos/nokia.png" alt="Nokia" class="grid-item">
+                <img src="img/logos/mcdonalds.png" alt="McD" class="grid-item">
+                <img src="img/logos/nfl.png" alt="NFL" class="grid-item" style="height: 65px;">
+                <img src="img/logos/bpk.png" alt="BPK" class="grid-item" style="height: 70px;">
+                <img src="img/logos/detik.png" alt="Detik" class="grid-item">
+                <img src="img/logos/transjakarta.png" alt="TJ" class="grid-item" style="height: 65px;">
+                <img src="img/logos/aussie.png" alt="Aussie" class="grid-item" style="height: 65px;">
+                <img src="img/logos/lendi.png" alt="Lendi" class="grid-item" style="height: 45px;">
+                <img src="img/logos/hemi.png" alt="Hemi" class="grid-item" style="height: 65px;">
+                <img src="img/logos/maryland.png" alt="Maryland" class="grid-item" style="height: 65px;">
+                <img src="img/logos/melbourne.png" alt="UniMelb" class="grid-item" style="height: 65px;">
+                <img src="img/logos/canterbury.png" alt="Canterbury" class="grid-item" style="height: 65px;">
+                <img src="img/logos/keurig.png" alt="Keurig" class="grid-item" style="height: 45px;">
+                <img src="img/logos/sword.png" alt="Sword" class="grid-item" style="height: 50px;">
+                <img src="img/logos/modalku.png" alt="Modalku" class="grid-item" style="height: 65px;">
+                <img src="img/logos/cyberm.png" alt="Cyberm" class="grid-item" style="height: 65px;">
+                <img src="img/logos/rgoods.png" alt="RGOODS" class="grid-item" style="height: 65px;">
+                <img src="img/logos/arrow.png" alt="Arrow" class="grid-item" style="height: 65px;">
+                <img src="img/logos/epa.png" alt="EPA" class="grid-item" style="height: 65px;">
+                <img src="img/logos/ntsb.png" alt="NTSB" class="grid-item" style="height: 65px;">
+                <img src="img/logos/va.png" alt="VA" class="grid-item" style="height: 65px;">
+                <img src="img/logos/osmre.png" alt="OSMRE" class="grid-item" style="height: 65px;">
             </div>
         </div>
-        <!-- LOGO SLIDER END -->
 
         <section id="about" class="fade-in">
             <h2>About</h2>
@@ -283,7 +305,7 @@
                 <div class="stat-item"><span class="stat-number">25</span><span class="stat-label">Valid Reports</span></div>
                 <div class="stat-item"><span class="stat-number">89%+</span><span class="stat-label">Accuracy</span></div>
                 <div class="stat-item"><span class="stat-number">16</span><span class="stat-label">Web Reports</span></div>
-                <div class="stat-item"><span class="stat-number">23</span><span class="stat-label">Hall of Fame</span></div>
+                <div class="stat-item"><span class="stat-number">25</span><span class="stat-label">Hall of Fame</span></div>
             </div>
 
             <h3>Priority Percentiles</h3>
@@ -390,7 +412,7 @@
             <h2>Hall of Fame Highlights</h2>
             <p>Recognition for responsible vulnerability disclosure across various organizations and government agencies.</p>
             <div class="hof-grid" id="hofHighlights"></div>
-            <a href="hall-of-fame.html" class="btn-full">VIEW FULL LIST (23 ENTRIES) →</a>
+            <a href="hall-of-fame.html" class="btn-full">VIEW FULL LIST (25 ENTRIES) →</a>
             <p style="color: #888; margin-bottom: 20px;">
                 Looking for technical triage logs? <a href="findings.html" style="color: var(--accent);">View Findings Archive</a>
             </p>
@@ -433,6 +455,19 @@
             });
         }
         window.onload = renderHighlights;
+
+        document.getElementById('revealBtn').addEventListener('click', function() {
+        const grid = document.getElementById('logoGrid');
+        const btn = document.getElementById('revealBtn');
+        
+        if (grid.style.display === 'grid') {
+            grid.style.display = 'none';
+            btn.innerText = '[+] ACCESS TRUSTED ORGANIZATIONS DATABASE';
+        } else {
+            grid.style.display = 'grid';
+            btn.innerText = '[-] CLOSE DATABASE';
+        }
+    });
     </script>
 </body>
 </html>
