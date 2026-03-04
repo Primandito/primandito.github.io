@@ -126,7 +126,50 @@
         
         .fade-in { animation: fadeIn 0.6s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+
+        .highlight-summary {
+            background: linear-gradient(45deg, #1a1a1a, #0a0a0a);
+            border: 1px solid var(--accent);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .highlight-summary::before {
+            content: "STRATEGIC ARCHIVE";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--accent);
+            opacity: 0.5;
+            letter-spacing: 2px;
+        }
+        .grid-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+        .stat-box {
+            border-left: 2px solid #333;
+            padding-left: 15px;
+        }
+        .stat-val {
+            display: block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: 500;
+        }
+        .stat-lbl {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        </style>
 </head>
 <body>
 
@@ -146,6 +189,49 @@
         </header>
 
         <main>
+            <!-- STRATEGIC NATIONAL CONTRIBUTION SECTION -->
+            <section class="fade-in" style="margin-bottom: 4rem; padding: 2rem; border-left: 3px solid var(--accent); background: rgba(255, 255, 255, 0.02);">
+                
+                <h2 style="font-family: 'IBM Plex Mono', monospace; font-size: 1.2rem; color: #fff; margin-bottom: 1rem; letter-spacing: 1px;">
+                    Strategic National Infrastructure Research
+                </h2>
+            
+                <p style="color: #ccc; font-size: 0.95rem; margin-bottom: 1.5rem; max-width: 750px;">
+                    Beyond participating in public bug bounty platforms, I proactively dedicate my expertise to strengthening Indonesia's national digital defense. Through responsible disclosure and ethical research, I have identified and successfully assisted in the remediation of security flaws across <strong>90+ national strategic entities</strong>.
+                </p>
+            
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="border-top: 1px solid #222; padding-top: 10px;">
+                        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 1.4rem; color: #fff; display: block;">90+</span>
+                        <span style="font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 1px;">Entities Secured</span>
+                    </div>
+                    <div style="border-top: 1px solid #222; padding-top: 10px;">
+                        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 1.4rem; color: #fff; display: block;">Tier-1</span>
+                        <span style="font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 1px;">Central Ministries</span>
+                    </div>
+                    <div style="border-top: 1px solid #222; padding-top: 10px;">
+                        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 1.4rem; color: #fff; display: block;">80+</span>
+                        <span style="font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 1px;">Regional Governments</span>
+                    </div>
+                </div>
+            
+                <div style="background: #000; padding: 1.5rem; border: 1px solid #1a1a1a;">
+                    <h4 style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 2px;">
+                        Disclosure & Integrity Policy
+                    </h4>
+                    <p style="font-size: 0.85rem; color: #888; line-height: 1.6;">
+                        To uphold the principles of National Cyber Resilience, I maintain strict confidentiality regarding the identities of these institutions. This includes sensitive Tier-1 ministries (Finance, Defense, ICT, Health) and various state-owned enterprises. 
+                        <br><br>
+                        All findings are reported through the <strong>National Cyber and Crypto Agency (BSSN)</strong> or respective CSIRT teams. My primary objective is the silent and effective remediation of vulnerabilities to protect national data integrity, prioritizing security over public recognition.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section Divider -->
+            <h3 style="font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: #444; margin-bottom: 1.5rem; letter-spacing: 2px;">
+                DETAILED TRIAGE LOGS (PUBLIC PROGRAMS)
+            </h3>
+
             <!-- ITEM 1: HSBC -->
             <div class="finding-card fade-in">
                 <div class="finding-header">
