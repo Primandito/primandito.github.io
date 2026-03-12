@@ -267,6 +267,7 @@
                     <div class="tag-group">
                         <span class="tag duplicate">Duplicate</span>
                         <span class="tag valid">Valid</span>
+                        <span class="tag vdp">VDP</span>
                     </div>
                 </div>
                 <p class="finding-desc">
@@ -292,6 +293,7 @@
                     <div class="tag-group">
                         <span class="tag duplicate">Duplicate</span>
                         <span class="tag valid">Valid</span>
+                        <span class="tag vdp">VDP</span>
                     </div>
                 </div>
                 <p class="finding-desc">
@@ -303,6 +305,32 @@
                     <div class="proof-container">
                         <img src="img/findings/02-NOKIA.png" alt="Nokia Validation Log" class="proof-img">
                         <p class="caption">Screenshot: Validated duplicate report activity.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- ITEM 3: KASEYA (INKY) -->
+            <div class="finding-card fade-in">
+                <div class="finding-header">
+                    <div>
+                        <h2 class="finding-title">Information Disclosure > Leak of Client Configuration & Secrets</h2>
+                        <span class="target-org">Kaseya (Inky)</span>
+                    </div>
+                    <div class="tag-group">
+                        <span class="tag duplicate">Duplicate</span>
+                        <span class="tag valid">Valid</span>
+                        <span class="tag vdp">VDP</span>
+                    </div>
+                </div>
+                <p class="finding-desc">
+                    Identified a sensitive configuration exposure within a Keycloak instance. The research detailed a vulnerability chain where leaked client secrets and an insecure CORS policy could be leveraged for authenticated data exfiltration. The finding was confirmed as technically valid and passed preliminary review.
+                </p>
+                <details>
+                    <summary>[+] VIEW VALIDATION LOG</summary>
+                    <div class="proof-container">
+                        <!-- Pastikan lu ganti path gambar ini sesuai file lu nanti -->
+                        <img src="img/findings/03-KASEYA.png" alt="Kaseya Validation Log" class="proof-img">
+                        <p class="caption">Screenshot: HackerOne triage activity and preliminary review acknowledgment.</p>
                     </div>
                 </details>
             </div>
