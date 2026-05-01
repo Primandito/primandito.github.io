@@ -12,7 +12,7 @@
     />
     <meta
       name="keywords"
-      content="Primandito Adi Setiya, Hall of Fame, NASA, BPK, DHS, Bugcrowd, Security Researcher"
+      content="Primandito Adi Setiya, Hall of Fame, NASA, BPK, DHS, Bugcrowd, Security Researcher, WHO"
     />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -27,8 +27,6 @@
         --border: #333;
         --text-dim: #aaa;
       }
-
-      /* Reset & Base */
       * {
         margin: 0;
         padding: 0;
@@ -42,13 +40,10 @@
         padding: 20px;
         line-height: 1.6;
       }
-
       .container {
         max-width: 1000px;
         margin: 0 auto;
       }
-
-      /* Typography */
       h1 {
         font-family: "IBM Plex Mono", monospace;
         font-size: clamp(1.2rem, 4vw, 1.5rem);
@@ -58,7 +53,6 @@
         text-transform: uppercase;
         letter-spacing: 1px;
       }
-
       .back-link {
         font-family: "IBM Plex Mono", monospace;
         color: #888;
@@ -74,28 +68,25 @@
         border-color: #fff;
         background: rgba(255, 255, 255, 0.05);
       }
-
-      /* Grid Layout */
       .full-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
         margin-top: 2rem;
       }
-
-      /* Item Card */
       .item {
         border: 1px solid var(--border);
         padding: 1.5rem;
         transition: 0.3s;
         display: flex;
         flex-direction: column;
+        animation: fadeInUp 0.5s ease-out forwards;
+        opacity: 0;
       }
       .item:hover {
         border-color: #666;
         background: rgba(255, 255, 255, 0.02);
       }
-
       .p-tag {
         font-family: "IBM Plex Mono", monospace;
         font-size: 0.7rem;
@@ -105,7 +96,6 @@
         display: block;
         letter-spacing: 1px;
       }
-
       .org {
         font-size: 1.1rem;
         color: #fff;
@@ -114,14 +104,12 @@
         font-family: "IBM Plex Mono", monospace;
         line-height: 1.3;
       }
-
       .date {
         color: #666;
         font-size: 0.8rem;
         margin-bottom: 1rem;
         display: block;
       }
-
       .desc {
         color: var(--text-dim);
         font-size: 0.9rem;
@@ -129,7 +117,6 @@
         line-height: 1.5;
         flex-grow: 1;
       }
-
       .link {
         font-family: "IBM Plex Mono", monospace;
         font-size: 0.8rem;
@@ -142,21 +129,6 @@
       .link:hover {
         color: var(--accent);
       }
-
-      @media (max-width: 600px) {
-        body {
-          padding: 15px;
-        }
-        .full-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* Simple Animation */
-      .item {
-        animation: fadeInUp 0.5s ease-out forwards;
-        opacity: 0;
-      }
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -167,8 +139,6 @@
           transform: translateY(0);
         }
       }
-
-      /* Chart Container */
       .chart-section {
         margin: 2rem 0 4rem;
         padding: 2rem;
@@ -220,11 +190,13 @@
         archived.</strong
       >
     </div>
+
     <div class="container">
       <a href="portfolio.html" class="back-link">← BACK TO PORTFOLIO</a>
 
-      <h1 id="archiveTitle">Hall of Fame Archive - Primandito Adi Setiya</h1>
-      <!-- BAGIAN GRAFIK -->
+      <h1 id="archiveTitle">Hall of Fame Archive (28 Entries)</h1>
+
+      <!-- GRAFIK -->
       <div class="chart-section">
         <div class="chart-header">Activity Progress Map</div>
         <div style="height: 250px">
@@ -232,260 +204,495 @@
         </div>
       </div>
 
-      <div class="full-grid" id="fullGrid"></div>
+      <!-- HARDCODED GRID FOR SEO ACCESSIBILITY -->
+      <div class="full-grid" id="fullGrid">
+        <!-- ENTRY 1 -->
+        <div class="item" style="animation-delay: 0s">
+          <span class="p-tag">Independent VDP</span>
+          <span class="org">World Health Organization (WHO)</span>
+          <span class="date">April 2026</span>
+          <p class="desc">
+            Listed in the official Hall of Fame for responsible vulnerability
+            disclosure to the World Health Organization.
+          </p>
+          <a
+            href="https://www.who.int/about/cybersecurity/vulnerability-hall-of-fame/ethical-hacker-list"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 2 -->
+        <div class="item" style="animation-delay: 0.05s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">U.S. Department of Transportation (USDOT) VDP</span>
+          <span class="date">March 2026</span>
+          <p class="desc">
+            Listed in the Hall of Fame for identifying and reporting
+            vulnerabilities within U.S. national transportation infrastructure
+            systems.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/usdot-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 3 -->
+        <div class="item" style="animation-delay: 0.1s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">Bosch VDP Public</span>
+          <span class="date">March 2026</span>
+          <p class="desc">
+            Acknowledged for responsible security research within Bosch's
+            industrial and technology ecosystem.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/bosch-vdp-public/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 4 -->
+        <div class="item" style="animation-delay: 0.15s">
+          <span class="p-tag">Independent VDP</span>
+          <span class="org">Aussie Home Loans (Australia)</span>
+          <span class="date">March 2026</span>
+          <p class="desc">
+            Acknowledged for identifying and reporting security vulnerabilities
+            within Aussie's infrastructure.
+          </p>
+          <a
+            href="https://www.aussie.com.au/about-us/vulnerability-disclosure-program/"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 5 -->
+        <div class="item" style="animation-delay: 0.2s">
+          <span class="p-tag">Independent VDP</span>
+          <span class="org">Lendi Security Acknowledgments (Australia)</span>
+          <span class="date">March 2026</span>
+          <p class="desc">
+            Recognized for responsible vulnerability disclosure in Lendi's
+            financial ecosystem.
+          </p>
+          <a
+            href="https://www.lendi.com.au/about-us/vulnerability-disclosure-program/"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 6 -->
+        <div class="item" style="animation-delay: 0.25s">
+          <span class="p-tag">Independent VDP</span>
+          <span class="org">RGOODS Security Acknowledgments</span>
+          <span class="date">February 2026</span>
+          <p class="desc">
+            Listed in the official Hall of Fame for responsible vulnerability
+            disclosure.
+          </p>
+          <a
+            href="https://rgoods.com/security-acknowledgments/"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 7 -->
+        <div class="item" style="animation-delay: 0.3s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">Keurig Dr Pepper VDP Pro</span>
+          <span class="date">February 2026</span>
+          <p class="desc">
+            Recognized for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/keurigdrpepper-vdp-pro/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 8 -->
+        <div class="item" style="animation-delay: 0.35s">
+          <span class="p-tag">Independent VDP</span>
+          <span class="org">Cyberm VDP</span>
+          <span class="date">February 2026</span>
+          <p class="desc">Acknowledged for responsible security reporting.</p>
+          <a href="https://cyberm.ca/vdp/" target="_blank" class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 9 -->
+        <div class="item" style="animation-delay: 0.4s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">McDonald's VDP Pro</span>
+          <span class="date">February 2026</span>
+          <p class="desc">
+            Recognized for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/mcdonalds/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 10 -->
+        <div class="item" style="animation-delay: 0.45s">
+          <span class="p-tag">Independent VDP</span>
+          <span class="org">Modalku (Funding Societies) VDP</span>
+          <span class="date">February 2026</span>
+          <p class="desc">
+            Listed in the Hall of Fame for responsible reporting.
+          </p>
+          <a href="https://modalku.co.id/vdp" target="_blank" class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 11 -->
+        <div class="item" style="animation-delay: 0.5s">
+          <span class="p-tag">VDP</span>
+          <span class="org">Sword Health VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Recognized for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://swordhealth.com/security/hall-of-fame"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 12 -->
+        <div class="item" style="animation-delay: 0.55s">
+          <span class="p-tag">Independent VDP</span>
+          <span class="org">Badan Pemeriksa Keuangan (BPK)</span>
+          <span class="date">January 2026</span>
+          <p class="desc">Acknowledged for responsible security reporting.</p>
+          <a
+            href="https://csirt.bpk.go.id/posts/daftar-pelapor-keamanan"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 13 -->
+        <div class="item" style="animation-delay: 0.6s">
+          <span class="p-tag">Independent VDP</span>
+          <span class="org">PT Transportasi Jakarta (Transjakarta)</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Recognized for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://csirt.transjakarta.co.id/white-hacker/"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 14 -->
+        <div class="item" style="animation-delay: 0.65s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">U.S. Dept of Veterans Affairs (VA)</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Listed in the Hall of Fame for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/va-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 15 -->
+        <div class="item" style="animation-delay: 0.7s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">Dept of Homeland Security (DHS)</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Acknowledged for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/dhs-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 16 -->
+        <div class="item" style="animation-delay: 0.75s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">FHFA VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Listed in the Hall of Fame for responsible reporting.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/fhfa-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 17 -->
+        <div class="item" style="animation-delay: 0.8s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">NTSB VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Recognized for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/ntsb-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 18 -->
+        <div class="item" style="animation-delay: 0.85s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">EPA VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Acknowledged in the Hall of Fame for responsible reporting.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/epa-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 19 -->
+        <div class="item" style="animation-delay: 0.9s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">Bureau of Indian Affairs (BIA)</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Recognized for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/bia-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 20 -->
+        <div class="item" style="animation-delay: 0.95s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">NCUA VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Listed in the Hall of Fame for responsible reporting.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/ncua-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 21 -->
+        <div class="item" style="animation-delay: 1s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">OSMRE VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Acknowledged for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/osmre-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 22 -->
+        <div class="item" style="animation-delay: 1.05s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">State of Maryland VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">Recognized for responsible security reporting.</p>
+          <a
+            href="https://bugcrowd.com/engagements/maryland-vdp-pro/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 23 -->
+        <div class="item" style="animation-delay: 1.1s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">NASA VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Listed in the Hall of Fame for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 24 -->
+        <div class="item" style="animation-delay: 1.15s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">Hemi Labs VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Recognized for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/hemi/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 25 -->
+        <div class="item" style="animation-delay: 1.2s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">University of Canterbury VDP Pro</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Acknowledged in the Hall of Fame for responsible security reporting.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/university-canterbury-vdp-pro/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 26 -->
+        <div class="item" style="animation-delay: 1.25s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">National Football League (NFL)</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Recognized for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/nfl-vdp-pro/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 27 -->
+        <div class="item" style="animation-delay: 1.3s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">University of Melbourne VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">
+            Listed in the Hall of Fame for responsible vulnerability disclosure.
+          </p>
+          <a
+            href="https://bugcrowd.com/engagements/uni-melbourne-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+
+        <!-- ENTRY 28 -->
+        <div class="item" style="animation-delay: 1.35s">
+          <span class="p-tag">Bugcrowd</span>
+          <span class="org">Arrow Electronics VDP</span>
+          <span class="date">January 2026</span>
+          <p class="desc">Recognized for responsible security reporting.</p>
+          <a
+            href="https://bugcrowd.com/engagements/arrow-electronics-vdp/hall_of_fames"
+            target="_blank"
+            class="link"
+            >View Proof →</a
+          >
+        </div>
+      </div>
     </div>
 
     <script>
+      // TETEP PAKE ARRAY HANYA UNTUK KASIH MAKAN KE CHART.JS
       const allData = [
-        {
-          platform: "Bugcrowd",
-          program: "University of Melbourne VDP",
-          date: "January 2026",
-          description:
-            "Listed in the Hall of Fame for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/uni-melbourne-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "National Football League (NFL) VDP Pro",
-          date: "January 2026",
-          description: "Recognized for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/nfl-vdp-pro/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "University of Canterbury VDP Pro",
-          date: "January 2026",
-          description:
-            "Acknowledged in the Hall of Fame for responsible security reporting.",
-          link: "https://bugcrowd.com/engagements/university-canterbury-vdp-pro/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "Hemi Labs VDP",
-          date: "January 2026",
-          description: "Recognized for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/hemi/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "National Aeronautics and Space Administration (NASA) VDP",
-          date: "January 2026",
-          description:
-            "Listed in the Hall of Fame for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "State of Maryland VDP",
-          date: "January 2026",
-          description: "Recognized for responsible security reporting.",
-          link: "https://bugcrowd.com/engagements/maryland-vdp-pro/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program:
-            "Office of Surface Mining Reclamation and Enforcement (OSMRE) VDP",
-          date: "January 2026",
-          description: "Acknowledged for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/osmre-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "National Credit Union Administration (NCUA) VDP",
-          date: "January 2026",
-          description: "Listed in the Hall of Fame for responsible reporting.",
-          link: "https://bugcrowd.com/engagements/ncua-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "Bureau of Indian Affairs (BIA) VDP",
-          date: "January 2026",
-          description: "Recognized for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/bia-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "Environmental Protection Agency (EPA) VDP",
-          date: "January 2026",
-          description:
-            "Acknowledged in the Hall of Fame for responsible reporting.",
-          link: "https://bugcrowd.com/engagements/epa-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "National Transportation Safety Board (NTSB) VDP",
-          date: "January 2026",
-          description: "Recognized for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/ntsb-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "Federal Housing Finance Agency (FHFA) VDP",
-          date: "January 2026",
-          description: "Listed in the Hall of Fame for responsible reporting.",
-          link: "https://bugcrowd.com/engagements/fhfa-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "Department of Homeland Security (DHS) VDP",
-          date: "January 2026",
-          description: "Acknowledged for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/dhs-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "Arrow Electronics VDP",
-          date: "January 2026",
-          description: "Recognized for responsible security reporting.",
-          link: "https://bugcrowd.com/engagements/arrow-electronics-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "United States Department of Veterans Affairs (VA) VDP",
-          date: "January 2026",
-          description:
-            "Listed in the Hall of Fame for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/va-vdp/hall_of_fames",
-        },
-        {
-          platform: "VDP",
-          program: "Sword Health VDP",
-          date: "January 2026",
-          description: "Recognized for responsible vulnerability disclosure.",
-          link: "https://swordhealth.com/security/hall-of-fame",
-        },
-        {
-          platform: "Independent VDP",
-          program: "Badan Pemeriksa Keuangan (BPK)",
-          date: "January 2026",
-          description: "Acknowledged for responsible security reporting.",
-          link: "https://csirt.bpk.go.id/posts/daftar-pelapor-keamanan",
-        },
-        {
-          platform: "Independent VDP",
-          program: "PT Transportasi Jakarta (Transjakarta)",
-          date: "January 2026",
-          description: "Recognized for responsible vulnerability disclosure.",
-          link: "https://csirt.transjakarta.co.id/white-hacker/",
-        },
-        {
-          platform: "Independent VDP",
-          program: "Modalku (Funding Societies) VDP",
-          date: "February 2026",
-          description: "Listed in the Hall of Fame for responsible reporting.",
-          link: "https://modalku.co.id/vdp",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "McDonald's VDP Pro",
-          date: "February 2026",
-          description: "Recognized for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/mcdonalds/hall_of_fames",
-        },
-        {
-          platform: "Independent VDP",
-          program: "Cyberm VDP",
-          date: "February 2026",
-          description: "Acknowledged for responsible security reporting.",
-          link: "https://cyberm.ca/vdp/",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "Keurig Dr Pepper VDP Pro",
-          date: "February 2026",
-          description: "Recognized for responsible vulnerability disclosure.",
-          link: "https://bugcrowd.com/engagements/keurigdrpepper-vdp-pro/hall_of_fames",
-        },
-        {
-          platform: "Independent VDP",
-          program: "RGOODS Security Acknowledgments",
-          date: "February 2026",
-          description:
-            "Listed in the official Hall of Fame for responsible vulnerability disclosure.",
-          link: "https://rgoods.com/security-acknowledgments/",
-        },
-        {
-          platform: "Independent VDP",
-          program: "Lendi Security Acknowledgments (Australia)",
-          date: "March 2026",
-          description:
-            "Recognized for responsible vulnerability disclosure in Lendi's financial ecosystem.",
-          link: "https://www.lendi.com.au/about-us/vulnerability-disclosure-program/",
-        },
-        {
-          platform: "Independent VDP",
-          program: "Aussie Home Loans Security Hall of Fame (Australia)",
-          date: "March 2026",
-          description:
-            "Acknowledged for identifying and reporting security vulnerabilities within Aussie's infrastructure.",
-          link: "https://www.aussie.com.au/about-us/vulnerability-disclosure-program/",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "U.S. Department of Transportation (USDOT) VDP",
-          date: "March 2026",
-          description:
-            "Listed in the Hall of Fame for identifying and reporting vulnerabilities within U.S. national transportation infrastructure systems.",
-          link: "https://bugcrowd.com/engagements/usdot-vdp/hall_of_fames",
-        },
-        {
-          platform: "Bugcrowd",
-          program: "Bosch VDP Public",
-          date: "March 2026",
-          description:
-            "Acknowledged for responsible security research within Bosch's industrial and technology ecosystem.",
-          link: "https://bugcrowd.com/engagements/bosch-vdp-public/hall_of_fames",
-        },
-        {
-          platform: "Independent VDP",
-          program: "World Health Organization (WHO) Vulnerability Hall of Fame",
-          date: "April 2026",
-          description:
-            "Listed in the official Hall of Fame for responsible vulnerability disclosure to the World Health Organization.",
-          link: "https://www.who.int/about/cybersecurity/vulnerability-hall-of-fame/ethical-hacker-list",
-        },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "January 2026" },
+        { date: "February 2026" },
+        { date: "February 2026" },
+        { date: "February 2026" },
+        { date: "February 2026" },
+        { date: "February 2026" },
+        { date: "March 2026" },
+        { date: "March 2026" },
+        { date: "March 2026" },
+        { date: "March 2026" },
+        { date: "April 2026" },
       ];
 
-      const container = document.getElementById("fullGrid");
-      const titleElement = document.getElementById("archiveTitle");
-
-      titleElement.textContent = `Hall of Fame Archive (${allData.length} Entries)`;
-
-      // 1. RENDER CARDS
-      allData.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.className = "item";
-        div.style.animationDelay = `${index * 0.05}s`;
-        div.innerHTML = `
-            <span class="p-tag">${item.platform}</span>
-            <span class="org">${item.program}</span>
-            <span class="date">${item.date}</span>
-            <p class="desc">${item.description}</p>
-            <a href="${item.link}" target="_blank" class="link">View Proof →</a>
-        `;
-        container.appendChild(div);
-      });
-
-      // 2. LOGIC GRAFIK
       function renderChart() {
-        // 1. Hitung jumlah entri per bulan (Raw, bukan kumulatif)
         const counts = {};
         allData.forEach((item) => {
           counts[item.date] = (counts[item.date] || 0) + 1;
         });
 
-        // 2. Sortir Bulan
-        const labels = Object.keys(counts).sort((a, b) => {
-          return new Date(a) - new Date(b);
-        });
-
-        // 3. Ambil nilai aslinya
+        const labels = Object.keys(counts).sort(
+          (a, b) => new Date(a) - new Date(b),
+        );
         const dataPoints = labels.map((label) => counts[label]);
-
         const ctx = document.getElementById("hofChart").getContext("2d");
-
-        // Gradien Merah
         const gradient = ctx.createLinearGradient(0, 0, 0, 250);
         gradient.addColorStop(0, "rgba(255, 85, 85, 0.2)");
         gradient.addColorStop(1, "rgba(255, 85, 85, 0)");
@@ -514,9 +721,7 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-              legend: { display: false },
-            },
+            plugins: { legend: { display: false } },
             scales: {
               y: {
                 beginAtZero: true,
@@ -539,7 +744,6 @@
           },
         });
       }
-
       window.onload = renderChart;
     </script>
   </body>
