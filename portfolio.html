@@ -147,7 +147,7 @@
         letter-spacing: 0.5px;
       }
 
-      /* Priority List */
+      /* Bar Charts */
       .stat-bar-container {
         margin-bottom: 1.2rem;
       }
@@ -312,20 +312,6 @@
         background: rgba(255, 255, 255, 0.03);
       }
 
-      .fade-in {
-        animation: fadeIn 0.8s ease-out forwards;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(15px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
       /* Logo Grid */
       .archive-toggle {
         text-align: center;
@@ -380,6 +366,20 @@
         filter: grayscale(0%) brightness(1);
         transform: scale(1.15);
       }
+
+      .fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
       @keyframes logoPulse {
         0%,
         100% {
@@ -414,28 +414,6 @@
     </style>
   </head>
   <body>
-    <!-- SYSTEM STATUS NOTICE -->
-    <div
-      style="
-        background: rgba(255, 85, 85, 0.1);
-        border: 1px solid var(--accent);
-        padding: 15px;
-        margin-bottom: 30px;
-        font-family: &quot;IBM Plex Mono&quot;, monospace;
-        font-size: 0.8rem;
-        color: #ccc;
-      "
-    >
-      <span style="color: var(--accent); font-weight: bold">[!] NOTICE:</span>
-      Third-party platform profiles (Bugcrowd) are currently undergoing archival
-      synchronization and security auditing. Direct links may be temporarily
-      restricted.
-      <strong
-        >All Hall of Fame records listed below are manually verified and
-        archived.</strong
-      >
-    </div>
-
     <div class="container">
       <header>
         <h1 class="fade-in">Primandito Adi Setiya</h1>
@@ -877,7 +855,6 @@
           organizations and government agencies.
         </p>
 
-        <!-- STATIC HTML GRID (SEO FRIENDLY) -->
         <div class="hof-grid">
           <!-- ITEM 1: WHO -->
           <div class="hof-item">
@@ -980,6 +957,7 @@
             >
           </div>
         </div>
+
         <a href="hall-of-fame.html" class="btn-full"
           >VIEW FULL LIST (28 ENTRIES) →</a
         >
@@ -1006,13 +984,16 @@
       </section>
 
       <footer>
-        <span
+        <p class="footer-copy">
+          © 2026 Primandito Adi Setiya • Security Researcher Portfolio
+        </p>
+        <a
+          href="https://bugcrowd.com/h/Primandito_Adi_Setiya"
+          target="_blank"
           class="bugcrowd-link"
-          style="opacity: 0.5; border-style: dashed; cursor: help"
-          title="Profile archived for periodic synchronization"
         >
-          Bugcrowd Profile: [ ARCHIVED_SYNC ]
-        </span>
+          View full profile on Bugcrowd →
+        </a>
       </footer>
     </div>
 
