@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credential Archive | Primandito Adi Setiya</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --accent: #ff5555;
+        --border: #333;
+        --text: #f0f0f0;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        padding: 40px 20px;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .back-link {
+        color: #888;
+        text-decoration: none;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.8rem;
+        border: 1px solid var(--border);
+        padding: 8px 15px;
+        transition: 0.3s;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .back-link:hover {
+        border-color: #fff;
+        color: #fff;
+      }
+
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .cert-card {
+        border: 1px solid var(--border);
+        padding: 25px;
+        background: #111;
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .cert-card:hover {
+        border-color: var(--accent);
+        background: rgba(255, 85, 85, 0.02);
+        transform: translateY(-3px);
+      }
+      .cert-title {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.9rem;
+        color: #fff;
+        margin-bottom: 20px;
+        height: 45px;
+        overflow: hidden;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 10px;
+      }
+      .btn {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.7rem;
+        text-decoration: none;
+        padding: 10px;
+        border: 1px solid #333;
+        color: #888;
+        flex: 1;
+        text-align: center;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        border-color: #fff;
+        color: #fff;
+      }
+      .btn.download {
+        background: transparent;
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .btn.download:hover {
+        background: var(--accent);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="portfolio.html" class="back-link">← BACK TO PORTFOLIO</a>
+      <h1>Credential Archive</h1>
+
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-title">
+            National Aeronautics and Space Administration
+          </div>
+          <div class="btn-group">
+            <a href="certs/nasa.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/nasa.pdf" download class="btn download">DOWNLOAD</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">
+            Provinsi Daerah Istimewa Yogyakarta (DIY)
+          </div>
+          <div class="btn-group">
+            <a href="certs/jogja.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/jogja.pdf" download class="btn download">DOWNLOAD</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Detikcom</div>
+          <div class="btn-group">
+            <a href="certs/detik.png" target="_blank" class="btn">VIEW</a>
+            <a href="certs/detik.png" download class="btn download">DOWNLOAD</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Provinsi Sulawesi Tengah</div>
+          <div class="btn-group">
+            <a href="certs/sulteng.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/sulteng.pdf" download class="btn download"
+              >DOWNLOAD</a
+            >
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Transportasi Jakarta</div>
+          <div class="btn-group">
+            <a href="certs/transjakarta.pdf" target="_blank" class="btn"
+              >VIEW</a
+            >
+            <a href="certs/transjakarta.pdf" download class="btn download"
+              >DOWNLOAD</a
+            >
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Kementerian Pekerjaan Umum (PU)</div>
+          <div class="btn-group">
+            <a href="certs/pu.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/pu.pdf" download class="btn download">DOWNLOAD</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Kabupaten Sidoarjo</div>
+          <div class="btn-group">
+            <a href="certs/sidoarjo.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/sidoarjo.pdf" download class="btn download"
+              >DOWNLOAD</a
+            >
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Kota Cimahi</div>
+          <div class="btn-group">
+            <a href="certs/cimahi.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/cimahi.pdf" download class="btn download"
+              >DOWNLOAD</a
+            >
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Kabupaten Lebak</div>
+          <div class="btn-group">
+            <a href="certs/lebak.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/lebak.pdf" download class="btn download">DOWNLOAD</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Kota Pontianak</div>
+          <div class="btn-group">
+            <a href="certs/pontianak.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/pontianak.pdf" download class="btn download"
+              >DOWNLOAD</a
+            >
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Kabupaten Bengkayang</div>
+          <div class="btn-group">
+            <a href="certs/bengkayang.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/bengkayang.pdf" download class="btn download"
+              >DOWNLOAD</a
+            >
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Kabupaten Belitung</div>
+          <div class="btn-group">
+            <a href="certs/belitung.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/belitung.pdf" download class="btn download"
+              >DOWNLOAD</a
+            >
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Provinsi DKI Jakarta</div>
+          <div class="btn-group">
+            <a href="certs/jakarta.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/jakarta.pdf" download class="btn download"
+              >DOWNLOAD</a
+            >
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Kabupaten Purbalingga</div>
+          <div class="btn-group">
+            <a href="certs/purbalingga.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/purbalingga.pdf" download class="btn download"
+              >DOWNLOAD</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
