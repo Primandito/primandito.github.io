@@ -26,6 +26,12 @@
   </url>
 
   <url>
+      <loc>https://primandito.github.io/certificates.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+    </url>
+
+  <url>
     <loc>https://primandito.github.io/ctf/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
