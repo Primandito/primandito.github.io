@@ -19,6 +19,8 @@
       rel="stylesheet"
     />
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
       :root {
         --bg-color: #0a0a0a;
@@ -47,7 +49,6 @@
         margin: 0 auto;
         padding-top: 2rem;
       }
-
       .back-nav {
         margin-bottom: 2rem;
       }
@@ -111,7 +112,6 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-      /* Style warna tag biar konsisten */
       .tag.duplicate {
         color: #888;
         border-color: #444;
@@ -129,7 +129,6 @@
         font-family: "IBM Plex Mono", monospace;
         font-size: 1.1rem;
         color: #fff;
-        margin-bottom: 5px;
       }
       .target-org {
         font-size: 0.85rem;
@@ -137,7 +136,6 @@
         display: block;
         margin-bottom: 1rem;
       }
-
       .finding-desc {
         font-size: 0.9rem;
         color: #aaa;
@@ -146,20 +144,12 @@
         padding-left: 15px;
       }
 
-      details {
-        cursor: pointer;
-      }
       summary {
         font-family: "IBM Plex Mono", monospace;
         font-size: 0.75rem;
         color: var(--accent);
-        list-style: none;
-        transition: 0.3s;
+        cursor: pointer;
       }
-      summary:hover {
-        opacity: 0.7;
-      }
-
       .proof-container {
         margin-top: 1rem;
         border: 1px solid #333;
@@ -171,10 +161,6 @@
         height: auto;
         display: block;
         opacity: 0.8;
-        transition: 0.3s;
-      }
-      .proof-img:hover {
-        opacity: 1;
       }
       .caption {
         font-size: 0.7rem;
@@ -184,23 +170,28 @@
         text-align: center;
       }
 
+      .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      .chart-box {
+        background: #000;
+        border: 1px solid #1a1a1a;
+        padding: 1.5rem;
+      }
+
       footer {
         margin-top: 5rem;
-        padding-bottom: 2rem;
         border-top: 1px solid var(--border);
-        padding-top: 2rem;
+        padding: 2rem 0;
         text-align: center;
       }
       .footer-text {
         color: #444;
         font-size: 0.8rem;
         font-family: "IBM Plex Mono", monospace;
-      }
-
-      @media (max-width: 600px) {
-        .finding-header {
-          flex-direction: column;
-        }
       }
 
       .fade-in {
@@ -216,49 +207,6 @@
           transform: translateY(0);
         }
       }
-
-      .highlight-summary {
-        background: linear-gradient(45deg, #1a1a1a, #0a0a0a);
-        border: 1px solid var(--accent);
-        padding: 2rem;
-        margin-bottom: 3rem;
-        position: relative;
-        overflow: hidden;
-      }
-      .highlight-summary::before {
-        content: "STRATEGIC ARCHIVE";
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 0.6rem;
-        color: var(--accent);
-        opacity: 0.5;
-        letter-spacing: 2px;
-      }
-      .grid-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 20px;
-        margin-top: 1.5rem;
-      }
-      .stat-box {
-        border-left: 2px solid #333;
-        padding-left: 15px;
-      }
-      .stat-val {
-        display: block;
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 1.5rem;
-        color: #fff;
-        font-weight: 500;
-      }
-      .stat-lbl {
-        font-size: 0.7rem;
-        color: var(--text-dim);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
     </style>
   </head>
   <body>
@@ -271,9 +219,9 @@
         <h1>Research Archive & Acknowledgments</h1>
         <p class="intro-text">
           This archive documents security findings that were triaged as
-          <strong>technically valid</strong>. Due to the competitive and
-          time-sensitive nature of security programs, some reports are marked as
-          duplicates if another researcher identified the issue first.
+          <strong>technically valid</strong>. Due to the competitive nature of
+          security programs, some reports are marked as duplicates if another
+          researcher identified the issue first.
         </p>
         <p class="intro-text" style="font-style: italic; font-size: 0.85rem">
           Note: All screenshots are redacted to protect sensitive internal
@@ -316,11 +264,11 @@
             dedicate my expertise to strengthening Indonesia's national digital
             defense. Through responsible disclosure, I have successfully
             identified and assisted in the <strong>remediation</strong> of
-            <strong>130+ validated vulnerabilities</strong> across
+            <strong>150+ validated vulnerabilities</strong> across
             <strong>100+ national strategic entities</strong>.
           </p>
 
-          <!-- STATS GRID: FOCUS ON IMPACT -->
+          <!-- STATS GRID -->
           <div
             style="
               display: grid;
@@ -357,7 +305,7 @@
                   color: var(--accent);
                   display: block;
                 "
-                >130+</span
+                >150+</span
               >
               <span
                 style="
@@ -391,7 +339,41 @@
             </div>
           </div>
 
-          <!-- TECHNICAL CAMPAIGN LOGS: FOCUS ON DATA -->
+          <!-- ANALYTICS DASHBOARD (NEW) -->
+          <div class="chart-grid">
+            <div class="chart-box">
+              <span
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 0.65rem;
+                  color: var(--accent);
+                  display: block;
+                  margin-bottom: 1rem;
+                "
+                >[ SEVERITY DISTRIBUTION ]</span
+              >
+              <div style="height: 180px">
+                <canvas id="severityChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-box">
+              <span
+                style="
+                  font-family: &quot;IBM Plex Mono&quot;, monospace;
+                  font-size: 0.65rem;
+                  color: var(--accent);
+                  display: block;
+                  margin-bottom: 1rem;
+                "
+                >[ IMPACT RADAR ANALYSIS ]</span
+              >
+              <div style="height: 180px">
+                <canvas id="impactRadar"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- CAMPAIGN LOGS -->
           <div
             style="
               border-top: 1px solid #222;
@@ -408,7 +390,6 @@
                   font-size: 0.65rem;
                   color: #555;
                   text-transform: uppercase;
-                  letter-spacing: 1px;
                   display: block;
                   margin-bottom: 5px;
                 "
@@ -429,7 +410,6 @@
                   font-size: 0.65rem;
                   color: #555;
                   text-transform: uppercase;
-                  letter-spacing: 1px;
                   display: block;
                   margin-bottom: 5px;
                 "
@@ -441,7 +421,7 @@
                   font-size: 0.85rem;
                   color: #888;
                 "
-                >140+ Reports Submitted</span
+                >155+ Reports Submitted</span
               >
             </div>
             <div>
@@ -450,7 +430,6 @@
                   font-size: 0.65rem;
                   color: #555;
                   text-transform: uppercase;
-                  letter-spacing: 1px;
                   display: block;
                   margin-bottom: 5px;
                 "
@@ -462,28 +441,7 @@
                   font-size: 0.85rem;
                   color: #fff;
                 "
-                >Low — Critical</span
-              >
-            </div>
-            <div>
-              <span
-                style="
-                  font-size: 0.65rem;
-                  color: #555;
-                  text-transform: uppercase;
-                  letter-spacing: 1px;
-                  display: block;
-                  margin-bottom: 5px;
-                "
-                >Primary Impact</span
-              >
-              <span
-                style="
-                  font-family: &quot;IBM Plex Mono&quot;, monospace;
-                  font-size: 0.85rem;
-                  color: var(--accent);
-                "
-                >Medium & High Severity</span
+                >Med — Critical</span
               >
             </div>
           </div>
@@ -505,31 +463,17 @@
             </h4>
             <p style="font-size: 0.85rem; color: #888; line-height: 1.6">
               To uphold the principles of National Cyber Resilience, I maintain
-              strict confidentiality regarding the identities of these
-              institutions. All findings are reported through the
+              strict confidentiality regarding the identities of institutions.
+              All findings are reported through the
               <strong>National Cyber and Crypto Agency (BSSN)</strong> or
-              respective CSIRT teams. My primary objective is the silent and
-              effective remediation of vulnerabilities to protect national data
-              integrity.
+              respective CSIRT teams. Skor teknis dihitung menggunakan
+              <strong>CVSS v3.1 Framework</strong> dengan validasi mendalam
+              untuk akurasi data.
             </p>
           </div>
-
-          <p
-            style="
-              font-size: 0.65rem;
-              color: #444;
-              font-family: &quot;IBM Plex Mono&quot;, monospace;
-              margin-top: 15px;
-              text-align: right;
-              letter-spacing: 0.5px;
-            "
-          >
-            * Data is manually aggregated and maintained for accuracy (approx.
-            98%+ precision).
-          </p>
         </section>
 
-        <!-- Section Divider -->
+        <!-- SAMPLE LOGS -->
         <h3
           style="
             font-family: &quot;IBM Plex Mono&quot;, monospace;
@@ -542,7 +486,7 @@
           DETAILED TRIAGE LOGS (PUBLIC PROGRAMS)
         </h3>
 
-        <!-- ITEM 1: HSBC -->
+        <!-- HSBC -->
         <div class="finding-card fade-in">
           <div class="finding-header">
             <div>
@@ -565,19 +509,12 @@
           <details>
             <summary>[+] VIEW VALIDATION LOG</summary>
             <div class="proof-container">
-              <img
-                src="img/findings/01-HSBC.png"
-                alt="HSBC Validation Log"
-                class="proof-img"
-              />
-              <p class="caption">
-                Screenshot: Triage acknowledgement and status assignment.
-              </p>
+              <img src="img/findings/01-HSBC.png" class="proof-img" />
             </div>
           </details>
         </div>
 
-        <!-- ITEM 2: NOKIA -->
+        <!-- NOKIA -->
         <div class="finding-card fade-in">
           <div class="finding-header">
             <div>
@@ -599,19 +536,12 @@
           <details>
             <summary>[+] VIEW VALIDATION LOG</summary>
             <div class="proof-container">
-              <img
-                src="img/findings/02-NOKIA.png"
-                alt="Nokia Validation Log"
-                class="proof-img"
-              />
-              <p class="caption">
-                Screenshot: Validated duplicate report activity.
-              </p>
+              <img src="img/findings/02-NOKIA.png" class="proof-img" />
             </div>
           </details>
         </div>
 
-        <!-- ITEM 3: KASEYA (INKY) -->
+        <!-- KASEYA -->
         <div class="finding-card fade-in">
           <div class="finding-header">
             <div>
@@ -636,16 +566,7 @@
           <details>
             <summary>[+] VIEW VALIDATION LOG</summary>
             <div class="proof-container">
-              <!-- Pastikan lu ganti path gambar ini sesuai file lu nanti -->
-              <img
-                src="img/findings/03-KASEYA.png"
-                alt="Kaseya Validation Log"
-                class="proof-img"
-              />
-              <p class="caption">
-                Screenshot: HackerOne triage activity and preliminary review
-                acknowledgment.
-              </p>
+              <img src="img/findings/03-KASEYA.png" class="proof-img" />
             </div>
           </details>
         </div>
@@ -657,5 +578,84 @@
         </p>
       </footer>
     </div>
+
+    <script>
+      // Chart Severity
+      const ctxSev = document.getElementById("severityChart").getContext("2d");
+      new Chart(ctxSev, {
+        type: "bar",
+        data: {
+          labels: ["CRITICAL", "HIGH", "MEDIUM", "LOW"],
+          datasets: [
+            {
+              data: [16, 66, 68, 0],
+              backgroundColor: ["#ff0000", "#ff5555", "#ffa500", "#ffff00"],
+              borderWidth: 0,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: "#1a1a1a" },
+              ticks: { color: "#666", font: { size: 10 } },
+            },
+            x: {
+              grid: { display: false },
+              ticks: {
+                color: "#888",
+                font: { family: "IBM Plex Mono", size: 9 },
+              },
+            },
+          },
+        },
+      });
+
+      // Chart Impact
+      const ctxImp = document.getElementById("impactRadar").getContext("2d");
+      new Chart(ctxImp, {
+        type: "radar",
+        data: {
+          labels: [
+            "Confidentiality",
+            "Integrity",
+            "Availability",
+            "Network Vector",
+            "Complexity: Low",
+          ],
+          datasets: [
+            {
+              data: [95, 60, 30, 100, 98],
+              borderColor: "#ff5555",
+              backgroundColor: "rgba(255, 85, 85, 0.1)",
+              pointBackgroundColor: "#ff5555",
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            r: {
+              angleLines: { color: "#222" },
+              grid: { color: "#222" },
+              pointLabels: {
+                color: "#888",
+                font: { family: "IBM Plex Mono", size: 8 },
+              },
+              ticks: { display: false },
+              suggestedMin: 0,
+              suggestedMax: 100,
+            },
+          },
+        },
+      });
+    </script>
   </body>
 </html>
