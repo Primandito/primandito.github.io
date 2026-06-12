@@ -312,60 +312,59 @@
         background: rgba(255, 255, 255, 0.03);
       }
 
-      /* Logo Grid */
-      .archive-toggle {
-        text-align: center;
-        margin: 3rem 0;
-      }
-      .reveal-btn {
-        background: none;
-        border: 1px solid var(--border);
-        color: var(--accent);
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 0.8rem;
-        padding: 12px 24px;
-        cursor: pointer;
-        letter-spacing: 2px;
-        transition: 0.3s;
-        text-transform: uppercase;
-      }
-      .reveal-btn:hover {
-        background: var(--accent);
-        color: #fff;
-        border-color: var(--accent);
-        box-shadow: 0 0 15px rgba(255, 85, 85, 0.3);
-      }
-      .logo-grid {
-        display: none;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 50px;
-        padding: 60px 40px;
-        border: 1px solid #1a1a1a;
-        background: rgba(255, 255, 255, 0.01);
-        margin-top: 20px;
-        align-items: center;
-        justify-items: center;
-      }
-      .logo-grid.active {
-        display: grid;
-        animation: fadeIn 0.8s ease-out forwards;
-      }
-      .grid-item {
-        width: auto;
-        max-width: 140px;
-        height: 50px;
-        object-fit: contain;
-        padding: 5px;
-        filter: grayscale(100%) brightness(1.1);
-        mix-blend-mode: screen;
-        opacity: 0.4;
-        transition: all 0.3s ease;
-      }
-      .grid-item:hover {
-        opacity: 1;
-        filter: grayscale(0%) brightness(1);
-        transform: scale(1.15);
-      }
+/* Trust Bar Styles */
+.trust-bar {
+  margin: -2rem 0 3rem;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.trust-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.logo-strip {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.strip-item {
+  filter: grayscale(100%) brightness(1.2);
+  opacity: 0.5;
+  transition: all 0.4s ease;
+  mix-blend-mode: screen;
+}
+
+.strip-item:hover {
+  filter: grayscale(0%) brightness(1);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Responsif buat HP */
+@media (max-width: 600px) {
+  .logo-strip {
+    gap: 20px;
+  }
+  .strip-item {
+    transform: scale(0.8);
+  }
+  .strip-item:hover {
+    transform: scale(0.9);
+  }
+}
 
       .fade-in {
         animation: fadeIn 0.8s ease-out forwards;
@@ -430,245 +429,19 @@
         </nav>
       </header>
 
-      <!-- SECRET ARCHIVE SECTION -->
-      <div class="archive-toggle">
-        <button class="reveal-btn" id="revealBtn">
-          [+] ACCESS TRUSTED ORGANIZATIONS DATABASE
-        </button>
-        <div class="logo-grid" id="logoGrid">
-          <img
-            src="img/logos/nasa.png"
-            alt="NASA"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/dhs.png"
-            alt="DHS"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/hsbc.png"
-            alt="HSBC"
-            class="grid-item"
-            style="height: 50px"
-          />
-          <img
-            src="img/logos/nokia.png"
-            alt="Nokia"
-            class="grid-item"
-            style="height: 50px"
-          />
-          <img src="img/logos/mcdonalds.png" alt="McD" class="grid-item" />
-          <img
-            src="img/logos/nfl.png"
-            alt="NFL"
-            class="grid-item"
-            style="height: 65px"
-          />
-          <img
-            src="img/logos/bpk.png"
-            alt="BPK"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img src="img/logos/detik.png" alt="Detik" class="grid-item" />
-          <img
-            src="img/logos/transjakarta.png"
-            alt="TJ"
-            class="grid-item"
-            style="height: 65px"
-          />
-          <img
-            src="img/logos/aussie.png"
-            alt="Aussie"
-            class="grid-item"
-            style="height: 85px"
-          />
-          <img
-            src="img/logos/lendi.png"
-            alt="Lendi"
-            class="grid-item"
-            style="height: 45px"
-          />
-          <img
-            src="img/logos/hemi.png"
-            alt="Hemi"
-            class="grid-item"
-            style="height: 65px"
-          />
-          <img
-            src="img/logos/maryland.png"
-            alt="Maryland"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/melbourne.png"
-            alt="UniMelb"
-            class="grid-item"
-            style="height: 90px"
-          />
-          <img
-            src="img/logos/canterbury.png"
-            alt="Canterbury"
-            class="grid-item"
-            style="height: 90px"
-          />
-          <img
-            src="img/logos/keurig.png"
-            alt="Keurig"
-            class="grid-item"
-            style="height: 45px"
-          />
-          <img
-            src="img/logos/sword.png"
-            alt="Sword"
-            class="grid-item"
-            style="height: 50px"
-          />
-          <img
-            src="img/logos/modalku.png"
-            alt="Modalku"
-            class="grid-item"
-            style="height: 87px"
-          />
-          <img
-            src="img/logos/cyberm.png"
-            alt="Cyberm"
-            class="grid-item"
-            style="height: 75px"
-          />
-          <img
-            src="img/logos/rgoods.png"
-            alt="RGOODS"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/arrow.png"
-            alt="Arrow"
-            class="grid-item"
-            style="height: 65px"
-          />
-          <img
-            src="img/logos/epa.png"
-            alt="EPA"
-            class="grid-item"
-            style="height: 80px"
-          />
-          <img
-            src="img/logos/ntsb.png"
-            alt="NTSB"
-            class="grid-item"
-            style="height: 80px"
-          />
-          <img
-            src="img/logos/va.png"
-            alt="VA"
-            class="grid-item"
-            style="height: 80px"
-          />
-          <img
-            src="img/logos/osmre.png"
-            alt="OSMRE"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/belitung.png"
-            alt="Belitung"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/bengkayang.png"
-            alt="Bengkayang"
-            class="grid-item"
-            style="height: 75px"
-          />
-          <img
-            src="img/logos/cimahi.png"
-            alt="Cimahi"
-            class="grid-item"
-            style="height: 75px"
-          />
-          <img
-            src="img/logos/jakarta.png"
-            alt="Jakarta"
-            class="grid-item"
-            style="height: 75px"
-          />
-          <img
-            src="img/logos/lebak.png"
-            alt="Lebak"
-            class="grid-item"
-            style="height: 77px"
-          />
-          <img
-            src="img/logos/mataram.png"
-            alt="Mataram"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/pu.png"
-            alt="Pekerjaan Umum"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/pontianak.png"
-            alt="Pontianak"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/purbalingga.png"
-            alt="Purbalingga"
-            class="grid-item"
-            style="height: 70px"
-          />
-          <img
-            src="img/logos/sidoarjo.png"
-            alt="Sidoarjo"
-            class="grid-item"
-            style="height: 75px"
-          />
-          <img
-            src="img/logos/sulteng.png"
-            alt="Sulawesi Tengah"
-            class="grid-item"
-            style="height: 75px"
-          />
-          <img
-            src="img/logos/kaseya.png"
-            alt="Kaseya (Inky)"
-            class="grid-item"
-            style="height: 66px"
-          />
-          <img
-            src="img/logos/usdot.png"
-            alt="USDOT"
-            class="grid-item"
-            style="height: 90px"
-          />
-          <img
-            src="img/logos/bosch.png"
-            alt="Bosch"
-            class="grid-item"
-            style="height: 120px"
-          />
-          <img
-            src="img/logos/who.png"
-            alt="WHO"
-            class="grid-item"
-            style="height: 85px"
-          />
+
+<!-- TRUSTED BY SECTION (5 TOP LOGOS - OFFICIAL HOF) -->
+      <div class="trust-bar fade-in">
+        <span class="trust-label">[ OFFICIAL SECURITY RECOGNITIONS ]</span>
+        <div class="logo-strip">
+          <img src="img/logos/nasa.png" alt="NASA" class="strip-item" style="height: 45px" />
+          <img src="img/logos/dhs.png" alt="DHS" class="strip-item" style="height: 45px" />
+          <img src="img/logos/who.png" alt="WHO" class="strip-item" style="height: 50px" />
+          <img src="img/logos/mcdonalds.png" alt="McDonalds" class="strip-item" style="height: 40px" />
+          <img src="img/logos/bpk.png" alt="BPK RI" class="strip-item" style="height: 50px" />
         </div>
       </div>
-
+      
       <section id="about" class="fade-in">
         <h2>About</h2>
         <p>
@@ -703,7 +476,7 @@
             ><span class="stat-label">Web Reports</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number">29</span
+            <span class="stat-number">30</span
             ><span class="stat-label">Hall of Fame</span>
           </div>
         </div>
@@ -958,7 +731,7 @@
         </div>
 
         <a href="hall-of-fame.html" class="btn-full"
-          >VIEW FULL LIST (29 ENTRIES) →</a
+          >VIEW FULL LIST (30 ENTRIES) →</a
         >
 
         <p
@@ -1034,29 +807,6 @@
       </footer>
     </div>
 
-    <script>
-      function setupRevealBtn() {
-        const btn = document.getElementById("revealBtn");
-        const grid = document.getElementById("logoGrid");
-        const items = document.querySelectorAll(".grid-item");
-        if (!btn || !grid) return;
-        btn.addEventListener("click", function () {
-          const isOpen = grid.classList.toggle("active");
-          if (isOpen) {
-            grid.style.display = "grid";
-            btn.innerText = "[-] CLOSE DATABASE";
-            items.forEach((item, index) => {
-              item.style.animationDelay = `${index * 0.2}s`;
-              item.classList.add("scanning");
-            });
-          } else {
-            grid.style.display = "none";
-            btn.innerText = "[+] ACCESS TRUSTED ORGANIZATIONS DATABASE";
-            items.forEach((item) => item.classList.remove("scanning"));
-          }
-        });
-      }
-      window.onload = setupRevealBtn;
-    </script>
+
   </body>
 </html>
