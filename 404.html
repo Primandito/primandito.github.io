@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Resource Not Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --accent: #ff5555;
+            --text-main: #f0f0f0;
+            --text-dim: #666;
+            --border: #222;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            border: 1px solid var(--border);
+            padding: 3rem;
+            background: #111;
+        }
+
+        h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .status {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        p {
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .glitch-text {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent);
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            padding: 12px 24px;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2rem;
+            background: var(--accent);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="status">[ 404_ERROR_DETECTED ]</span>
+        <h1>NOT FOUND</h1>
+        <p>
+            The requested asset <span class="glitch-text">DOES NOT EXIST</span> or has been <span class="glitch-text">REDACTED</span>. 
+            No sensitive data was exposed during this request.<span class="terminal-cursor"></span>
+        </p>
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://primandito.github.io/" class="back-btn">RETURN HOME</a>
+            <a href="https://primandito.github.io/portfolio.html" class="back-btn" style="color: #fff; border-color: #444;">VIEW PORTFOLIO</a>
+        </div>
+    </div>
+</body>
+</html>
