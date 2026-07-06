@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO & SEARCH KEYWORDS -->
-    <title>Primandito Adi Setiya | Security Researcher</title>
+    <title>Portfolio | Primandito Adi Setiya</title>
     <meta
       name="description"
       content="Independent Security Researcher dedicated to identifying vulnerabilities through responsible disclosure. Committed to helping organizations strengthen their digital infrastructure."
@@ -15,6 +15,17 @@
       content="Primandito Adi Setiya, Primandito, Adi Setiya, Security Researcher, Vulnerability Analyst, Bug Bounty, Bugcrowd, Responsible Disclosure, Cybersecurity Portfolio, Web Application Security"
     />
     <meta name="author" content="Primandito Adi Setiya" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://primandito.github.io/portfolio.html" />
+
+    <meta property="og:title" content="Primandito Adi Setiya | Bug Hunter & Security Researcher" />
+    <meta property="og:description" content="Independent security researcher with 160+ validated findings and 30+ Hall of Fame recognitions (NASA, WHO, DHS)." />
+   	<meta property="og:image" content="https://primandito.github.io/img/logos/logo_web.png" />
+
+   	<meta name="twitter:card" content="summary_large_image" />
+   	<meta name="twitter:title" content="Primandito Adi Setiya | Bug Hunter & Security Researcher" />
+   	<meta name="twitter:description" content="Independent security researcher with 160+ validated findings and 30+ Hall of Fame recognitions." />
+   	<meta name="twitter:image" content="https://primandito.github.io/img/logos/logo_web.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -424,6 +435,8 @@
           <a href="#stats">Stats</a>
           <a href="#certs">Certificates</a>
           <a href="#hof">Hall of Fame</a>
+          <a href="findings.html">Findings</a>
+          <a href="evidence-logs.html" style="color: var(--status-validated); font-weight: bold;">Evidence</a>
           <a href="https://www.linkedin.com/in/primandito-adi-setiya-846748412/" target="_blank">LinkedIn</a>
           <a href="#connectivity" style="color: var(--accent)">Contact</a>
         </nav>
@@ -431,16 +444,16 @@
 
 
 <!-- TRUSTED BY SECTION (5 TOP LOGOS - OFFICIAL HOF) -->
-<div class="trust-bar fade-in">
-  <span class="trust-label">[ OFFICIAL SECURITY RECOGNITIONS ]</span>
-  <div class="logo-strip">
-    <img src="img/logos/nasa.png" alt="NASA" class="strip-item" style="height: 45px" />
-    <img src="img/logos/dhs.png" alt="DHS" class="strip-item" style="height: 45px" />
-    <img src="img/logos/who.png" alt="WHO" class="strip-item" style="height: 50px" />
-    <img src="img/logos/mcdonalds.png" alt="McDonalds" class="strip-item" style="height: 40px" />
-    <img src="img/logos/bpk.png" alt="BPK RI" class="strip-item" style="height: 50px" />
-  </div>
-</div>
+      <div class="trust-bar fade-in">
+        <span class="trust-label">[ OFFICIAL SECURITY RECOGNITIONS ]</span>
+        <div class="logo-strip">
+          <img src="img/logos/nasa.png" alt="National Aeronautics and Space Administration (NASA) Security Hall of Fame - Primandito Adi Setiya" class="strip-item" style="height: 45px" />
+          <img src="img/logos/dhs.png" alt="Department of Homeland Security (DHS) Recognition - Primandito Adi Setiya" class="strip-item" style="height: 45px" />
+          <img src="img/logos/who.png" alt="World Health Organization (WHO) Recognition - Primandito Adi Setiya" class="strip-item" style="height: 50px" />
+          <img src="img/logos/mcdonalds.png" alt="McDonalds Recognition - Primandito Adi Setiya" class="strip-item" style="height: 40px" />
+          <img src="img/logos/bpk.png" alt="Badan Pemerika Keuangan (BPK) RI Recognition - Primandito Adi Setiya" class="strip-item" style="height: 50px" />
+        </div>
+      </div>
       
       <section id="about" class="fade-in">
         <h2>About</h2>
@@ -463,21 +476,28 @@
           reports are triaged or re-evaluated by platforms.
         </p>
         <div class="stats-grid">
-          <div class="stat-item">
-            <span class="stat-number">31</span
-            ><span class="stat-label">Valid Reports</span>
+          <!-- Kolom 1: Khusus Bugcrowd -->
+          <div class="stat-item" style="border-bottom: 2px solid #ff5555;">
+            <span class="stat-number">31</span>
+            <span class="stat-label">Bugcrowd Validated</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-number">91%+</span
-            ><span class="stat-label">Accuracy</span>
+        
+          <!-- Kolom 2: Total Semua Temuan (Termasuk Nasional) -->
+          <div class="stat-item" style="border-bottom: 2px solid #00ff41;">
+            <span class="stat-number">160+</span>
+            <span class="stat-label">Total Validated Findings</span>
           </div>
+        
+          <!-- Kolom 3: Akurasi -->
           <div class="stat-item">
-            <span class="stat-number">18</span
-            ><span class="stat-label">Web Reports</span>
+            <span class="stat-number">91%</span>
+            <span class="stat-label">Report Accuracy</span>
           </div>
+        
+          <!-- Kolom 4: Hall of Fame -->
           <div class="stat-item">
-            <span class="stat-number">30</span
-            ><span class="stat-label">Hall of Fame</span>
+            <span class="stat-number">30</span>
+            <span class="stat-label">Official Recognitions</span>
           </div>
         </div>
 
@@ -533,6 +553,9 @@
             </div>
           </div>
         </div>
+        <p>
+        My research portfolio includes 31 validated reports on international platforms like Bugcrowd, alongside a broader contribution to national cybersecurity, where I have identified and assisted in the remediation of over 160 vulnerabilities across strategic sectors.
+        </p>
       </section>
 
       <section id="notable-research" class="fade-in">

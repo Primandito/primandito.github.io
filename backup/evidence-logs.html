@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Technical Validation Logs | Primandito Adi Setiya</title>
+      <meta
+         name="description"
+         content="Technical validation logs and security evidence by Primandito Adi Setiya. Documenting redacted triage proofs of 160+ findings across national strategic entities and BSSN."
+         />
+      <meta
+         name="keywords"
+         content="Primandito Adi Setiya, Security Evidence, Validation Logs, Triage Proof, BSSN, National Cyber Security, Bug Bounty, Vulnerability Disclosure, Technical Reports"
+         />
+      <link rel="canonical" href="https://primandito.github.io/evidence-logs.html" />
+      <meta name="robots" content="index, follow" />
+      <!-- Open Graph / Facebook -->
+      <meta property="og:title" content="Technical Evidence & Validation Logs | Primandito Adi Setiya" />
+      <meta property="og:description" content="Verified evidence and redacted triage logs for 160+ validated security findings across national strategic infrastructure." />
+      <meta property="og:image" content="https://primandito.github.io/img/logos/logo_web.png" />
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Technical Evidence & Validation Logs | Primandito Adi Setiya" />
+      <meta name="twitter:description" content="Verified evidence and redacted triage logs for 160+ validated security findings across national strategic infrastructure." />
+      <meta name="twitter:image" content="https://primandito.github.io/img/logos/logo_web.png" />
+      <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+      <style>
+         :root {
+         --bg: #0a0a0a;
+         --accent: #ff5555;
+         --border: #222;
+         --text-main: #f0f0f0;
+         --text-dim: #888;
+         --crit-color: #ff0000;
+         --high-color: #ff5555;
+         --med-color: #ffa500;
+         --low-color: #ffff00;
+         --status-fixed: #00ff41; 
+         --status-validated: #3399ff;
+         --status-ghosted: #555;
+         }
+         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; padding: 40px 20px; }
+         .container { max-width: 1000px; margin: 0 auto; }
+         .back-nav { margin-bottom: 30px; font-family: 'IBM Plex Mono', monospace; }
+         .back-link { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+         .back-link:hover { color: #fff; }
+         header { margin-bottom: 40px; }
+         h1 { font-family: 'IBM Plex Mono', monospace; font-size: 2rem; margin-bottom: 10px; }
+         .stats-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin-bottom: 40px; border: 1px solid var(--border); padding: 20px; background: #111; }
+         .stat-box span { display: block; }
+         .stat-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; }
+         .stat-value { font-size: 1.5rem; font-weight: 600; color: #fff; }
+         .nav-jump { display: flex; gap: 15px; margin-bottom: 50px; position: sticky; top: 0; z-index: 100; background: var(--bg); padding: 20px 0; border-bottom: 1px solid #111; }
+         .jump-btn { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #fff; text-decoration: none; border: 1px solid var(--border); padding: 8px 15px; transition: 0.3s; }
+         .jump-btn:hover { border-color: var(--accent); color: var(--accent); }
+         .disclaimer-box { border: 1px solid var(--accent); background: rgba(255, 85, 85, 0.05); padding: 20px; margin-bottom: 50px; font-size: 0.85rem; border-left: 4px solid var(--accent); }
+         .section-title { font-family: 'IBM Plex Mono', monospace; font-size: 1.2rem; color: #fff; margin: 60px 0 30px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+         .dot { width: 10px; height: 10px; border-radius: 50%; }
+         .evidence-card { border: 1px solid var(--border); background: #111; margin-bottom: 60px; }
+         .card-header { padding: 15px 20px; background: #1a1a1a; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+         .log-id { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; color: #fff; }
+         .status-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; padding: 4px 10px; border: 1px solid #333; text-transform: uppercase; }
+         .card-body { padding: 30px; display: grid; grid-template-columns: 320px 1fr; gap: 40px; }
+         @media (max-width: 850px) { .card-body { grid-template-columns: 1fr; } }
+         .info-section h4 { font-family: 'IBM Plex Mono', monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; }
+         .info-section p { font-size: 0.85rem; color: #bbb; margin-bottom: 15px; }
+         .ss-gallery { display: flex; flex-direction: column; gap: 20px; }
+         .ss-item { background: #000; border: 1px solid var(--border); position: relative; overflow: hidden; }
+         .ss-item img { width: 100%; display: block; opacity: 1; filter: none; transition: 0.3s ease; }
+         .ss-caption { display: block; padding: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: #888; text-align: center; background: #161616; border-top: 1px solid #222; }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <nav class="back-nav">
+            <a href="findings.html" class="back-link">← RETURN TO RESEARCH ARCHIVE</a>
+         </nav>
+         <header>
+            <h1>Technical Validation Logs</h1>
+            <p style="color: var(--text-dim);">Official documentation of security vulnerability disclosures across national strategic infrastructure.</p>
+         </header>
+         <div class="stats-summary">
+            <div class="stat-box"><span class="stat-label">Total Reports</span><span class="stat-value">160+</span></div>
+            <div class="stat-box"><span class="stat-label">Sample Selection</span><span class="stat-value">24 Logs</span></div>
+         </div>
+         <div class="nav-jump">
+            <a href="#critical" class="jump-btn">CRITICAL</a>
+            <a href="#high" class="jump-btn">HIGH</a>
+            <a href="#medium" class="jump-btn">MEDIUM</a>
+            <a href="#low" class="jump-btn">LOW</a>
+         </div>
+         <div class="disclaimer-box">
+            <strong>LEGAL & ETHICAL NOTICE:</strong> All visual assets have undergone a strict redaction process. Institution names, IP addresses, subdomains, and personnel identities are obscured to uphold the principles of Responsible Disclosure and professional confidentiality.
+         </div>
+         <!-- ================= CRITICAL SECTION ================= -->
+         <h2 id="critical" class="section-title"><span class="dot" style="background: var(--crit-color)"></span> CRITICAL SEVERITY (4 SAMPLES)</h2>
+         <!-- CRIT 01 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #CRIT-01 | SQL INJECTION (ERROR-BASED)</span><span class="status-badge" style="color: var(--status-ghosted)">Unresponsive / Unfixed</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Vulnerability Analysis</h4>
+                  <p>Identified a critical Error-Based SQL Injection. Successfully exfiltrated database structures using sqlmap. Despite formal disclosure to BSSN, the asset remains vulnerable as of the last check.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/critical/crit-01-01.png"><span class="ss-caption">Initial Disclosure to BSSN</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-01-02.png"><span class="ss-caption">Web Error-Based Response Proof</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-01-03.png"><span class="ss-caption">SQLMap Automated Validation</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-01-04.png"><span class="ss-caption">Database Schema Exposure</span></div>
+               </div>
+            </div>
+         </div>
+         <!-- CRIT 02 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #CRIT-02 | SQL INJECTION</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Vulnerability Analysis</h4>
+                  <p>SQL Injection on a strategic government portal. Following report triage by BSSN, the entity successfully remediated the flaw. Asset currently returns "Server Not Found".</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/critical/crit-02-01.png"><span class="ss-caption">Submission Log</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-02-02.png"><span class="ss-caption">Verification: Asset Offline/Fixed</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-02-03.png"><span class="ss-caption">Official BSSN Triage Reply</span></div>
+               </div>
+            </div>
+         </div>
+         <!-- CRIT 03 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #CRIT-03 | SQL INJECTION (FULL CHAIN)</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Vulnerability Analysis</h4>
+                  <p>A complex SQLi chain leading to full database access. Confirmed technical validity through automated tools. Entity patched the vulnerability within the expected timeframe.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/critical/crit-03-01.png"><span class="ss-caption">Submission to National Cyber Agency</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-03-02.png"><span class="ss-caption">Technical Response Error Proof</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-03-03.png"><span class="ss-caption">Tool-based Vulnerability Confirmation</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-03-04.png"><span class="ss-caption">Internal Database Preview (Redacted)</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-03-05.png"><span class="ss-caption">Final Remediation Confirmation</span></div>
+               </div>
+            </div>
+         </div>
+         <!-- CRIT 04 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #CRIT-04 | REDIS RCE POTENTIAL</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Vulnerability Analysis</h4>
+                  <p>Identified multiple exposed Redis instances across a Regency infrastructure. Allowed GET/SET/DEL operations. Reported as a systemic risk across 7 strategic subdomains.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/critical/crit-04-01.png"><span class="ss-caption">Systemic Disclosure Log</span></div>
+                  <div class="ss-item"><img src="img/evidence/critical/crit-04-02.png"><span class="ss-caption">BSSN Official Triage Response</span></div>
+               </div>
+            </div>
+         </div>
+         <!-- ================= HIGH SECTION ================= -->
+         <h2 id="high" class="section-title"><span class="dot" style="background: var(--high-color)"></span> HIGH SEVERITY (7 SAMPLES)</h2>
+         <!-- HIGH 01 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #HIGH-01 | SQL DATABASE BACKUP EXPOSURE</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Validated</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Publicly accessible .sql backup file. Vulnerability was mitigated; asset now returns 404 Not Found.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/high/high-01-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-01-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-01-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- HIGH 02 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #HIGH-02 | PII DATA EXPOSURE (NIK/NAME)</span><span class="status-badge" style="color: var(--status-ghosted)">Ghosted (Remediated)</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Exposure of sensitive PDF documents containing National ID numbers and Full Names. Entity secured the directory but remained unresponsive to communications.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/high/high-02-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-02-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-02-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- HIGH 03 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #HIGH-03 | PII DATA LEAK</span><span class="status-badge" style="color: var(--status-ghosted)">Ghosted (Remediated)</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Vulnerability forwarded by BSSN to the respective entity. The data leak was plugged shortly after, though no direct acknowledgment was received.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/high/high-03-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-03-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-03-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- HIGH 04 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #HIGH-04 | .ENV CONFIGURATION EXPOSURE</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Exposure of environment variables including API keys and internal credentials. Entity deployed a 503 Service Unavailable block during patching.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/high/high-04-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-04-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-04-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- HIGH 05 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #HIGH-05 | PII DISCLOSURE (INTERNAL CSIRT)</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Sensitive PII leakage reported directly to the local CSIRT. Successfully remediated and confirmed via official reply.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/high/high-05-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-05-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-05-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- HIGH 06 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #HIGH-06 | SOURCE CODE EXPOSURE (.TAR.GZ)</span><span class="status-badge" style="color: var(--status-validated); border-color: var(--status-validated)">Validated (Pending)</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Found a downloadable compressed file containing website source code. Validated by BSSN, though the fix is still pending implementation by the entity.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/high/high-06-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-06-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-06-03.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-06-04.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- HIGH 07 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #HIGH-07 | REST SETTINGS EXPOSURE</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Exposure of sensitive REST API settings. Reported to Diskominfo; vulnerability successfully addressed and acknowledged.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/high/high-07-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-07-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/high/high-07-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- ================= MEDIUM SECTION ================= -->
+         <h2 id="medium" class="section-title"><span class="dot" style="background: var(--med-color)"></span> MEDIUM SEVERITY (10 SAMPLES)</h2>
+         <!-- MED 01 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-01 | EXPOSED STORAGE LOGS</span><span class="status-badge" style="color: var(--status-ghosted)">Ghosted (Remediated)</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Sensitive internal application logs exposed via public storage path. Path closed after disclosure.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-01-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-01-02.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- MED 02 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-02 | REFLECTED XSS</span><span class="status-badge" style="color: var(--status-ghosted)">Unresponsive / Unfixed</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Cross-Site Scripting (XSS) allowing script execution in browser context. Reported; no action taken yet.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-02-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-02-02.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- MED 03 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-03 | REFLECTED XSS (DOMAIN PROOF)</span><span class="status-badge" style="color: var(--status-validated); border-color: var(--status-validated)">Validated (Pending)</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>XSS vulnerability yielding document.domain proof. Validated by BSSN technical triage.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-03-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-03-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-03-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- MED 04 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-04 | REFLECTED XSS</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Validated</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Vulnerability remediated and confirmed valid through BSSN official channels.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-04-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-04-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-04-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- MED 05 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-05 | REFLECTED XSS (INACTIVE)</span><span class="status-badge" style="color: var(--status-validated); border-color: var(--status-validated)">Validated (Pending)</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>BSSN acknowledged the report, but the entity has not implemented the suggested security controls yet.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-05-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-05-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-05-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- MED 06 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-06 | REFLECTED XSS</span><span class="status-badge" style="color: var(--status-ghosted)">Ghosted (Remediated)</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Document.domain alert proof. Vulnerability remediated; no formal acknowledgment received.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-06-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-06-02.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- MED 07 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-07 | XSS (ONMOUSEOVER)</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Event handler XSS injection. Successfully fixed and acknowledged by BSSN triage.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-07-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-07-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-07-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- MED 08 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-08 | REFLECTED XSS</span><span class="status-badge" style="color: var(--status-ghosted)">Unresponsive / Unfixed</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>XSS vulnerability identified on local government portal. Active/Unfixed.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-08-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-08-02.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- MED 09 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-09 | XSS (COOKIE PROOF)</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Demonstrated cookie exfiltration through XSS. Resolved with 404 block on vulnerable endpoint.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-09-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-09-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-09-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- MED 10 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #MED-10 | XSS (REDIRECTION)</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>XSS allowing JavaScript redirection. BSSN triaged as valid; asset secured thereafter.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/medium/med-10-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-10-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/medium/med-10-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- ================= LOW SECTION ================= -->
+         <h2 id="low" class="section-title"><span class="dot" style="background: var(--low-color)"></span> LOW SEVERITY (3 SAMPLES)</h2>
+         <!-- LOW 01 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #LOW-01 | PHPINFO EXPOSURE</span><span class="status-badge" style="color: var(--status-fixed); border-color: var(--status-fixed)">Resolved & Acknowledged</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Information disclosure via info.php. Remediation verified via 404 status.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/low/low-01-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/low/low-01-02.png"></div>
+                  <div class="ss-item"><img src="img/evidence/low/low-01-03.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- LOW 02 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #LOW-02 | DIRECTORY LISTING</span><span class="status-badge" style="color: var(--status-ghosted)">Ghosted (Remediated)</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Unrestricted directory browsing. Path secured shortly after disclosure.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/low/low-02-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/low/low-02-02.png"></div>
+               </div>
+            </div>
+         </div>
+         <!-- LOW 03 -->
+         <div class="evidence-card">
+            <div class="card-header"><span class="log-id">LOG #LOW-03 | DIRECTORY LISTING</span><span class="status-badge" style="color: var(--status-ghosted)">Ghosted (Remediated)</span></div>
+            <div class="card-body">
+               <div class="info-section">
+                  <h4>Analysis</h4>
+                  <p>Information disclosure through file indexing. Remediation confirmed via independent re-test.</p>
+               </div>
+               <div class="ss-gallery">
+                  <div class="ss-item"><img src="img/evidence/low/low-03-01.png"></div>
+                  <div class="ss-item"><img src="img/evidence/low/low-03-02.png"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
