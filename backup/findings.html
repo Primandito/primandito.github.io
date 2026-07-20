@@ -274,7 +274,7 @@
                   dedicate my expertise to strengthening Indonesia's national digital
                   defense. Through responsible disclosure, I have successfully
                   identified and assisted in the <strong>remediation</strong> of
-                  <strong>160 validated vulnerabilities</strong> across
+                  <strong>160+ validated vulnerabilities</strong> across
                   <strong>100+ national strategic entities</strong>.
                </p>
                <!-- STATS GRID (Indexable by Google) -->
@@ -314,7 +314,7 @@
                         color: var(--accent);
                         display: block;
                         "
-                        >160</span
+                        >160+</span
                         >
                      <span
                         style="
@@ -570,12 +570,14 @@
                   </div>
                </details>
             </div>
-            <!-- NOKIA -->
-            <div class="finding-card fade-in">
+<!-- NOKIA RESEARCH SERIES -->
+            <div class="finding-card fade-in" style="border-left: 2px solid #4ade80;">
                <div class="finding-header">
                   <div>
-                     <h2 class="finding-title">Information Disclosure</h2>
-                     <span class="target-org">Nokia</span>
+                     <h2 class="finding-title">
+                        Research Series: Multiple Information Disclosure & XSS
+                     </h2>
+                     <span class="target-org">Nokia (Official Independent VDP)</span>
                   </div>
                   <div class="tag-group">
                      <span class="tag duplicate">Duplicate</span>
@@ -583,16 +585,45 @@
                      <span class="tag vdp">VDP</span>
                   </div>
                </div>
+               
                <p class="finding-desc">
-                  Detected an information leakage vulnerability revealing internal
-                  system configurations. The finding was acknowledged by the security
-                  team as valid research, demonstrating effective reconnaissance on
-                  the target infrastructure.
+                  Extensive security research conducted on Nokia's global infrastructure. Identified multiple high-impact vulnerabilities across production environments. All findings were triaged by the Nokia Product Security Team as technically valid research.
                </p>
+
+               <!-- BATCH REPORT LOGS -->
+               <div style="margin-bottom: 1.5rem;">
+                  <h4 style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 10px; text-transform: uppercase;">[ Research Timeline & Logs ]</h4>
+                  
+                  <!-- Temuan Baru (Batch July 2026) -->
+                  <div style="background: rgba(255, 255, 255, 0.03); padding: 12px; border-left: 1px solid #444; margin-bottom: 10px;">
+                     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: #fff; display: block; margin-bottom: 5px;">JULY 20, 2026 — BATCH SUBMISSION (3 FINDINGS)</span>
+                     <ul style="font-size: 0.8rem; color: #aaa; list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 5px;">• <strong>Credentials Exposure:</strong> Found in SWDP Production Frontend <span style="background: #222; color: #222; padding: 0 4px; border-radius: 2px;" title="Redacted for Security">xxx-xxx.xxx.xxx.nokia.com</span></li>
+                        <li style="margin-bottom: 5px;">• <strong>OAuth Secret Leak:</strong> Sensitive Google Client Secret exposed in JS <span style="background: #222; color: #222; padding: 0 4px; border-radius: 2px;" title="Redacted for Security">xxx.xxx.xxx.saas.nokia.com</span></li>
+                        <li style="margin-bottom: 0;">• <strong>Reflected XSS:</strong> Vulnerability on main network login portal <span style="background: #222; color: #222; padding: 0 4px; border-radius: 2px;" title="Redacted for Security">login.xxx.xxx.com</span></li>
+                     </ul>
+                  </div>
+
+                  <!-- Temuan Lama -->
+                  <div style="background: rgba(255, 255, 255, 0.03); padding: 12px; border-left: 1px solid #444;">
+                     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: #fff; display: block; margin-bottom: 5px;">EARLIER RESEARCH</span>
+                     <p style="font-size: 0.8rem; color: #aaa; margin: 0;">
+                        Detected an information leakage vulnerability revealing internal system configurations on public-facing infrastructure.
+                     </p>
+                  </div>
+               </div>
+
                <details>
-                  <summary>[+] VIEW VALIDATION LOG</summary>
-                  <div class="proof-container">
-                     <img src="img/findings/02-NOKIA.png" class="proof-img" />
+                  <summary>[+] VIEW REDACTED VALIDATION LOGS</summary>
+                  <div class="proof-container" style="display: flex; flex-direction: column; gap: 15px;">
+                     <div style="border-bottom: 1px solid #222; padding-bottom: 10px;">
+                        <span style="font-size: 0.65rem; color: #555; display: block; margin-bottom: 5px;">// LATEST BATCH TRIAGE (JULY 2026)</span>
+                        <img src="img/findings/nokia-batch-july.png" class="proof-img" alt="Nokia Batch Validation" />
+                     </div>
+                     <div>
+                        <span style="font-size: 0.65rem; color: #555; display: block; margin-bottom: 5px;">// INITIAL RESEARCH LOG</span>
+                        <img src="img/findings/02-NOKIA.png" class="proof-img" alt="Nokia Initial Validation" />
+                     </div>
                   </div>
                </details>
             </div>

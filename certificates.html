@@ -19,12 +19,14 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    
     <style>
       :root {
         --bg: #0a0a0a;
         --accent: #ff5555;
         --border: #333;
         --text: #f0f0f0;
+        --text-dim: #888;
       }
       body {
         font-family: "Inter", sans-serif;
@@ -47,7 +49,7 @@
         letter-spacing: 2px;
       }
       .back-link {
-        color: #888;
+        color: var(--text-dim);
         text-decoration: none;
         font-family: "IBM Plex Mono", monospace;
         font-size: 0.8rem;
@@ -62,24 +64,32 @@
         color: #fff;
       }
 
+      /* Grid System */
       .cert-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 20px;
+        min-height: 480px; /* Biar tinggi stabil */
       }
+
+      /* Hide cards that are not on the current page */
       .cert-card {
+        display: none; /* Default hidden, JS will show 6 of them */
         border: 1px solid var(--border);
         padding: 25px;
         background: #111;
         transition: 0.3s;
-        display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
+
+      .cert-card.visible {
+        display: flex; /* Shown by JS */
+      }
+
       .cert-card:hover {
         border-color: var(--accent);
         background: rgba(255, 85, 85, 0.02);
-        transform: translateY(-3px);
       }
       .cert-title {
         font-family: "IBM Plex Mono", monospace;
@@ -110,7 +120,6 @@
         color: #fff;
       }
       .btn.download {
-        background: transparent;
         border-color: var(--accent);
         color: var(--accent);
       }
@@ -118,31 +127,66 @@
         background: var(--accent);
         color: #fff;
       }
+
+      /* Pagination Nav - Minimalist */
+      .pagination-nav {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        font-family: "IBM Plex Mono", monospace;
+      }
+      .nav-btn {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: 0.3s;
+      }
+      .nav-btn:hover:not(:disabled) {
+        border-color: #fff;
+        color: #fff;
+      }
+      .nav-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+      #pageInfo {
+        font-size: 0.8rem;
+        color: var(--text-dim);
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <a href="portfolio.html" class="back-link">← BACK TO PORTFOLIO</a>
       <h1>Credential Archive</h1>
-
-      <div class="cert-grid">
+      
+      <div class="cert-grid" id="certGrid">
         <div class="cert-card">
-          <div class="cert-title">
-            National Aeronautics and Space Administration
-          </div>
+          <div class="cert-title">National Aeronautics and Space Administration</div>
           <div class="btn-group">
             <a href="certs/nasa.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/nasa.pdf" download class="btn download">DOWNLOAD</a>
+            <a href="certs/nasa.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
         <div class="cert-card">
-          <div class="cert-title">
-            Provinsi Daerah Istimewa Yogyakarta (DIY)
+          <div class="cert-title">Kota Bandung</div>
+          <div class="btn-group">
+            <a href="certs/pemkot_bandung.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/pemkot_bandung.pdf" download class="btn download">DL</a>
           </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-title">Provinsi Daerah Istimewa Yogyakarta (DIY)</div>
           <div class="btn-group">
             <a href="certs/jogja.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/jogja.pdf" download class="btn download">DOWNLOAD</a>
+            <a href="certs/jogja.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -150,7 +194,7 @@
           <div class="cert-title">Detikcom</div>
           <div class="btn-group">
             <a href="certs/detik.png" target="_blank" class="btn">VIEW</a>
-            <a href="certs/detik.png" download class="btn download">DOWNLOAD</a>
+            <a href="certs/detik.png" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -158,21 +202,15 @@
           <div class="cert-title">Provinsi Sulawesi Tengah</div>
           <div class="btn-group">
             <a href="certs/sulteng.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/sulteng.pdf" download class="btn download"
-              >DOWNLOAD</a
-            >
+            <a href="certs/sulteng.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
         <div class="cert-card">
           <div class="cert-title">Transportasi Jakarta</div>
           <div class="btn-group">
-            <a href="certs/transjakarta.pdf" target="_blank" class="btn"
-              >VIEW</a
-            >
-            <a href="certs/transjakarta.pdf" download class="btn download"
-              >DOWNLOAD</a
-            >
+            <a href="certs/transjakarta.pdf" target="_blank" class="btn">VIEW</a>
+            <a href="certs/transjakarta.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -180,7 +218,7 @@
           <div class="cert-title">Kementerian Pekerjaan Umum (PU)</div>
           <div class="btn-group">
             <a href="certs/pu.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/pu.pdf" download class="btn download">DOWNLOAD</a>
+            <a href="certs/pu.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -188,9 +226,7 @@
           <div class="cert-title">Kabupaten Sidoarjo</div>
           <div class="btn-group">
             <a href="certs/sidoarjo.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/sidoarjo.pdf" download class="btn download"
-              >DOWNLOAD</a
-            >
+            <a href="certs/sidoarjo.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -198,9 +234,7 @@
           <div class="cert-title">Kota Cimahi</div>
           <div class="btn-group">
             <a href="certs/cimahi.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/cimahi.pdf" download class="btn download"
-              >DOWNLOAD</a
-            >
+            <a href="certs/cimahi.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -208,7 +242,7 @@
           <div class="cert-title">Kabupaten Lebak</div>
           <div class="btn-group">
             <a href="certs/lebak.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/lebak.pdf" download class="btn download">DOWNLOAD</a>
+            <a href="certs/lebak.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -216,9 +250,7 @@
           <div class="cert-title">Kota Pontianak</div>
           <div class="btn-group">
             <a href="certs/pontianak.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/pontianak.pdf" download class="btn download"
-              >DOWNLOAD</a
-            >
+            <a href="certs/pontianak.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -226,9 +258,7 @@
           <div class="cert-title">Kabupaten Bengkayang</div>
           <div class="btn-group">
             <a href="certs/bengkayang.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/bengkayang.pdf" download class="btn download"
-              >DOWNLOAD</a
-            >
+            <a href="certs/bengkayang.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -236,9 +266,7 @@
           <div class="cert-title">Kabupaten Belitung</div>
           <div class="btn-group">
             <a href="certs/belitung.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/belitung.pdf" download class="btn download"
-              >DOWNLOAD</a
-            >
+            <a href="certs/belitung.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -246,9 +274,7 @@
           <div class="cert-title">Provinsi DKI Jakarta</div>
           <div class="btn-group">
             <a href="certs/jakarta.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/jakarta.pdf" download class="btn download"
-              >DOWNLOAD</a
-            >
+            <a href="certs/jakarta.pdf" download class="btn download">DL</a>
           </div>
         </div>
 
@@ -256,12 +282,55 @@
           <div class="cert-title">Kabupaten Purbalingga</div>
           <div class="btn-group">
             <a href="certs/purbalingga.pdf" target="_blank" class="btn">VIEW</a>
-            <a href="certs/purbalingga.pdf" download class="btn download"
-              >DOWNLOAD</a
-            >
+            <a href="certs/purbalingga.pdf" download class="btn download">DL</a>
           </div>
         </div>
       </div>
+
+      <!-- Navigasi -->
+      <div class="pagination-nav">
+        <button id="prevBtn" class="nav-btn" onclick="changePage(-1)">PREV</button>
+        <span id="pageInfo">PAGE 1 / 3</span>
+        <button id="nextBtn" class="nav-btn" onclick="changePage(1)">NEXT</button>
+      </div>
     </div>
+
+    <script>
+      const cards = document.querySelectorAll('.cert-card');
+      const itemsPerPage = 6;
+      let currentPage = 1;
+
+      function showPage(page) {
+        const totalPages = Math.ceil(cards.length / itemsPerPage);
+        
+        // Atur range item yang tampil
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        cards.forEach((card, index) => {
+          if (index >= start && index < end) {
+            card.classList.add('visible');
+          } else {
+            card.classList.remove('visible');
+          }
+        });
+
+        // Update UI
+        document.getElementById('pageInfo').innerText = `PAGE ${page} / ${totalPages}`;
+        document.getElementById('prevBtn').disabled = (page === 1);
+        document.getElementById('nextBtn').disabled = (page === totalPages);
+        
+        if(window.scrollY > 200) {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+      }
+
+      function changePage(step) {
+        currentPage += step;
+        showPage(currentPage);
+      }
+
+      showPage(currentPage);
+    </script>
   </body>
 </html>
