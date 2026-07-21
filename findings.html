@@ -274,7 +274,7 @@
                   dedicate my expertise to strengthening Indonesia's national digital
                   defense. Through responsible disclosure, I have successfully
                   identified and assisted in the <strong>remediation</strong> of
-                  <strong>160+ validated vulnerabilities</strong> across
+                  <strong>160 validated vulnerabilities</strong> across
                   <strong>100+ national strategic entities</strong>.
                </p>
                <!-- STATS GRID (Indexable by Google) -->
@@ -314,7 +314,7 @@
                         color: var(--accent);
                         display: block;
                         "
-                        >160+</span
+                        >160</span
                         >
                      <span
                         style="
@@ -543,6 +543,31 @@
                >
                DETAILED TRIAGE LOGS (PUBLIC PROGRAMS)
             </h3>
+            <!-- VIERA - ITC INDONESIA -->
+            <div class="finding-card fade-in" style="border-left: 2px solid #ff0000;">
+               <div class="finding-header">
+                  <div>
+                     <h2 class="finding-title">
+                        Auth Bypass & Critical IDOR (PII Data Leakage)
+                     </h2>
+                     <span class="target-org">Aplikasi VIERA - PT International Test Center (ITC) Indonesia</span>
+                  </div>
+                  <div class="tag-group">
+                     <span class="tag valid">Valid</span>
+                     <span class="tag vdp" style="color: #ff0000; border-color: #ff0000;">Critical</span>
+                  </div>
+               </div>
+               <p class="finding-desc">
+               A critical security vulnerability affecting over 100,000 student records has been identified. This vulnerability allows for full authentication bypass and Insecure Direct Object Reference (IDOR), allowing unauthorized access and manipulation of sensitive PII data (NISN, email, phone number, and other sensitive data). It has been addressed and acknowledged by the ITC technical team.   
+               </p>
+               <details>
+                  <summary>[+] VIEW TRIAGE ACKNOWLEDGMENT</summary>
+                  <div class="proof-container">
+                     <p style="color: #666; font-size: 0.7rem;">// Official Response from ITC Indonesia Support Team</p>
+                     <img src="img/findings/viera-itc-ack.png" class="proof-img" alt="ITC Indonesia Triage" />
+                  </div>
+               </details>
+            </div>
             <!-- HSBC -->
             <div class="finding-card fade-in">
                <div class="finding-header">
@@ -600,7 +625,7 @@
                      <ul style="font-size: 0.8rem; color: #aaa; list-style: none; padding-left: 0;">
                         <li style="margin-bottom: 5px;">• <strong>Credentials Exposure:</strong> Found in SWDP Production Frontend <span style="background: #222; color: #222; padding: 0 4px; border-radius: 2px;" title="Redacted for Security">xxx-xxx.xxx.xxx.nokia.com</span></li>
                         <li style="margin-bottom: 5px;">• <strong>OAuth Secret Leak:</strong> Sensitive Google Client Secret exposed in JS <span style="background: #222; color: #222; padding: 0 4px; border-radius: 2px;" title="Redacted for Security">xxx.xxx.xxx.saas.nokia.com</span></li>
-                        <li style="margin-bottom: 0;">• <strong>Reflected XSS:</strong> Vulnerability on main network login portal <span style="background: #222; color: #222; padding: 0 4px; border-radius: 2px;" title="Redacted for Security">login.xxx.xxx.com</span></li>
+                        <li style="margin-bottom: 0;">• <strong>Reflected XSS:</strong> Vulnerability on main network login portal <span style="background: #222; color: #222; padding: 0 4px; border-radius: 2px;" title="Redacted for Security">login.xxx.nokia.com</span></li>
                      </ul>
                   </div>
 
