@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /backup/
+Disallow: /research/template/
 
 Sitemap: https://primandito.github.io/sitemap.xml

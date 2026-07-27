@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & META DATA -->
+    <title>Analysis: SQL Injection: Authentication Bypass via Tautology | Research Lab</title>
+    <meta name="description" content="Technical analysis and simulation of SQL Injection (Auth Bypass) conducted in a controlled environment by Primandito Adi Setiya.">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --accent: #ff5555;
+            --border: #222;
+            --text-main: #f0f0f0;
+            --text-dim: #888;
+            --code-green: #00ff41;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 850px; margin: 0 auto; }
+
+        /* Navigation */
+        .back-nav { margin-bottom: 40px; }
+        .back-link { font-family: 'IBM Plex Mono', monospace; color: var(--accent); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--accent); padding: 8px 15px; transition: 0.3s; }
+        .back-link:hover { background: var(--accent); color: #fff; }
+
+        header { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        h1 { font-family: 'IBM Plex Mono', monospace; font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 10px; color: #fff; }
+        .meta-info { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 20px; flex-wrap: wrap; }
+        .meta-info span b { color: var(--accent); }
+
+        /* Summary Box */
+        .summary-box { background: #111; border: 1px solid var(--border); padding: 25px; margin-bottom: 40px; }
+        .summary-box h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; color: #fff; margin-bottom: 10px; border-left: 3px solid var(--accent); padding-left: 15px; }
+        .summary-box p { font-size: 0.95rem; color: #ccc; }
+
+        /* Video Section */
+        .video-section { margin-bottom: 60px; }
+        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border: 1px solid var(--border); position: relative; margin-top: 15px; }
+        .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Technical Content */
+        section { margin-bottom: 50px; }
+        h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        h2::before { content: "> "; color: var(--accent); }
+
+        pre { background: #000; border: 1px solid var(--border); padding: 20px; overflow-x: auto; margin: 20px 0; position: relative; }
+        code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; color: var(--code-green); }
+        .code-label { position: absolute; top: 0; right: 0; background: var(--border); color: #666; font-size: 0.6rem; padding: 3px 10px; font-family: 'IBM Plex Mono', monospace; }
+
+        .highlight { color: var(--accent); font-weight: 500; }
+
+        footer { margin-top: 100px; padding-top: 30px; border-top: 1px solid var(--border); text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #444; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="back-nav">
+            <a href="index.html" class="back-link">[ BACK_TO_LAB_INDEX ]</a>
+        </nav>
+
+        <header>
+            <h1>SQL INJECTION: AUTHENTICATION BYPASS VIA TAUTOLOGY</h1>
+            <div class="meta-info">
+                <span>DATE: <b>2026-07-27</b></span>
+                <span>SEVERITY: <b>CRITICAL</b></span>
+                <span>CATEGORY: <b>SQLi / AUTH_BYPASS</b></span>
+            </div>
+        </header>
+
+        <!-- SUMMARY & IMPACT -->
+        <div class="summary-box">
+            <h2>EXECUTIVE SUMMARY</h2>
+            <p>
+                This analysis demonstrates how an <strong>SQL Injection</strong> vulnerability in the <strong>Login Module</strong> 
+                can be exploited to bypass authentication mechanisms. By injecting a tautological SQL command, an attacker can gain 
+                <strong>FULL ADMINISTRATIVE ACCESS</strong> to the internal dashboard without providing valid credentials. 
+                The flaw stems from improper sanitization of user input before it is concatenated into a raw database query.
+            </p>
+        </div>
+
+        <!-- FULL POC VIDEO -->
+        <section class="video-section">
+            <h2>EXPLOITATION_POC (VIDEO)</h2>
+            <div class="video-container">
+                <!-- Replace VIDEO_ID with your YouTube Unlisted ID -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/6iJBWQsMUCg?si=Dw3r1RDs7N9c4QSb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
+            </div>
+        </section>
+
+        <!-- TECHNICAL ANALYSIS / STEPS -->
+        <section>
+            <h2>TECHNICAL_WALKTHROUGH</h2>
+            <p>The vulnerability is identified in the login processing script where the application uses string concatenation to build the SQL query.</p>
+            
+            <pre><span class="code-label">VULNERABLE_PHP_LOGIC</span><code>
+// Raw concatenation without prepared statements
+$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = $db->querySingle($query, true);</code></pre>
+
+            <p>An attacker can input a tautology (a statement that is always true) into the <code>username</code> field. By using the <code>'</code> character to break out of the string and <code>--</code> to comment out the rest of the query, the password check is entirely ignored.</p>
+
+            <pre><span class="code-label">INJECTED_PAYLOAD</span><code>
+Username: admin' OR '1'='1'--
+Password: [ANY_STRING_OR_EMPTY]</code></pre>
+
+            <p>The resulting query executed by the database becomes:</p>
+
+            <pre><span class="code-label">MANIPULATED_SQL_QUERY</span><code>
+SELECT * FROM users WHERE username = 'admin' OR '1'='1'--' AND password = '...'</code></pre>
+            
+            <p>Since <code>'1'='1'</code> is always true, the database returns the first record (usually the administrator account), granting the attacker unauthorized access to the dashboard.</p>
+        </section>
+
+        <!-- REMEDIATION -->
+        <section>
+            <h2>REMEDIATION_STRATEGY</h2>
+            <p>
+                To mitigate this attack, it is mandatory to use <span class="highlight">Prepared Statements</span> or <span class="highlight">Parameterized Queries</span>. 
+                This ensures that the database engine treats user input as data only, not as executable code, effectively neutralizing the injection attempt.
+            </p>
+        </section>
+
+        <footer>
+            © 2024 PRIMANDITO ADI SETIYA // SECURITY_RESEARCH_WRITEUP
+        </footer>
+    </div>
+
+</body>
+</html>

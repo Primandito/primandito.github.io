@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & META DATA -->
+    <title>Research Laboratory | Primandito Adi Setiya</title>
+    <meta name="description" content="Technical archive of security research, vulnerability writeups, and exploitation simulations conducted by Primandito Adi Setiya in controlled lab environments.">
+    <meta name="keywords" content="Security Research, Vulnerability Writeups, Bug Bounty Lab, RCE Simulation, Primandito Adi Setiya, Web Security, Cyber Security Indonesia">
+    <meta name="author" content="Primandito Adi Setiya">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://primandito.github.io/research/index.html" />
+
+    <!-- SOCIAL MEDIA (OG TAGS) -->
+    <meta property="og:title" content="Research Laboratory | Primandito Adi Setiya" />
+    <meta property="og:description" content="Technical exploitation simulations and security research writeups." />
+    <meta property="og:image" content="https://primandito.github.io/img/logos/logo_web.png" />
+    <meta property="og:url" content="https://primandito.github.io/research/" />
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --bg: #0a0a0a; 
+            --accent: #ff5555; 
+            --border: #222; 
+            --text-main: #f0f0f0;
+            --text-dim: #888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text-main); 
+            padding: 40px 20px; 
+            line-height: 1.6;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; }
+
+        /* Navigation */
+        .nav-header { margin-bottom: 40px; }
+        .back-link { 
+            color: var(--text-dim); 
+            text-decoration: none; 
+            font-family: 'IBM Plex Mono', monospace; 
+            font-size: 0.8rem; 
+            border: 1px solid var(--border);
+            padding: 8px 15px;
+            transition: 0.3s;
+        }
+        .back-link:hover { 
+            border-color: var(--accent); 
+            color: var(--accent); 
+            background: rgba(255, 85, 85, 0.02);
+        }
+
+        h1 { 
+            font-family: 'IBM Plex Mono', monospace; 
+            font-size: 2rem;
+            margin: 30px 0; 
+            color: #fff;
+        }
+
+        /* Disclaimer Notice */
+        .lab-notice { 
+            border: 1px solid var(--accent); 
+            padding: 25px; 
+            margin-bottom: 50px; 
+            border-left: 5px solid var(--accent); 
+            background: rgba(255, 85, 85, 0.03); 
+        }
+        .lab-notice strong { 
+            color: var(--accent); 
+            font-family: 'IBM Plex Mono', monospace; 
+            display: block;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        .lab-notice p { 
+            font-size: 0.9rem; 
+            color: #ccc; 
+            line-height: 1.5;
+        }
+
+        /* Research Grid */
+        .grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 25px; 
+        }
+        .card { 
+            border: 1px solid var(--border); 
+            padding: 30px; 
+            background: #111; 
+            text-decoration: none; 
+            transition: 0.3s; 
+            display: block;
+        }
+        .card:hover { 
+            border-color: #444; 
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.01);
+        }
+        .tag { 
+            font-family: 'IBM Plex Mono', monospace; 
+            color: var(--accent); 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+        .title { 
+            font-family: 'IBM Plex Mono', monospace; 
+            font-size: 1.3rem; 
+            color: #fff; 
+            display: block; 
+            margin: 12px 0; 
+        }
+        .desc { 
+            color: var(--text-dim); 
+            font-size: 0.9rem; 
+        }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-header">
+            <a href="../portfolio.html" class="back-link">[ RETURN_TO_BASE ]</a>
+        </nav>
+
+        <h1>Research Laboratory</h1>
+        
+        <div class="lab-notice">
+            <strong>[!] RESEARCH_INTEGRITY_NOTICE</strong>
+            <p>
+                All documentation provided below is the result of original vulnerability reproduction within an 
+                <strong>Isolated Lab Environment</strong>. To uphold the principles of responsible disclosure, 
+                all institutional identities, IP addresses, and sensitive data have been fully anonymized or 
+                replaced with dummy data.
+            </p>
+        </div>
+
+        <div class="grid">
+            <!-- Project 01 (SQLi) -->
+            <a href="analysis-sqli-bypass/index.html" class="card">
+                <span class="tag">SQL Injection / Auth Bypass</span>
+                <span class="title">Bypassing Authentication via Tautology</span>
+                <p class="desc">A technical demonstration of how unsanitized string concatenation in SQL queries allows for unauthorized administrative access.</p>
+            </a>
+        </div>
+
+        <footer>
+            © 2026 PRIMANDITO ADI SETIYA // SECURITY_RESEARCH_LAB
+        </footer>
+    </div>
+</body>
+</html>
