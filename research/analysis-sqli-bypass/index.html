@@ -90,7 +90,7 @@
         <section class="video-section">
             <h2>EXPLOITATION_POC (VIDEO)</h2>
             <div class="video-container">
-                <!-- Replace VIDEO_ID with your YouTube Unlisted ID -->
+                <!-- Replace VIDEO_ID with your YouTube ID -->
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/6iJBWQsMUCg?si=Dw3r1RDs7N9c4QSb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
             </div>
         </section>
@@ -105,18 +105,18 @@
 $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
 $result = $db->querySingle($query, true);</code></pre>
 
-            <p>An attacker can input a tautology (a statement that is always true) into the <code>username</code> field. By using the <code>'</code> character to break out of the string and <code>--</code> to comment out the rest of the query, the password check is entirely ignored.</p>
+            <p>An attacker can input a tautology (a statement that is always true) into the <code>username</code> field. By using the single quote (<code>'</code>) to break out of the string and <code>--</code> to comment out the rest of the query, the password validation is completely bypassed.</p>
 
             <pre><span class="code-label">INJECTED_PAYLOAD</span><code>
-Username: admin' OR '1'='1'--
+Username: admin' OR 1=1 --
 Password: [ANY_STRING_OR_EMPTY]</code></pre>
 
-            <p>The resulting query executed by the database becomes:</p>
+            <p>The resulting query executed by the database engine becomes:</p>
 
             <pre><span class="code-label">MANIPULATED_SQL_QUERY</span><code>
-SELECT * FROM users WHERE username = 'admin' OR '1'='1'--' AND password = '...'</code></pre>
+SELECT * FROM users WHERE username = 'admin' OR 1=1 --' AND password = '...'</code></pre>
             
-            <p>Since <code>'1'='1'</code> is always true, the database returns the first record (usually the administrator account), granting the attacker unauthorized access to the dashboard.</p>
+            <p>Since <code>1=1</code> is a constant truth, the database logic evaluates the entire <code>WHERE</code> clause as true for the specified user, granting unauthorized access to the dashboard.</p>
         </section>
 
         <!-- REMEDIATION -->
@@ -129,9 +129,11 @@ SELECT * FROM users WHERE username = 'admin' OR '1'='1'--' AND password = '...'<
         </section>
 
         <footer>
-            © 2024 PRIMANDITO ADI SETIYA // SECURITY_RESEARCH_WRITEUP
+            © 2026 PRIMANDITO ADI SETIYA // SECURITY_RESEARCH_WRITEUP
         </footer>
     </div>
 
 </body>
 </html>
+
+ 
