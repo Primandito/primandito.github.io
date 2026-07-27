@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & META DATA -->
+    <title>Analysis: Open Redirect | Research Lab</title>
+    <meta name="description" content="Technical analysis of Phishing Facilitation via Unvalidated Redirects conducted in a controlled environment by Primandito Adi Setiya.">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --accent: #ff5555;
+            --border: #222;
+            --text-main: #f0f0f0;
+            --text-dim: #888;
+            --code-green: #00ff41;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 850px; margin: 0 auto; }
+
+        /* Navigation */
+        .back-nav { margin-bottom: 40px; }
+        .back-link { font-family: 'IBM Plex Mono', monospace; color: var(--accent); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--accent); padding: 8px 15px; transition: 0.3s; }
+        .back-link:hover { background: var(--accent); color: #fff; }
+
+        header { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        h1 { font-family: 'IBM Plex Mono', monospace; font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 10px; color: #fff; }
+        .meta-info { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 20px; flex-wrap: wrap; }
+        .meta-info span b { color: var(--accent); }
+
+        /* Summary Box */
+        .summary-box { background: #111; border: 1px solid var(--border); padding: 25px; margin-bottom: 40px; }
+        .summary-box h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; color: #fff; margin-bottom: 10px; border-left: 3px solid var(--accent); padding-left: 15px; }
+        .summary-box p { font-size: 0.95rem; color: #ccc; }
+
+        /* Video Section */
+        .video-section { margin-bottom: 60px; }
+        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border: 1px solid var(--border); position: relative; margin-top: 15px; }
+        .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Technical Content */
+        section { margin-bottom: 50px; }
+        h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        h2::before { content: "> "; color: var(--accent); }
+
+        pre { background: #000; border: 1px solid var(--border); padding: 20px; overflow-x: auto; margin: 20px 0; position: relative; }
+        code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; color: var(--code-green); }
+        .code-label { position: absolute; top: 0; right: 0; background: var(--border); color: #666; font-size: 0.6rem; padding: 3px 10px; font-family: 'IBM Plex Mono', monospace; }
+
+        .highlight { color: var(--accent); font-weight: 500; }
+
+        footer { margin-top: 100px; padding-top: 30px; border-top: 1px solid var(--border); text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #444; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="back-nav">
+            <a href="../index.html" class="back-link">[ BACK_TO_LAB_INDEX ]</a>
+        </nav>
+
+        <header>
+            <h1>Phishing Facilitation via Unvalidated Redirects</h1>
+            <div class="meta-info">
+                <span>DATE: <b>2026-07-27</b></span>
+                <span>SEVERITY: <b>LOW</b></span>
+                <span>CATEGORY: <b>URL_MANIPULATION / OPEN_REDIRECT</b></span>
+            </div>
+        </header>
+
+        <!-- SUMMARY & IMPACT -->
+        <div class="summary-box">
+            <h2>EXECUTIVE SUMMARY</h2>
+            <p>
+                This analysis investigates an <strong>Open Redirect</strong> vulnerability identified within the NexusNews Portal. The application utilizes a dedicated endpoint (<code>/out</code>) to handle external partner redirects, such as links to news agencies. However, the server fails to validate the destination URL. This allows attackers to leverage the trusted corporate domain to craft convincing <strong>phishing links</strong> that redirect users to malicious external sites.
+            </p>
+        </div>
+
+        <!-- FULL POC VIDEO -->
+        <section class="video-section">
+            <h2>EXPLOITATION_POC (VIDEO)</h2>
+            <div class="video-container">
+                <!-- Replace VIDEO_ID with your YouTube ID -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/y4g4BFwRgjs?si=on3akiGUnsYOEyP1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- TECHNICAL ANALYSIS / STEPS -->
+        <section>
+            <h2>TECHNICAL_WALKTHROUGH</h2>
+            <p>The vulnerability was identified through manual observation of the application's outbound link handling mechanism.</p>
+            
+            <p><b>1. Discovery:</b> While browsing articles on the portal, external partner links were found to follow a redirector pattern. Hovering over a link to a news agency revealed the following structure:</p>
+            
+            <pre><span class="code-label">OBSERVED_OUTBOUND_URL</span><code>http://nexusnews.local/out?url=https://reuters.com</code></pre>
+
+            <p><b>2. Manual Manipulation:</b> By modifying the <code>url</code> parameter in the browser's address bar, I tested whether the server enforces any domain whitelisting. I replaced the legitimate destination with a generic external site.</p>
+
+            <pre><span class="code-label">MANIPULATED_URL</span><code>http://nexusnews.local/out?url=https://google.com</code></pre>
+
+            <p><b>3. Execution:</b> The server processed the request and issued a <code>302 Found</code> response. The browser followed the <code>Location</code> header, successfully redirecting to the external domain without any warning.</p>
+
+            <pre><span class="code-label">HTTP_INTERCEPTION_LOG</span><code>
+GET /out?url=https://google.com HTTP/1.1
+Host: nexusnews.local
+
+HTTP/1.1 302 FOUND
+Location: https://google.com
+Connection: close</code></pre>
+
+            <p><b>4. Impact:</b> Since the redirect initiates from the trusted <code>nexusnews.local</code> domain, attackers can bypass user suspicion and security filters to deliver phishing pages or malicious payloads.</p>
+        </section>
+
+        <!-- REMEDIATION -->
+        <section>
+            <h2>REMEDIATION_STRATEGY</h2>
+            <p>
+                To mitigate this vulnerability, it is recommended to implement a <span class="highlight">Strict Domain Whitelist</span> for all outbound redirects. Alternatively, an intermediary "External Link Warning" page should be displayed to inform users they are leaving the trusted environment, requiring manual confirmation before the redirect occurs.
+            </p>
+        </section>
+
+        <footer>
+            © 2026 PRIMANDITO ADI SETIYA // SECURITY_RESEARCH_WRITEUP
+        </footer>
+    </div>
+
+</body>
+</html>
