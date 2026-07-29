@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & META DATA -->
+    <title>Analysis: Privilege Escalation | Research Lab</title>
+    <meta name="description" content="Technical analysis of Privilege Escalation via Mass Assignment and Metadata Leakage conducted in a controlled environment by Primandito Adi Setiya.">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --accent: #ff5555;
+            --border: #222;
+            --text-main: #f0f0f0;
+            --text-dim: #888;
+            --code-green: #00ff41;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 850px; margin: 0 auto; }
+
+        /* Navigation */
+        .back-nav { margin-bottom: 40px; }
+        .back-link { font-family: 'IBM Plex Mono', monospace; color: var(--accent); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--accent); padding: 8px 15px; transition: 0.3s; }
+        .back-link:hover { background: var(--accent); color: #fff; }
+
+        header { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        h1 { font-family: 'IBM Plex Mono', monospace; font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 10px; color: #fff; }
+        .meta-info { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 20px; flex-wrap: wrap; }
+        .meta-info span b { color: var(--accent); }
+
+        /* Summary Box */
+        .summary-box { background: #111; border: 1px solid var(--border); padding: 25px; margin-bottom: 40px; }
+        .summary-box h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; color: #fff; margin-bottom: 10px; border-left: 3px solid var(--accent); padding-left: 15px; }
+        .summary-box p { font-size: 0.95rem; color: #ccc; }
+
+        /* Video Section */
+        .video-section { margin-bottom: 60px; }
+        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border: 1px solid var(--border); position: relative; margin-top: 15px; }
+        .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Technical Content */
+        section { margin-bottom: 50px; }
+        h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        h2::before { content: "> "; color: var(--accent); }
+
+        pre { background: #000; border: 1px solid var(--border); padding: 20px; overflow-x: auto; margin: 20px 0; position: relative; }
+        code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; color: var(--code-green); }
+        .code-label { position: absolute; top: 0; right: 0; background: var(--border); color: #666; font-size: 0.6rem; padding: 3px 10px; font-family: 'IBM Plex Mono', monospace; }
+
+        .highlight { color: var(--accent); font-weight: 500; }
+
+        footer { margin-top: 100px; padding-top: 30px; border-top: 1px solid var(--border); text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #444; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="back-nav">
+            <a href="../index.html" class="back-link">[ BACK_TO_LAB_INDEX ]</a>
+        </nav>
+
+        <header>
+            <h1>Privilege Escalation via Mass Assignment & Metadata Leakage</h1>
+            <div class="meta-info">
+                <span>DATE: <b>2026-07-29</b></span>
+                <span>SEVERITY: <b>CRITICAL</b></span>
+                <span>CATEGORY: <b>BROKEN_FUNCTION_LEVEL_AUTHORIZATION</b></span>
+            </div>
+        </header>
+
+        <!-- SUMMARY & IMPACT -->
+        <div class="summary-box">
+            <h2>EXECUTIVE SUMMARY</h2>
+            <p>
+                This analysis demonstrates a <strong>Privilege Escalation</strong> vulnerability on redacted.com. By leveraging <strong>Information Leakage</strong> found in HTML metadata (hidden data attributes), a sensitive internal role was identified. Through <strong>Mass Assignment</strong>, the user profile was tampered with to bypass weak server-side filters, successfully elevating a standard user to a high-privilege administrative status.
+            </p>
+        </div>
+
+        <!-- FULL POC VIDEO -->
+        <section class="video-section">
+            <h2>EXPLOITATION_POC (VIDEO)</h2>
+            <div class="video-container">
+                <!-- Replace VIDEO_ID with your YouTube ID -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/R-MjHtx7iyo?si=gNL2mXNAhSG4oewH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- TECHNICAL ANALYSIS / STEPS -->
+        <section>
+            <h2>TECHNICAL_WALKTHROUGH</h2>
+            <p>The exploitation chain begins with an authenticated session as a standard user (test@redacted.com) and proceeds through a series of logical steps to bypass access controls.</p>
+            
+            <p><b>1. Initial Baseline:</b> After registration and login, an attempt to access the restricted administrative endpoint <code>/admin/security-portal</code> resulted in a <b>403 Forbidden</b> response, confirming the active authorization check.</p>
+
+            <p><b>2. Identifying Parameter Tampering:</b> Navigating to the Profile Settings and updating the profile revealed that the application processes parameters via a POST request. Intercepting this request via <b>Burp Suite</b> showed a <code>role=user</code> parameter.</p>
+            
+            <pre><span class="code-label">BURP_REPEATER_INITIAL_ATTEMPT</span><code>
+POST /settings HTTP/1.1
+Host: redacted.com:5003
+...
+username=test&bio=Full-stack+Developer.&role=admin
+
+HTTP/1.1 403 FORBIDDEN
+...
+&lt;h1&gt;403 Forbidden: Administrative role is restricted.&lt;/h1&gt;</code></pre>
+
+            <p><b>3. Metadata Reconnaissance:</b> An attempt to elevate directly to <code>admin</code> failed, indicating a blacklist-based filter. However, by inspecting the HTML source code of the <b>Project Discussion Thread</b>, internal metadata leakage was discovered within a <code>data-role</code> attribute.</p>
+
+            <pre><span class="code-label">HTML_METADATA_LEAKAGE</span><code>
+&lt;!-- CRITICAL LEAK: Role name "moderator" is hidden in the data-role attribute --&gt;
+&lt;div class="card mb-3 p-4 comment-thread" data-user="Core_Maintainer" data-role="moderator"&gt;
+    &lt;div class="d-flex justify-content-between align-items-center mb-2"&gt;
+        &lt;span class="fw-bold text-primary"&gt;Core_Maintainer&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;p&gt;...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+            <p><b>4. Successful Escalation:</b> Using the discovered role name <code>moderator</code>, the profile update request was re-sent. The server accepted the value, as the blacklist only filtered the specific "admin" keyword.</p>
+
+            <pre><span class="code-label">BURP_REPEATER_EXPLOIT</span><code>
+POST /settings HTTP/1.1
+Host: redacted.com:5003
+...
+username=test&bio=Full-stack+Developer.&role=moderator
+
+HTTP/1.1 302 FOUND
+Location: /settings</code></pre>
+
+            <p><b>5. Impact Verification:</b> Re-accessing the <code>/admin/security-portal</code> now resulted in a <b>200 OK</b>, granting full unauthorized access to the moderator console.</p>
+        </section>
+
+        <!-- REMEDIATION -->
+        <section>
+            <h2>REMEDIATION_STRATEGY</h2>
+            <p>
+                To mitigate this vulnerability, it is recommended to implement <span class="highlight">Strict Server-Side Validation</span> where user roles are non-updatable via public profile endpoints. Additionally, sensitive internal metadata should be removed from the frontend HTML, and a <span class="highlight">Whitelist</span> approach should be adopted for allowed user attributes.
+            </p>
+        </section>
+
+        <footer>
+            © 2026 PRIMANDITO ADI SETIYA // SECURITY_RESEARCH_WRITEUP
+        </footer>
+    </div>
+
+</body>
+</html>
