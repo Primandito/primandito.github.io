@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>Archive: Juli 2025</title><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet"><style>body { background: #0a0a0a; color: #00ff41; font-family: 'IBM Plex Mono'; padding: 40px; } table { width: 100%; border-collapse: collapse; } th { text-align: left; color: #ff5555; border-bottom: 2px solid #222; } td { padding: 10px; border-bottom: 1px solid #111; } a { color: #00ff41; text-decoration: none; }</style></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Tree Archive: Juli 2025 | Primandito Adi Setiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style> :root { --bg: #0a0a0a; --green: #00ff41; --accent: #ff5555; --border: #222; --text-dim: #666; } body { background: var(--bg); color: var(--green); font-family: 'IBM Plex Mono', monospace; padding: 30px; line-height: 1.2; } .container { max-width: 900px; margin: 0 auto; } h1 { border-bottom: 1px solid var(--border); padding-bottom: 10px; font-size: 1rem; color: #fff; text-transform: uppercase; margin-bottom: 20px; } .tree { font-size: 0.85rem; user-select: none; } .folder-root { color: #fff; font-weight: bold; margin-bottom: 10px; display: block; } .node { margin-left: 20px; position: relative; padding: 2px 0; } .node::before { content: ""; position: absolute; left: -15px; top: -10px; bottom: 10px; border-left: 1px solid var(--text-dim); } .node:last-child::before { bottom: 10px; height: 20px; } .node::after { content: ""; position: absolute; left: -15px; top: 10px; width: 10px; border-top: 1px solid var(--text-dim); } .file-link { color: var(--green); text-decoration: none; } .file-link:hover { background: #111; text-decoration: underline; } .back-link { color: var(--text-dim); font-size: 0.75rem; text-decoration: none; border: 1px solid #333; padding: 4px 10px; display: inline-block; margin-bottom: 20px; } </style>
+</head>
 <body>
-    <a href="../index.html" style="color:#888; text-decoration:none;">[ .. / BACK ]</a>
-    <h1>Index of /Full_Dokumen/Juli</h1>
-    <table>
-        <thead><tr><th>Folder Date</th><th>Key Findings</th></tr></thead>
-        <tbody>
-            <tr><td><a href="2025-07-07/">📂 2025-07-07/</a></td><td>1 Medium-XSS</td></tr>
-            <tr><td><a href="2025-07-21/">📂 2025-07-21/</a></td><td>1 Critical-SQLI, 1 High-Backup, 1 Medium-XSS</td></tr>
-            <tr><td><a href="2025-07-28/">📂 2025-07-28/</a></td><td>1 Medium-XSS</td></tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <a href="../index.html" class="back-link">[ .. / BACK ]</a>
+        <h1>Index: Full_Dokumen/Juli</h1>
+        <div class="tree">
+            <span class="folder-root">.</span>
+            <div class="node">
+                <span style="color: #5dade2">📂 2025-07-07/</span>
+                <div class="node">└── 📄 <a class="file-link" href="2025-07-07/03_Technical_Evidence_Redacted.png">03_Technical_Evidence_Redacted.png</a></div>
+            </div>
+            <div class="node">
+                <span style="color: #5dade2">📂 2025-07-21/</span>
+                <div class="node">├── 📄 <a class="file-link" href="2025-07-21/1-Critical-SQLI">1-Critical-SQLI</a></div>
+                <div class="node">├── 📄 <a class="file-link" href="2025-07-21/1-High-File-Backup">1-High-File-Backup</a></div>
+                <div class="node">└── 📄 <a class="file-link" href="2025-07-21/01_Submission_Email.png">01_Submission_Email.png</a></div>
+            </div>
+            <div class="node">
+                <span style="color: #5dade2">📂 2025-07-28/</span>
+                <div class="node">└── 📄 <a class="file-link" href="2025-07-28/01_Submission_Email.png">01_Submission_Email.png</a></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
