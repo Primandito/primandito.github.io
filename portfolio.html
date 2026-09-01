@@ -12,19 +12,19 @@
     />
     <meta
       name="keywords"
-      content="Primandito Adi Setiya, Primandito, Adi Setiya, Security Researcher, Vulnerability Analyst, Bug Bounty, Bugcrowd, Responsible Disclosure, Cybersecurity Portfolio, Web Application Security"
+      content="Primandito Adi Setiya, Primandito, Adi Setiya, Security Researcher, Vulnerability Analyst, VDP, Bugcrowd, Responsible Disclosure, Cybersecurity Portfolio, Web Application Security"
     />
     <meta name="author" content="Primandito Adi Setiya" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://primandito.github.io/portfolio.html" />
 
     <meta property="og:title" content="Primandito Adi Setiya | Bug Hunter & Security Researcher" />
-    <meta property="og:description" content="Independent security researcher with 160+ validated findings and 30+ Hall of Fame recognitions (NASA, WHO, DHS)." />
+    <meta property="og:description" content="Independent security researcher with 171 validated findings and 30+ Hall of Fame recognitions (NASA, WHO, DHS)." />
    	<meta property="og:image" content="https://primandito.github.io/img/logos/logo_web.png" />
 
    	<meta name="twitter:card" content="summary_large_image" />
    	<meta name="twitter:title" content="Primandito Adi Setiya | Bug Hunter & Security Researcher" />
-   	<meta name="twitter:description" content="Independent security researcher with 160+ validated findings and 30+ Hall of Fame recognitions." />
+   	<meta name="twitter:description" content="Independent security researcher with 171 validated findings and 30+ Hall of Fame recognitions." />
    	<meta name="twitter:image" content="https://primandito.github.io/img/logos/logo_web.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,9 +65,7 @@
       }
 
       /* Typography */
-      h1,
-      h2,
-      h3 {
+      h1, h2, h3 {
         font-family: "IBM Plex Mono", monospace;
         font-weight: 500;
       }
@@ -323,104 +321,54 @@
         background: rgba(255, 255, 255, 0.03);
       }
 
-/* Trust Bar Styles */
-.trust-bar {
-  margin: -2rem 0 3rem;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-}
-
-.trust-label {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.65rem;
-  color: var(--accent);
-  letter-spacing: 2px;
-  display: block;
-  margin-bottom: 20px;
-  opacity: 0.8;
-}
-
-.logo-strip {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 30px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.strip-item {
-  filter: grayscale(100%) brightness(1.2);
-  opacity: 0.5;
-  transition: all 0.4s ease;
-  mix-blend-mode: screen;
-}
-
-.strip-item:hover {
-  filter: grayscale(0%) brightness(1);
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-/* Responsif buat HP */
-@media (max-width: 600px) {
-  .logo-strip {
-    gap: 20px;
-  }
-  .strip-item {
-    transform: scale(0.8);
-  }
-  .strip-item:hover {
-    transform: scale(0.9);
-  }
-}
-
-      .fade-in {
-        animation: fadeIn 0.8s ease-out forwards;
+      /* Trust Bar Styles */
+      .trust-bar {
+        margin: -2rem 0 3rem;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+        text-align: center;
       }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(15px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .trust-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--accent);
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: 20px;
+        opacity: 0.8;
       }
-      @keyframes logoPulse {
-        0%,
-        100% {
-          filter: grayscale(100%) brightness(1.2);
-          opacity: 0.4;
-          transform: scale(1);
-        }
-        50% {
-          filter: grayscale(0%) brightness(1);
-          opacity: 1;
-          transform: scale(1.1);
-        }
+      .logo-strip {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        max-width: 800px;
+        margin: 0 auto;
       }
-      .scanning {
-        animation: logoPulse 2s ease-in-out infinite;
+      .strip-item {
+        filter: grayscale(100%) brightness(1.2);
+        opacity: 0.5;
+        transition: all 0.4s ease;
+        mix-blend-mode: screen;
+      }
+      .strip-item:hover {
+        filter: grayscale(0%) brightness(1);
+        opacity: 1;
+        transform: scale(1.1);
       }
 
       @media (max-width: 600px) {
-        .cert-box {
-          flex-direction: column;
-          text-align: center;
-          padding: 1.5rem;
-        }
-        .nav {
-          gap: 1rem;
-          justify-content: center;
-        }
-        header {
-          text-align: center;
-        }
+        .logo-strip { gap: 20px; }
+        .strip-item { transform: scale(0.8); }
+        .strip-item:hover { transform: scale(0.9); }
+        .cert-box { flex-direction: column; text-align: center; padding: 1.5rem; }
+        .nav { gap: 1rem; justify-content: center; }
+        header { text-align: center; }
       }
+
+      .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
   </head>
   <body>
@@ -437,22 +385,21 @@
           <a href="#hof">Hall of Fame</a>
           <a href="findings.html">Findings</a>
           <a href="research/index.html" style="color: #00ff41; font-weight: bold;">Research Lab</a>
-          <a href="evidence-logs.html" style="color: var(--status-validated); font-weight: bold;">Evidence</a>
+          <a href="Full_Dokumen/index.html" style="color: #3399ff; font-weight: bold;">Evidence</a>
           <a href="https://www.linkedin.com/in/primandito-adi-setiya-846748412/" target="_blank">LinkedIn</a>
           <a href="#connectivity" style="color: var(--accent)">Contact</a>
         </nav>
       </header>
 
-
-<!-- TRUSTED BY SECTION (5 TOP LOGOS - OFFICIAL HOF) -->
+      <!-- TRUSTED BY SECTION -->
       <div class="trust-bar fade-in">
         <span class="trust-label">[ OFFICIAL SECURITY RECOGNITIONS ]</span>
         <div class="logo-strip">
-          <img src="img/logos/nasa.png" alt="National Aeronautics and Space Administration (NASA) Security Hall of Fame - Primandito Adi Setiya" class="strip-item" style="height: 45px" />
-          <img src="img/logos/dhs.png" alt="Department of Homeland Security (DHS) Recognition - Primandito Adi Setiya" class="strip-item" style="height: 45px" />
-          <img src="img/logos/who.png" alt="World Health Organization (WHO) Recognition - Primandito Adi Setiya" class="strip-item" style="height: 50px" />
-          <img src="img/logos/mcdonalds.png" alt="McDonalds Recognition - Primandito Adi Setiya" class="strip-item" style="height: 40px" />
-          <img src="img/logos/bpk.png" alt="Badan Pemerika Keuangan (BPK) RI Recognition - Primandito Adi Setiya" class="strip-item" style="height: 50px" />
+          <img src="img/logos/nasa.png" alt="NASA Security" class="strip-item" style="height: 45px" />
+          <img src="img/logos/dhs.png" alt="DHS Recognition" class="strip-item" style="height: 45px" />
+          <img src="img/logos/who.png" alt="WHO Recognition" class="strip-item" style="height: 50px" />
+          <img src="img/logos/mcdonalds.png" alt="McDonalds Recognition" class="strip-item" style="height: 40px" />
+          <img src="img/logos/bpk.png" alt="Badan Pemerika Keuangan (BPK) RI Recognition" class="strip-item" style="height: 50px" />
         </div>
       </div>
       
@@ -477,25 +424,18 @@
           reports are triaged or re-evaluated by platforms.
         </p>
         <div class="stats-grid">
-          <!-- Kolom 1: Khusus Bugcrowd -->
           <div class="stat-item" style="border-bottom: 2px solid #ff5555;">
             <span class="stat-number">35</span>
             <span class="stat-label">Bugcrowd Validated</span>
           </div>
-        
-          <!-- Kolom 2: Total Semua Temuan (Termasuk Nasional) -->
           <div class="stat-item" style="border-bottom: 2px solid #00ff41;">
-            <span class="stat-number">160+</span>
+            <span class="stat-number">171</span>
             <span class="stat-label">Total Validated Findings</span>
           </div>
-        
-          <!-- Kolom 3: Akurasi -->
           <div class="stat-item">
             <span class="stat-number">92%</span>
             <span class="stat-label">Report Accuracy</span>
           </div>
-        
-          <!-- Kolom 4: Hall of Fame -->
           <div class="stat-item">
             <span class="stat-number">32</span>
             <span class="stat-label">Official Recognitions</span>
@@ -509,53 +449,21 @@
         </p>
         <div class="priority-list">
           <div class="stat-bar-container">
-            <div class="bar-label">
-              <span>P1 Priority</span
-              ><span class="percent-val">0<sup>th</sup></span>
-            </div>
-            <div class="bar-bg">
-              <div class="bar-fill" style="width: 1%"></div>
-            </div>
+            <div class="bar-label"><span>P1 Priority</span><span class="percent-val">35 Reports</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 35%"></div></div>
           </div>
           <div class="stat-bar-container">
-            <div class="bar-label">
-              <span>P2 Priority</span
-              ><span class="percent-val">51<sup>st</sup></span>
-            </div>
-            <div class="bar-bg">
-              <div class="bar-fill" style="width: 51%"></div>
-            </div>
+            <div class="bar-label"><span>P2 Priority</span><span class="percent-val">57 Reports</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 57%"></div></div>
           </div>
           <div class="stat-bar-container">
-            <div class="bar-label">
-              <span>P3 Priority</span
-              ><span class="percent-val">80<sup>th</sup></span>
-            </div>
-            <div class="bar-bg">
-              <div class="bar-fill" style="width: 75%"></div>
-            </div>
+            <div class="bar-label"><span>P3 Priority</span><span class="percent-val">79 Reports</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 79%"></div></div>
           </div>
-          <div class="stat-bar-container">
-            <div class="bar-label">
-              <span>P4 Priority</span
-              ><span class="percent-val">78<sup>th</sup></span>
-            </div>
-            <div class="bar-bg">
-              <div class="bar-fill" style="width: 75%"></div>
-            </div>
-          </div>
-          <div class="stat-bar-container">
-            <div class="bar-label">
-              <span>P5 Priority</span
-              ><span class="percent-val">97<sup>th</sup></span>
-            </div>
-            <div class="bar-bg">
-              <div class="bar-fill" style="width: 97%"></div>
-            </div>
-          </div>
+          <!-- Low Severity Removed -->
         </div>
         <p>
-        My research portfolio includes 35 validated reports on international platforms like Bugcrowd, alongside a broader contribution to national cybersecurity, where I have identified and assisted in the remediation of over 160 vulnerabilities across strategic sectors.
+        My research portfolio includes 35 validated reports on international platforms like Bugcrowd, alongside a broader contribution to national cybersecurity, where I have identified and assisted in the remediation of over 171 vulnerabilities across strategic sectors.
         </p>
       </section>
 
@@ -565,66 +473,21 @@
           <span class="highlight-tag">High-Impact Discovery</span>
           <h3 style="margin-top: 0">P1 Critical: Sensitive Data Exposure</h3>
           <p class="hof-desc">
-            Successfully identified a
-            <strong>Critical (P1)</strong> vulnerability involving the
-            <strong>Disclosure of Secrets</strong> within a publicly accessible
-            asset.
+            Successfully identified a <strong>Critical (P1)</strong> vulnerability involving the <strong>Disclosure of Secrets</strong> within a publicly accessible asset.
           </p>
           <details style="margin-bottom: 1.5rem; cursor: pointer">
-            <summary
-              style="
-                font-family: &quot;IBM Plex Mono&quot;, monospace;
-                font-size: 0.75rem;
-                color: var(--accent);
-                letter-spacing: 1px;
-              "
-            >
+            <summary style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--accent); letter-spacing: 1px;">
               [+] VIEW TRIAGE VALIDATION LOG
             </summary>
-            <div
-              style="
-                margin-top: 1rem;
-                border: 1px solid var(--border);
-                padding: 5px;
-                display: inline-block;
-                background: #000;
-              "
-            >
-              <img
-                src="img/portofolio/log-p1-002.png"
-                alt="P1 Validation Log"
-                style="
-                  max-width: 100%;
-                  height: auto;
-                  display: block;
-                  opacity: 0.8;
-                "
-              />
+            <div style="margin-top: 1rem; border: 1px solid var(--border); padding: 5px; display: inline-block; background: #000;">
+              <img src="img/portofolio/log-p1-002.png" alt="P1 Validation Log" style="max-width: 100%; height: auto; display: block; opacity: 0.8;" />
             </div>
-            <div
-              style="
-                margin-top: 1rem;
-                border: 1px solid var(--border);
-                padding: 5px;
-                display: inline-block;
-                background: #000;
-              "
-            >
-              <img
-                src="img/portofolio/log-p1-001.png"
-                alt="P1 Validation Log"
-                style="
-                  max-width: 100%;
-                  height: auto;
-                  display: block;
-                  opacity: 0.8;
-                "
-              />
+            <div style="margin-top: 1rem; border: 1px solid var(--border); padding: 5px; display: inline-block; background: #000;">
+              <img src="img/portofolio/log-p1-001.png" alt="P1 Validation Log" style="max-width: 100%; height: auto; display: block; opacity: 0.8;" />
             </div>
           </details>
           <p class="hof-desc" style="font-size: 0.85rem; font-style: italic">
-            Note: This finding was identified as a duplicate submission,
-            demonstrating technical proficiency in high-priority security flaws.
+            Note: This finding was identified as a duplicate submission, demonstrating technical proficiency in high-priority security flaws.
           </p>
         </div>
       </section>
@@ -634,144 +497,42 @@
         <div class="cert-box">
           <div class="cert-info">
             <h3>Credential Archive</h3>
-            <p>
-              Access my official collection of security awards and certificates.
-            </p>
+            <p>Access my official collection of security awards and certificates.</p>
           </div>
-          <a href="certificates.html" class="drive-btn"
-            >VIEW ALL CERTIFICATES ↗</a
-          >
+          <a href="certificates.html" class="drive-btn">VIEW ALL CERTIFICATES ↗</a>
         </div>
       </section>
 
       <section id="hof" class="fade-in">
         <h2>Hall of Fame Highlights</h2>
-        <p>
-          Recognition for responsible vulnerability disclosure across various
-          organizations and government agencies.
-        </p>
-
+        <p>Recognition for responsible vulnerability disclosure across various organizations and government agencies.</p>
         <div class="hof-grid">
-          <!-- ITEM 1: WHO -->
           <div class="hof-item">
             <span class="hof-platform">Independent VDP</span>
             <h3 class="hof-org">World Health Organization (WHO)</h3>
             <span class="hof-date">April 2026</span>
-            <p class="hof-desc">
-              Listed in the official Hall of Fame for responsible vulnerability
-              disclosure to the World Health Organization.
-            </p>
-            <a
-              href="https://www.who.int/about/cybersecurity/vulnerability-hall-of-fame/ethical-hacker-list"
-              target="_blank"
-              class="hof-link"
-              >View Proof →</a
-            >
+            <p class="hof-desc">Listed in the official Hall of Fame for responsible vulnerability disclosure to the World Health Organization.</p>
+            <a href="https://www.who.int/about/cybersecurity/vulnerability-hall-of-fame/ethical-hacker-list" target="_blank" class="hof-link">View Proof →</a>
           </div>
-
-          <!-- ITEM 2: USDOT -->
-          <div class="hof-item">
-            <span class="hof-platform">Bugcrowd</span>
-            <h3 class="hof-org">U.S. Dept. of Transportation (USDOT)</h3>
-            <span class="hof-date">March 2026</span>
-            <p class="hof-desc">
-              Listed in the Hall of Fame for identifying and reporting
-              vulnerabilities within U.S. national transportation infrastructure
-              systems.
-            </p>
-            <a
-              href="https://bugcrowd.com/engagements/usdot-vdp/hall_of_fames"
-              target="_blank"
-              class="hof-link"
-              >View Proof →</a
-            >
-          </div>
-
-          <!-- ITEM 3: BOSCH -->
-          <div class="hof-item">
-            <span class="hof-platform">Bugcrowd</span>
-            <h3 class="hof-org">Bosch VDP Public</h3>
-            <span class="hof-date">March 2026</span>
-            <p class="hof-desc">
-              Acknowledged for responsible security research within Bosch's
-              industrial and technology ecosystem.
-            </p>
-            <a
-              href="https://bugcrowd.com/engagements/bosch-vdp-public/hall_of_fames"
-              target="_blank"
-              class="hof-link"
-              >View Proof →</a
-            >
-          </div>
-
-          <!-- ITEM 4: NASA -->
           <div class="hof-item">
             <span class="hof-platform">Bugcrowd</span>
             <h3 class="hof-org">NASA VDP</h3>
             <span class="hof-date">January 2026</span>
-            <p class="hof-desc">
-              Listed in the Hall of Fame for responsible vulnerability
-              disclosure.
-            </p>
-            <a
-              href="https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames"
-              target="_blank"
-              class="hof-link"
-              >View Proof →</a
-            >
+            <p class="hof-desc">Listed in the Hall of Fame for responsible vulnerability disclosure.</p>
+            <a href="https://bugcrowd.com/engagements/nasa-vdp/hall_of_fames" target="_blank" class="hof-link">View Proof →</a>
           </div>
-
-          <!-- ITEM 5: DHS -->
           <div class="hof-item">
             <span class="hof-platform">Bugcrowd</span>
             <h3 class="hof-org">Dept of Homeland Security (DHS)</h3>
             <span class="hof-date">January 2026</span>
-            <p class="hof-desc">
-              Acknowledged for responsible vulnerability disclosure.
-            </p>
-            <a
-              href="https://bugcrowd.com/engagements/dhs-vdp/hall_of_fames"
-              target="_blank"
-              class="hof-link"
-              >View Proof →</a
-            >
-          </div>
-
-          <!-- ITEM 6: BPK -->
-          <div class="hof-item">
-            <span class="hof-platform">Independent VDP</span>
-            <h3 class="hof-org">Badan Pemeriksa Keuangan (BPK)</h3>
-            <span class="hof-date">January 2026</span>
-            <p class="hof-desc">
-              Acknowledged for responsible security reporting.
-            </p>
-            <a
-              href="https://csirt.bpk.go.id/posts/daftar-pelapor-keamanan"
-              target="_blank"
-              class="hof-link"
-              >View Proof →</a
-            >
+            <p class="hof-desc">Acknowledged for responsible vulnerability disclosure.</p>
+            <a href="https://bugcrowd.com/engagements/dhs-vdp/hall_of_fames" target="_blank" class="hof-link">View Proof →</a>
           </div>
         </div>
-
-        <a href="hall-of-fame.html" class="btn-full"
-          >VIEW FULL LIST (32 ENTRIES) →</a
-        >
-
-        <p
-          style="
-            color: #888;
-            margin-top: 30px;
-            font-size: 0.85rem;
-            font-family: &quot;IBM Plex Mono&quot;, monospace;
-          "
-        >
+        <a href="hall-of-fame.html" class="btn-full">VIEW FULL LIST (32 ENTRIES) →</a>
+        <p style="color: #888; margin-top: 30px; font-size: 0.85rem; font-family: 'IBM Plex Mono', monospace;">
           Looking for technical archives? <br />
-          <a
-            href="findings.html"
-            style="color: var(--accent); text-decoration: none"
-            >[ View Findings Archive ]</a
-          >
+          <a href="findings.html" style="color: var(--accent); text-decoration: none">[ View Findings Archive ]</a>
         </p>
       </section>
 
@@ -786,51 +547,20 @@
             various security research projects and am happy to connect with
             others in the industry.
           </p>
-
           <div style="margin: 1.5rem 0; display: flex; gap: 1rem; flex-wrap: wrap;">
-            <a
-                href="mailto:primandito@proton.me"
-                class="drive-btn"
-                style="text-transform: lowercase; font-size: 1rem; letter-spacing: 1px;"
-              >
-                primandito@proton.me ↗
-              </a>
-              <a
-                href="https://www.linkedin.com/in/primandito-adi-setiya-846748412/"
-                target="_blank"
-                class="drive-btn"
-                style="font-size: 1rem; letter-spacing: 1px; border-color: #0077b5; color: #0077b5;"
-              >
-                LinkedIn Profile ↗
-              </a>
-            </div>
-
-          <p class="hof-desc" style="font-size: 0.8rem; font-style: italic">
-            <!-- Average response time: 24-48 hours. Secure communication via PGP is
-            available upon request. -->
-          </p>
+            <a href="mailto:primandito@proton.me" class="drive-btn" style="text-transform: lowercase;">primandito@proton.me ↗</a>
+            <a href="https://www.linkedin.com/in/primandito-adi-setiya-846748412/" target="_blank" class="drive-btn" style="border-color: #0077b5; color: #0077b5;">LinkedIn Profile ↗</a>
+          </div>
         </div>
       </section>
 
       <footer>
         <p class="footer-copy">
           © 2026 Primandito Adi Setiya •
-          <a
-            href="mailto:primandito@proton.me"
-            style="color: #666; text-decoration: none"
-            >primandito@proton.me</a
-          >
+          <a href="mailto:primandito@proton.me" style="color: #666; text-decoration: none">primandito@proton.me</a>
         </p>
-        <a
-          href="https://bugcrowd.com/h/Primandito_Adi_Setiya"
-          target="_blank"
-          class="bugcrowd-link"
-        >
-          View full profile on Bugcrowd →
-        </a>
+        <a href="https://bugcrowd.com/h/Primandito_Adi_Setiya" target="_blank" class="bugcrowd-link">View full profile on Bugcrowd →</a>
       </footer>
     </div>
-
-
   </body>
 </html>
