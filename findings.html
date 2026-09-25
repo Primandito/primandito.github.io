@@ -563,6 +563,35 @@
                   </div>
                </details>
             </div>
+                        <!-- STATE OF MARYLAND - PII LEAKAGE / EXPOSURE -->
+            <div class="finding-card fade-in" style="border-left: 2px solid #a855f7;">
+               <div class="finding-header">
+                  <div>
+                     <h2 class="finding-title">
+                        Sensitive Data Exposure > Disclosure of Secrets > PII Leakage/Exposure
+                     </h2>
+                     <span class="target-org">State of Maryland (Bugcrowd)</span>
+                  </div>
+                  <div class="tag-group">
+                     <span class="tag duplicate">Duplicate</span>
+                     <span class="tag valid">Valid</span>
+                     <span class="tag vdp">VDP</span>
+                     <span class="tag" style="color: #ef4444; border-color: #ef4444;">P1</span>
+                  </div>
+               </div>
+               <p class="finding-desc">
+                  Identified a PII Leakage/Exposure vulnerability on the State of Maryland Bugcrowd program. The report was triaged as technically valid and prioritized as P1. However, it was marked as a duplicate of an existing submission. Despite being a duplicate, the triage team acknowledged the validity of the finding and appreciated the effort.
+               </p>
+               <details>
+                  <summary>[+] VIEW REDACTED VALIDATION LOGS</summary>
+                  <div class="proof-container" style="display: flex; flex-direction: column; gap: 15px;">
+                     <div style="border-bottom: 1px solid #222; padding-bottom: 10px;">
+                        <span style="font-size: 0.65rem; color: #555; display: block; margin-bottom: 5px;">// BUGCROWD TRIAGE UPDATES</span>
+                        <img src="img/findings/maryland.png" class="proof-img" />
+                     </div>
+                  </div>
+               </details>
+            </div>
             <!-- HSBC -->
             <div class="finding-card fade-in">
                <div class="finding-header">
@@ -576,6 +605,7 @@
                      <span class="tag duplicate">Duplicate</span>
                      <span class="tag valid">Valid</span>
                      <span class="tag vdp">VDP</span>
+                     <span class="tag" style="color: #F47A20; border-color: #F47A20;">P3</span>
                   </div>
                </div>
                <p class="finding-desc">
@@ -647,35 +677,6 @@
                   </div>
                </details>
             </div>
-            <!-- KASEYA -->
-            <div class="finding-card fade-in">
-               <div class="finding-header">
-                  <div>
-                     <h2 class="finding-title">
-                        Information Disclosure > Leak of Client Configuration & Secrets
-                     </h2>
-                     <span class="target-org">Kaseya (Inky)</span>
-                  </div>
-                  <div class="tag-group">
-                     <span class="tag duplicate">Duplicate</span>
-                     <span class="tag valid">Valid</span>
-                     <span class="tag vdp">VDP</span>
-                  </div>
-               </div>
-               <p class="finding-desc">
-                  Identified a sensitive configuration exposure within a Keycloak
-                  instance. The research detailed a vulnerability chain where leaked
-                  client secrets and an insecure CORS policy could be leveraged for
-                  authenticated data exfiltration. The finding was confirmed as
-                  technically valid and passed preliminary review.
-               </p>
-               <details>
-                  <summary>[+] VIEW VALIDATION LOG</summary>
-                  <div class="proof-container">
-                     <img src="img/findings/03-KASEYA.png" class="proof-img" />
-                  </div>
-               </details>
-            </div>
             <!-- DHS -->
             <div class="finding-card fade-in">
                <div class="finding-header">
@@ -691,6 +692,8 @@
                      <span class="tag duplicate">Duplicate</span>
                      <span class="tag valid">Valid</span>
                      <span class="tag vdp">VDP</span>
+                     <span class="tag" style="color: #F47A20; border-color: #F47A20;">P3</span>
+
                   </div>
                </div>
                <p class="finding-desc">
