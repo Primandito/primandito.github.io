@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Credential Archive | Primandito Adi Setiya</title>
 
-	<meta property="og:title" content="Primandito Adi Setiya | Bug Hunter & Security Researcher" />
-	<meta property="og:description" content="Independent security researcher with 171+ validated findings and 30+ Hall of Fame recognitions (NASA, WHO, DHS)." />
-	<meta property="og:image" content="https://primandito.github.io/img/logos/logo_web.png" />
+    <meta property="og:title" content="Primandito Adi Setiya | Bug Hunter & Security Researcher" />
+    <meta property="og:description" content="Independent security researcher with 171+ validated findings and 30+ Hall of Fame recognitions (NASA, WHO, DHS)." />
+    <meta property="og:image" content="https://primandito.github.io/img/logos/logo_web.png" />
 
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Primandito Adi Setiya | Bug Hunter & Security Researcher" />
-	<meta name="twitter:description" content="Independent security researcher with 171+ validated findings and 30+ Hall of Fame recognitions." />
-	<meta name="twitter:image" content="https://primandito.github.io/img/logos/logo_web.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Primandito Adi Setiya | Bug Hunter & Security Researcher" />
+    <meta name="twitter:description" content="Independent security researcher with 171+ validated findings and 30+ Hall of Fame recognitions." />
+    <meta name="twitter:image" content="https://primandito.github.io/img/logos/logo_web.png" />
 
-	<meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow" />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    
+
     <style>
       :root {
         --bg: #0a0a0a;
@@ -64,17 +64,50 @@
         color: #fff;
       }
 
+      /* === ELEMEN BARU: COUNTER BAR === */
+      .archive-counter {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--text-dim);
+        margin-top: -15px;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+      }
+      .archive-counter .count-num {
+        color: var(--accent);
+        font-size: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+      }
+      .archive-counter .count-label {
+        color: var(--text-dim);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.75rem;
+      }
+      .archive-counter .count-divider {
+        color: #444;
+      }
+      .archive-counter .count-scope {
+        color: #666;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+      }
+
       /* Grid System */
       .cert-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 20px;
-        min-height: 480px; /* Biar tinggi stabil */
+        min-height: 480px;
       }
 
-      /* Hide cards that are not on the current page */
       .cert-card {
-        display: none; /* Default hidden, JS will show 6 of them */
+        display: none;
         border: 1px solid var(--border);
         padding: 25px;
         background: #111;
@@ -84,7 +117,7 @@
       }
 
       .cert-card.visible {
-        display: flex; /* Shown by JS */
+        display: flex;
       }
 
       .cert-card:hover {
@@ -158,13 +191,28 @@
         font-size: 0.8rem;
         color: var(--text-dim);
       }
+
+      @media (max-width: 600px) {
+        .archive-counter {
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <a href="portfolio.html" class="back-link">← BACK TO PORTFOLIO</a>
       <h1>Credential Archive</h1>
-      
+
+      <!-- === COUNTER MANUAL — edit angka 17 kalau nambah sertifikat === -->
+      <div class="archive-counter">
+        <span class="count-num">17</span>
+        <span class="count-label">Certificates Archived</span>
+        <span class="count-divider">•</span>
+        <span class="count-scope">Scope: National &amp; International VDP</span>
+      </div>
+
       <div class="cert-grid" id="certGrid">
         <div class="cert-card">
           <div class="cert-title">National Aeronautics and Space Administration</div>
@@ -318,8 +366,7 @@
 
       function showPage(page) {
         const totalPages = Math.ceil(cards.length / itemsPerPage);
-        
-        // Atur range item yang tampil
+
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
 
@@ -331,13 +378,12 @@
           }
         });
 
-        // Update UI
         document.getElementById('pageInfo').innerText = `PAGE ${page} / ${totalPages}`;
         document.getElementById('prevBtn').disabled = (page === 1);
         document.getElementById('nextBtn').disabled = (page === totalPages);
-        
-        if(window.scrollY > 200) {
-            window.scrollTo({top: 0, behavior: 'smooth'});
+
+        if (window.scrollY > 200) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
 
