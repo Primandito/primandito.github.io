@@ -139,7 +139,7 @@
       }
       @media (min-width: 768px) {
         .stats-grid {
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
         }
       }
       .stat-item {
@@ -226,62 +226,6 @@
         text-transform: uppercase;
         display: block;
         margin-bottom: 0.5rem;
-      }
-
-      /* Policy Notice Banner */
-      .policy-banner {
-        background: rgba(255, 165, 0, 0.08);
-        border: 1px solid var(--warning);
-        border-left: 4px solid var(--warning);
-        padding: 1rem 1.2rem;
-        margin-bottom: 1.5rem;
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 0.8rem;
-        color: var(--warning);
-        line-height: 1.6;
-      }
-      .policy-banner a {
-        color: #fff;
-        text-decoration: underline;
-      }
-      .policy-banner a:hover {
-        color: var(--warning);
-      }
-
-      /* Accuracy Detail Card */
-      .accuracy-card {
-        border: 1px solid var(--border);
-        border-left: 4px solid var(--warning);
-        padding: 1.5rem;
-        margin: 2rem 0;
-        background: rgba(255, 165, 0, 0.02);
-      }
-      .accuracy-card ul {
-        color: var(--text-dim);
-        font-size: 0.9rem;
-        margin-left: 1.2rem;
-        margin-bottom: 1rem;
-        line-height: 1.8;
-      }
-      .accuracy-card details {
-        margin-top: 1rem;
-        cursor: pointer;
-      }
-      .accuracy-card summary {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 0.75rem;
-        color: var(--warning);
-        letter-spacing: 1px;
-        list-style: none;
-      }
-      .accuracy-card summary::-webkit-details-marker {
-        display: none;
-      }
-      .accuracy-card summary::before {
-        content: "[+] ";
-      }
-      .accuracy-card details[open] summary::before {
-        content: "[-] ";
       }
 
       /* Trust Bar Styles */
@@ -471,6 +415,11 @@
           and helping organizations strengthen their infrastructures through
           thorough research and analysis.
         </p>
+        <p>
+          To date, I have earned <strong>48+ national and international
+          recognitions</strong> for my contributions to security research and
+          responsible vulnerability disclosure.
+        </p>
       </section>
 
       <section id="stats" class="fade-in">
@@ -484,20 +433,9 @@
         <div class="scope-note">
           <strong>⚠️ SCOPE CLARIFICATION:</strong> Statistics on this page cover
           <strong>two separate research tracks</strong> — (1) <strong>Bugcrowd platform metrics</strong>
-          (validated count &amp; accuracy), and (2) <strong>National Infrastructure Research
+          (validated count), and (2) <strong>National Infrastructure Research
           (Indonesia)</strong> conducted via direct VDP channels. These are independent scopes
           and should not be conflated.
-        </div>
-
-        <!-- POLICY UPDATE BANNER -->
-        <div class="policy-banner">
-          <strong>📢 BUGROWD POLICY UPDATE (2026):</strong><br />
-          Bugcrowd revised its accuracy calculation. Submissions marked
-          <strong>"Not Applicable" (N/A)</strong> now count as
-          <strong>rejections (invalid)</strong>. My <strong>Bugcrowd accuracy</strong> shifted from
-          <strong>92% → 22%</strong> as a direct result — not due to report
-          quality decline.
-          <a href="#accuracy-detail">Read full breakdown ↓</a>
         </div>
 
         <div class="stats-grid">
@@ -515,162 +453,12 @@
             <span class="stat-scope">Scope: Indonesia (Non-Bugcrowd)</span>
           </div>
 
-          <!-- Kolom 3: Akurasi — Khusus Bugcrowd -->
-          <div class="stat-item" style="border-bottom: 2px solid #ffa500;">
-            <span class="stat-number" style="font-size: 1.4rem; line-height: 1.2;">
-              92% <span style="color: #666; font-size: 1rem;">→</span> 22%
-            </span>
-            <span class="stat-label">Bugcrowd Accuracy</span>
-            <span class="stat-scope">Scope: Bugcrowd Platform</span>
-          </div>
-
-          <!-- Kolom 4: Hall of Fame -->
+          <!-- Kolom 3: Hall of Fame -->
           <div class="stat-item">
             <span class="stat-number">35</span>
             <span class="stat-label">Official Recognitions</span>
             <span class="stat-scope">Scope: Cross-Platform</span>
           </div>
-        </div>
-
-        <!-- ACCURACY DETAIL CARD -->
-        <div id="accuracy-detail" class="accuracy-card">
-          <span class="highlight-tag" style="color: var(--warning);">⚠️ METRIC TRANSPARENCY NOTICE</span>
-          <h3 style="margin-top: 0">Understanding Bugcrowd Accuracy</h3>
-
-          <p class="hof-desc" style="border-left: 2px solid var(--warning); padding-left: 0.8rem; color: #ccc;">
-            <strong>Note:</strong> This metric is <strong>exclusive to the Bugcrowd platform</strong>.
-            It does <strong>not</strong> reflect the quality of my National Infrastructure Research
-            (Indonesia), which is tracked separately under a different reporting pipeline.
-          </p>
-
-          <p class="hof-desc">
-            Bugcrowd calculates <strong>Accuracy</strong> as the percentage of
-            submissions that are valid, measured within a
-            <strong>90-day rolling window</strong>:
-          </p>
-
-          <p
-            class="hof-desc"
-            style="
-              font-family: 'IBM Plex Mono', monospace;
-              font-size: 0.85rem;
-              background: #111;
-              padding: 0.9rem;
-              border: 1px solid var(--border);
-              text-align: center;
-              color: #fff;
-            "
-          >
-            % Accuracy = [Accepted Submissions / (Accepted Submissions + Rejected Submissions + N/A Submissions)] × 100
-          </p>
-          <p style="font-size: 0.75rem; color: #888; margin-top: 0.5rem; font-family: 'IBM Plex Mono', monospace;">
-            Note: Informational and Duplicate submissions are excluded from both numerator and denominator.
-          </p>
-
-          <h3 style="font-size: 1rem; margin-top: 1.5rem;">Submission Status Classification</h3>
-          <ul>
-            <li>
-              <strong style="color: #00ff41;">Accepted (Valid)</strong> = Unresolved, Resolved
-            </li>
-            <li>
-              <strong style="color: #ff5555;">N/A (Not Applicable)</strong> = counts directly as rejection (invalid)
-            </li>
-            <li>
-              <strong style="color: #ff5555;">Rejected</strong> = invalid submission
-            </li>
-            <li>
-              <strong style="color: #888;">Informational</strong> = excluded from calculation entirely
-            </li>
-            <li>
-              <strong style="color: #888;">Duplicate</strong> = excluded from calculation entirely
-            </li>
-          </ul>
-
-          <h3 style="font-size: 1rem; margin-top: 1.5rem;">What Changed in the 2026 Policy Update</h3>
-          <p class="hof-desc">
-            Bugcrowd updated its Accuracy calculation (effective 2026) to better reflect report
-            quality across Managed Bug Bounty programs. Under the new rules:
-          </p>
-          <ul>
-            <li>
-              <strong style="color: #ff5555;">N/A status</strong> → now counted as
-              <strong>rejection (invalid)</strong> (previously excluded)
-            </li>
-            <li>
-              <strong style="color: #888;">Informational</strong> → excluded from calculation
-            </li>
-            <li>
-              <strong style="color: #888;">Duplicate</strong> → excluded from calculation
-            </li>
-            <li>
-              <strong style="color: #fff;">Payout threshold</strong> → accuracy is evaluated
-              across all findings regardless of bounty eligibility
-            </li>
-          </ul>
-
-          <h3 style="font-size: 1rem; margin-top: 1.5rem;">Platform-Wide Enforcement Context</h3>
-          <p class="hof-desc">
-            These changes were introduced in response to <strong>"sloptimism"</strong> —
-            high-volume, low-confidence submissions, including AI-generated reports.
-            Bugcrowd's triage queue grew by <strong>334%</strong> in a three-week period.
-            The platform now enforces:
-          </p>
-          <ul>
-            <li><strong style="color: #ff5555;">Permanent ban</strong> for submission farming</li>
-            <li><strong style="color: #ff5555;">30-day suspension</strong> for ≥10 consecutive invalid reports</li>
-            <li><strong style="color: #ffa500;">6 submissions/week cap</strong> + 7-day throttle for accounts below 50% accuracy</li>
-            <li><strong style="color: #fff;">Mandatory Identity Verification</strong> for all researchers submitting to Managed Bug Bounty programs</li>
-          </ul>
-
-          <h3 style="font-size: 1rem; margin-top: 1.5rem;">Impact on My Bugcrowd Rating</h3>
-          <p class="hof-desc">
-            This <strong>retroactive policy change</strong> reclassified historical N/A
-            submissions across my Bugcrowd history. My Bugcrowd accuracy shifted from
-            <strong>92% to 22% overnight</strong> — a direct consequence of the policy
-            update, not a decline in report quality or methodology.
-          </p>
-
-          <h3 style="font-size: 1rem; margin-top: 1.5rem;">Current Standing</h3>
-          <p class="hof-desc">
-            Under the new framework, I continue research with a focus on maintaining accuracy
-            above the <strong>50% threshold</strong> required for private program invitations.
-            The 90-day rolling window means this metric will recover as new valid submissions
-            replace historical N/A entries.
-          </p>
-
-          <details>
-            <summary>VIEW OFFICIAL POLICY REFERENCE</summary>
-            <div style="margin-top: 1rem; color: var(--text-dim); font-size: 0.85rem;">
-              <p><strong>Sources:</strong></p>
-              <p style="margin-top: 0.5rem;">
-                <a
-                  href="https://docs.bugcrowd.com/researchers/managing-account/performance-metrics/accuracy/"
-                  target="_blank"
-                  style="color: var(--warning); text-decoration: none; border-bottom: 1px solid var(--warning);"
-                >
-                  docs.bugcrowd.com → Accuracy Policy ↗
-                </a>
-              </p>
-              <p style="margin-top: 0.5rem;">
-                <a
-                  href="https://docs.bugcrowd.com/changelog/researchers/accuracy-update/"
-                  target="_blank"
-                  style="color: var(--warning); text-decoration: none; border-bottom: 1px solid var(--warning);"
-                >
-                  docs.bugcrowd.com → Accuracy Calculation Update (2026) ↗
-                </a>
-              </p>
-              <p style="margin-top: 0.5rem;">
-                <a
-                  href="https://docs.bugcrowd.com/changelog/researchers/submission-limit-update/"
-                  target="_blank"
-                  style="color: var(--warning); text-decoration: none; border-bottom: 1px solid var(--warning);"
-                >
-                  docs.bugcrowd.com → Submission Limit Update (2026) ↗
-                </a>
-              </p>
-            </div>
-          </details>
         </div>
 
         <!-- BUGROWD SECTION -->
@@ -711,7 +499,7 @@
           The 171 findings below were submitted through <strong>direct VDP (Vulnerability
           Disclosure Program) channels</strong> to Indonesian government and strategic
           organizations — <strong>not</strong> through the Bugcrowd platform. They are
-          separate from the Bugcrowd validated count (37) and Bugcrowd accuracy rating (22%).
+          separate from the Bugcrowd validated count (37).
         </div>
         <p>
           Vulnerability Disclosure Program (VDP) results during the period of
@@ -734,7 +522,7 @@
 
         <p style="margin-top: 2rem;">
           My research portfolio spans two tracks: <strong>37 validated reports on the
-          Bugcrowd platform</strong> (see accuracy notice above), and a broader contribution
+          Bugcrowd platform</strong>, and a broader contribution
           to <strong>national cybersecurity in Indonesia</strong>, where I have identified
           and assisted in the remediation of <strong>over 171 vulnerabilities</strong> across
           strategic sectors during 2025 through direct VDP channels.
@@ -774,7 +562,7 @@
             Note: This finding was identified as a duplicate submission,
             demonstrating technical proficiency in high-priority security flaws.
             Under Bugcrowd's 2026 policy, duplicate submissions are
-            excluded from accuracy calculation — a distinction that separates
+            excluded from scoring — a distinction that separates
             quality research from submission farming.
           </p>
         </div>
